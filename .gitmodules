@@ -1,4 +1,4 @@
 [submodule "soot"]
 	path = soot
-	url = https://github.com/Sable/soot.git
+	url = https://github.com/secure-software-engineering/soot-panathon.git
 	branch = jimpleInterpreter
