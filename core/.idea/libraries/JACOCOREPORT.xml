@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="libraryTable">
+  <library name="JACOCOREPORT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../.mx/cache/JACOCOREPORT_8a7f78fdf2a4e58762890d8e896a9298c2980c10.jar!/"/>
+    </CLASSES>
+    <JAVADOC/>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../.mx/cache/JACOCOREPORT.sources_e6703ef288523a8e63fa756d8adeaa70858d41b0.jar!/"/>
+    </SOURCES>
+  </library>
+</component>

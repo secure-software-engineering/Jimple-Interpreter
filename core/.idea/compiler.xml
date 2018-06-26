@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac"/>
+    <resourceExtensions/>
+    <wildcardResourcePatterns>
+      <entry name="!?*.java"/>
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.core.test"/>
+        <module name="org.graalvm.compiler.graph.test"/>
+        <module name="org.graalvm.compiler.hotspot.aarch64.test"/>
+        <module name="org.graalvm.compiler.hotspot.amd64.test"/>
+        <module name="org.graalvm.compiler.hotspot.test"/>
+        <module name="org.graalvm.compiler.lir.jtt"/>
+        <module name="org.graalvm.compiler.word"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_COMPILER_MATCH_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.core.match.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-compiler-match-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.core.aarch64"/>
+        <module name="org.graalvm.compiler.core.sparc"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_COMPILER_MATCH_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.core.match.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-compiler-match-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.core.amd64"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_COMPILER_MATCH_PROCESSOR-GRAAL_REPLACEMENTS_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-GRAAL_SERVICEPROVIDER_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.core.match.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-compiler-match-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.replacements.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-replacements-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.hotspot"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.phases.common"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_REPLACEMENTS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.replacements.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-replacements-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.replacements.aarch64"/>
+        <module name="org.graalvm.compiler.replacements.amd64"/>
+        <module name="org.graalvm.compiler.replacements.test"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_REPLACEMENTS_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.replacements.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-replacements-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.nodes"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-GRAAL_REPLACEMENTS_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-GRAAL_SERVICEPROVIDER_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.replacements.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-replacements-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.truffle.common"/>
+        <module name="org.graalvm.compiler.truffle.compiler"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_NODEINFO_PROCESSOR-TRUFFLE_DSL_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.utilities/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop.java/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.metadata/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.vm/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.debug/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.basic/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-api.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.truffle.test"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_OPTIONS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.core.common"/>
+        <module name="org.graalvm.compiler.debug"/>
+        <module name="org.graalvm.compiler.java"/>
+        <module name="org.graalvm.compiler.lir"/>
+        <module name="org.graalvm.compiler.lir.aarch64"/>
+        <module name="org.graalvm.compiler.lir.amd64"/>
+        <module name="org.graalvm.compiler.loop"/>
+        <module name="org.graalvm.compiler.loop.phases"/>
+        <module name="org.graalvm.compiler.phases"/>
+        <module name="org.graalvm.compiler.truffle.common.hotspot"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_OPTIONS_PROCESSOR-GRAAL_NODEINFO_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.graph"/>
+        <module name="org.graalvm.compiler.virtual"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_OPTIONS_PROCESSOR-GRAAL_REPLACEMENTS_PROCESSOR-GRAAL_NODEINFO_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.replacements.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-replacements-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.replacements"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_OPTIONS_PROCESSOR-GRAAL_SERVICEPROVIDER_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.printer"/>
+        <module name="org.graalvm.compiler.truffle.compiler.hotspot"/>
+        <module name="org.graalvm.compiler.truffle.runtime.hotspot"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_SERVICEPROVIDER_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.code"/>
+        <module name="org.graalvm.compiler.hotspot.management"/>
+        <module name="org.graalvm.compiler.hotspot.sparc"/>
+        <module name="org.graalvm.compiler.truffle.compiler.hotspot.aarch64"/>
+        <module name="org.graalvm.compiler.truffle.compiler.hotspot.amd64"/>
+        <module name="org.graalvm.compiler.truffle.compiler.hotspot.sparc"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_SERVICEPROVIDER_PROCESSOR-GRAAL_COMPILER_MATCH_PROCESSOR-GRAAL_OPTIONS_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.core.match.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-compiler-match-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.options.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-options-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.core"/>
+      </profile>
+      <profile default="false" enabled="true" name="GRAAL_SERVICEPROVIDER_PROCESSOR-GRAAL_NODEINFO_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.nodeinfo.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-nodeinfo-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.hotspot.aarch64"/>
+        <module name="org.graalvm.compiler.hotspot.amd64"/>
+      </profile>
+      <profile default="false" enabled="true" name="TRUFFLE_DSL_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.utilities/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop.java/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.metadata/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.vm/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.debug/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.basic/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-api.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor.jar"/>
+        </processorPath>
+        <module name="com.oracle.truffle.api.dsl.test"/>
+        <module name="com.oracle.truffle.api.instrumentation.test"/>
+        <module name="com.oracle.truffle.api.interop.java.test"/>
+        <module name="com.oracle.truffle.api.object.dsl.test"/>
+        <module name="com.oracle.truffle.api.test"/>
+        <module name="com.oracle.truffle.nfi.test"/>
+        <module name="com.oracle.truffle.sl"/>
+        <module name="com.oracle.truffle.tck"/>
+        <module name="com.oracle.truffle.tck.instrumentation"/>
+        <module name="com.oracle.truffle.tools"/>
+        <module name="com.oracle.truffle.tools.test"/>
+      </profile>
+      <profile default="false" enabled="true" name="TRUFFLE_DSL_PROCESSOR-GRAAL_SERVICEPROVIDER_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.utilities/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop.java/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.metadata/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.vm/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.debug/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.basic/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-api.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/src/org.graalvm.compiler.serviceprovider.processor/bin"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-processor-common.jar"/>
+          <entry name="$PROJECT_DIR$/mxbuild/dists/graal-serviceprovider-processor.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.truffle.runtime"/>
+      </profile>
+      <profile default="false" enabled="true" name="TRUFFLE_DSL_PROCESSOR-JMH_1_21-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.utilities/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop.java/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.metadata/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.vm/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.debug/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.basic/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-api.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JOPTSIMPLE_4_6_306816fb57cf94f108a43c95731b08934dcae15c.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_GENERATOR_ANNPROCESS_1_21_7aac374614a8a76cad16b91f1a4419d31a7dcda3.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/COMMONS_MATH3_3_2_ec2544ab27e110d2d431bdad7d538ed509b21e62.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_1_21_442447101f63074c61063858033fbfde8a076873.jar"/>
+        </processorPath>
+        <module name="com.oracle.truffle.sl.test"/>
+      </profile>
+      <profile default="false" enabled="true" name="TRUFFLE_DSL_PROCESSOR_INTERNAL-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor-internal.jar"/>
+        </processorPath>
+        <module name="com.oracle.truffle.api.debug"/>
+        <module name="com.oracle.truffle.api.interop"/>
+      </profile>
+      <profile default="false" enabled="true" name="TRUFFLE_DSL_PROCESSOR_INTEROP_INTERNAL-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor-interop-internal.jar"/>
+        </processorPath>
+        <module name="com.oracle.truffle.api.debug.test"/>
+        <module name="com.oracle.truffle.api.interop.java"/>
+        <module name="com.oracle.truffle.api.metadata"/>
+        <module name="com.oracle.truffle.api.metadata.test"/>
+        <module name="com.oracle.truffle.api.vm"/>
+        <module name="com.oracle.truffle.nfi"/>
+      </profile>
+      <profile default="false" enabled="true" name="JMH_1_21-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JOPTSIMPLE_4_6_306816fb57cf94f108a43c95731b08934dcae15c.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_GENERATOR_ANNPROCESS_1_21_7aac374614a8a76cad16b91f1a4419d31a7dcda3.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/COMMONS_MATH3_3_2_ec2544ab27e110d2d431bdad7d538ed509b21e62.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_1_21_442447101f63074c61063858033fbfde8a076873.jar"/>
+        </processorPath>
+        <module name="org.graalvm.compiler.microbenchmarks"/>
+        <module name="org.graalvm.compiler.virtual.bench"/>
+        <module name="org.graalvm.micro.benchmarks"/>
+        <module name="com.oracle.mxtool.jmh_1_21"/>
+      </profile>
+      <profile default="false" enabled="true" name="JMH_1_21-TRUFFLE_DSL_PROCESSOR-src_gen">
+        <sourceOutputDir name="../src_gen"/>
+        <sourceTestOutputDir name="../src_gen"/>
+        <processorPath useClasspath="false">
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JOPTSIMPLE_4_6_306816fb57cf94f108a43c95731b08934dcae15c.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_GENERATOR_ANNPROCESS_1_21_7aac374614a8a76cad16b91f1a4419d31a7dcda3.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/COMMONS_MATH3_3_2_ec2544ab27e110d2d431bdad7d538ed509b21e62.jar"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/JMH_1_21_442447101f63074c61063858033fbfde8a076873.jar"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.options/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.polyglot/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.word/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.nativeimage/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/src/org.graalvm.collections/bin"/>
+          <entry name="$PROJECT_DIR$/../sdk/mxbuild/dists/graal-sdk.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.profiles/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.instrumentation/bin"/>
+          <entry name="$PROJECT_DIR$/../../../../.mx/cache/ANTLR4_30b13b7efc55b7feea667691509cf59902375001.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.dsl.processor.interop/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.utilities/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.object.dsl/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.dsl.processor/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.interop.java/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.metadata/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.vm/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.api.debug/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/src/com.oracle.truffle.object.basic/bin"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-api.jar"/>
+          <entry name="$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor.jar"/>
+        </processorPath>
+        <module name="com.oracle.truffle.api.benchmark"/>
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

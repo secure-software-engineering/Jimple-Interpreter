@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TRUFFLE_TEST">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/TRUFFLE_TEST</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_TRUFFLE_TEST</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.truffle.api.benchmark"/>
+      <element id="module-output" name="com.oracle.truffle.api.metadata.test"/>
+      <element id="module-output" name="com.oracle.truffle.api.debug.test"/>
+      <element id="module-output" name="com.oracle.truffle.api.interop.java.test"/>
+      <element id="module-output" name="com.oracle.truffle.api.object.dsl.test"/>
+      <element id="module-output" name="com.oracle.truffle.object.basic.test"/>
+      <element id="module-output" name="com.oracle.truffle.tools.test"/>
+      <element id="module-output" name="com.oracle.truffle.nfi.test"/>
+      <element artifact-name="TRUFFLE_API" id="artifact"/>
+      <element artifact-name="TRUFFLE_NFI" id="artifact"/>
+      <element artifact-name="TRUFFLE_DSL_PROCESSOR" id="artifact"/>
+      <element artifact-name="TRUFFLE_DEBUG" id="artifact"/>
+      <element artifact-name="TRUFFLE_INSTRUMENT_TEST" id="artifact"/>
+      <element artifact-name="TRUFFLE_TEST_NATIVE" id="artifact"/>
+      <element artifact-name="TRUFFLE_TCK" id="artifact"/>
+    </root>
+  </artifact>
+</component>

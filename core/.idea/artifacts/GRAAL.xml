@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="GRAAL">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/GRAAL</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_GRAAL</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="org.graalvm.util"/>
+      <element id="module-output" name="org.graalvm.compiler.options"/>
+      <element id="module-output" name="org.graalvm.compiler.nodeinfo"/>
+      <element id="module-output" name="org.graalvm.compiler.api.replacements"/>
+      <element id="module-output" name="org.graalvm.compiler.api.runtime"/>
+      <element id="module-output" name="org.graalvm.compiler.serviceprovider"/>
+      <element id="module-output" name="org.graalvm.graphio"/>
+      <element id="module-output" name="org.graalvm.compiler.debug"/>
+      <element id="module-output" name="org.graalvm.compiler.core.common"/>
+      <element id="module-output" name="org.graalvm.compiler.bytecode"/>
+      <element id="module-output" name="org.graalvm.compiler.graph"/>
+      <element id="module-output" name="org.graalvm.compiler.asm"/>
+      <element id="module-output" name="org.graalvm.compiler.code"/>
+      <element id="module-output" name="org.graalvm.compiler.lir"/>
+      <element id="module-output" name="org.graalvm.compiler.nodes"/>
+      <element id="module-output" name="org.graalvm.compiler.phases"/>
+      <element id="module-output" name="org.graalvm.compiler.phases.common"/>
+      <element id="module-output" name="org.graalvm.compiler.virtual"/>
+      <element id="module-output" name="org.graalvm.compiler.loop"/>
+      <element id="module-output" name="org.graalvm.compiler.loop.phases"/>
+      <element id="module-output" name="org.graalvm.compiler.core"/>
+      <element id="module-output" name="org.graalvm.compiler.api.directives"/>
+      <element id="module-output" name="org.graalvm.compiler.java"/>
+      <element id="module-output" name="org.graalvm.compiler.word"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements"/>
+      <element id="module-output" name="org.graalvm.compiler.runtime"/>
+      <element id="module-output" name="org.graalvm.compiler.printer"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.core.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.core.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.core.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.hotspot"/>
+      <element id="module-output" name="org.graalvm.compiler.hotspot.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.hotspot.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.hotspot.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.common"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.runtime"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.common.hotspot"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.runtime.hotspot"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.compiler"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.compiler.hotspot"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.compiler.hotspot.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.compiler.hotspot.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.truffle.compiler.hotspot.aarch64"/>
+      <element artifact-name="GRAAL_SDK" id="artifact"/>
+      <element artifact-name="TRUFFLE_API" id="artifact"/>
+    </root>
+  </artifact>
+</component>

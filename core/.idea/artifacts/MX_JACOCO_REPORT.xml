@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="MX_JACOCO_REPORT">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/MX_JACOCO_REPORT</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_MX_JACOCO_REPORT</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.mxtool.jacoco"/>
+    </root>
+  </artifact>
+</component>

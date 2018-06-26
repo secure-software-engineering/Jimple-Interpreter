@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="libraryTable">
+  <library name="TRUFFLE_DSL_PROCESSOR_INTEROP_INTERNAL">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor-interop-internal.jar!/"/>
+    </CLASSES>
+    <JAVADOC/>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../truffle/mxbuild/dists/truffle-dsl-processor-interop-internal.src.zip!/"/>
+    </SOURCES>
+  </library>
+</component>

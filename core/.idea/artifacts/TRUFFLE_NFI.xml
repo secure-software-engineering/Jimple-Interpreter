@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TRUFFLE_NFI">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/TRUFFLE_NFI</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_TRUFFLE_NFI</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.truffle.nfi.types"/>
+      <element id="module-output" name="com.oracle.truffle.nfi"/>
+      <element artifact-name="TRUFFLE_API" id="artifact"/>
+      <element artifact-name="TRUFFLE_NFI_NATIVE" id="artifact"/>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="GRAAL_RUNTIME">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/GRAAL_RUNTIME</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_GRAAL_RUNTIME</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="org.graalvm.compiler.api.directives"/>
+      <element id="module-output" name="org.graalvm.compiler.java"/>
+      <element id="module-output" name="org.graalvm.compiler.word"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements"/>
+      <element id="module-output" name="org.graalvm.compiler.runtime"/>
+      <element id="module-output" name="org.graalvm.compiler.printer"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.core.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.aarch64"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.core.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.amd64"/>
+      <element id="module-output" name="org.graalvm.compiler.asm.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.lir.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.core.sparc"/>
+      <element id="module-output" name="org.graalvm.compiler.replacements.sparc"/>
+      <element artifact-name="GRAAL_API" id="artifact"/>
+      <element artifact-name="GRAAL_COMPILER" id="artifact"/>
+      <element artifact-name="GRAAL_GRAPHIO" id="artifact"/>
+    </root>
+  </artifact>
+</component>

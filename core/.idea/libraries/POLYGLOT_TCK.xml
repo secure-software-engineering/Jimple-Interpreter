@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="libraryTable">
+  <library name="POLYGLOT_TCK">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../sdk/mxbuild/dists/polyglot-tck.jar!/"/>
+    </CLASSES>
+    <JAVADOC/>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../sdk/mxbuild/dists/polyglot-tck.src.zip!/"/>
+    </SOURCES>
+  </library>
+</component>

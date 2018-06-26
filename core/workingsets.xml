@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_AArch64" label="AArch64" name="AArch64">
+<item elementID="=org.graalvm.compiler.asm.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_AMD64" label="AMD64" name="AMD64">
+<item elementID="=org.graalvm.compiler.asm.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_API" label="API" name="API">
+<item elementID="=com.oracle.truffle.api" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.benchmark" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.debug.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.instrumentation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.instrumentation.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop.java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop.java.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.metadata" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.profiles" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.utilities" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.vm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.collections" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.collections.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.directives" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.directives.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.replacements" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.runtime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.serviceprovider" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.word" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.graphio" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.nativeimage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.options" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.polyglot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.polyglot.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.util" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.util.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.word" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Assembler" label="Assembler" name="Assembler">
+<item elementID="=org.graalvm.compiler.asm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Bench" label="Bench" name="Bench">
+<item elementID="=org.graalvm.compiler.microbenchmarks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.virtual.bench" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.micro.benchmarks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Codegen" label="Codegen" name="Codegen">
+<item elementID="=com.oracle.truffle.api.dsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.dsl.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.dsl.processor.interop" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.object.dsl.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.match.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.options.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.serviceprovider.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Debug" label="Debug" name="Debug">
+<item elementID="=org.graalvm.compiler.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.debug.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Graal" label="Graal" name="Graal">
+<item elementID="=org.graalvm.compiler.api.directives" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.directives.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.replacements" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.runtime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.bytecode" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.code" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.match.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.debug.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.graph" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.graph.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.lir.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.management" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.jtt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.jtt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.loop" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.loop.phases" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.loop.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.microbenchmarks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodeinfo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodeinfo.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodes.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.options" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.options.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.options.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases.common.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.printer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.runtime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.serviceprovider" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.serviceprovider.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.common.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.runtime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.runtime.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.virtual" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.virtual.bench" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.word" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.graphio" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.micro.benchmarks" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.util" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.util.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Graph" label="Graph" name="Graph">
+<item elementID="=org.graalvm.compiler.graph" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.graph.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodeinfo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodeinfo.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.nodes.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.printer" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_HotSpot" label="HotSpot" name="HotSpot">
+<item elementID="=org.graalvm.compiler.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.lir.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.management" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Java" label="Java" name="Java">
+<item elementID="=org.graalvm.compiler.bytecode" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_LIR" label="LIR" name="LIR">
+<item elementID="=org.graalvm.compiler.lir" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.jtt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_MX" label="MX" name="MX">
+<item elementID="=mxtool" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=mx.truffle" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=mx.sdk" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=mx.compiler" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Phases" label="Phases" name="Phases">
+<item elementID="=org.graalvm.compiler.loop.phases" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.virtual" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Replacements" label="Replacements" name="Replacements">
+<item elementID="=org.graalvm.compiler.api.replacements" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_SDK" label="SDK" name="SDK">
+<item elementID="=org.graalvm.collections" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.collections.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.nativeimage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.options" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.polyglot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.polyglot.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.word" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_SPARC" label="SPARC" name="SPARC">
+<item elementID="=org.graalvm.compiler.asm.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.lir.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_SimpleLanguage" label="SimpleLanguage" name="SimpleLanguage">
+<item elementID="=com.oracle.truffle.sl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.launcher" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Test" label="Test" name="Test">
+<item elementID="=com.oracle.truffle.api.benchmark" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.collections.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.asm.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.core.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.debug.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.graph.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.aarch64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.amd64.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.lir.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.sparc.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.hotspot.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.jtt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.loop.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.phases.common.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.replacements.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.polyglot.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Tools" label="Tools" name="Tools">
+<item elementID="=com.oracle.truffle.api.metadata.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.instrumentation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tools" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tools.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.launcher" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageID="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="wsid_Truffle" label="Truffle" name="Truffle">
+<item elementID="=com.oracle.truffle.api" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.benchmark" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.debug" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.debug.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.instrumentation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.instrumentation.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop.java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.interop.java.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.metadata" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.metadata.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.object.dsl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.profiles" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.utilities" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.api.vm" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.dsl.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.dsl.processor.interop" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.nfi" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.nfi.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.nfi.types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.object" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.object.basic" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.object.basic.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.object.dsl.processor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.launcher" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.sl.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.instrumentation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tck.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tools" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=com.oracle.truffle.tools.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.common" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.common.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.aarch64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.amd64" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.compiler.hotspot.sparc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.runtime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.runtime.hotspot" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.compiler.truffle.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.graalvm.launcher" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+</workingSetManager>

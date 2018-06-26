@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component languageLevel="JDK_1_8" name="ProjectRootManager" project-jdk-name="1.8" project-jdk-type="JavaSDK" version="2">
+    <output url="file://$PROJECT_DIR$/mxbuild"/>
+  </component>
+</project>

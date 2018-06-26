@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TRUFFLE_SL_LAUNCHER">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/TRUFFLE_SL_LAUNCHER</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_TRUFFLE_SL_LAUNCHER</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.truffle.sl.launcher"/>
+      <element artifact-name="GRAAL_SDK" id="artifact"/>
+    </root>
+  </artifact>
+</component>

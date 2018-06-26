@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TRUFFLE_DSL_PROCESSOR_INTEROP_INTERNAL">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/TRUFFLE_DSL_PROCESSOR_INTEROP_INTERNAL</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_TRUFFLE_DSL_PROCESSOR_INTEROP_INTERNAL</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.truffle.api"/>
+      <element id="module-output" name="com.oracle.truffle.api.dsl"/>
+      <element id="module-output" name="com.oracle.truffle.api.profiles"/>
+      <element id="module-output" name="com.oracle.truffle.api.instrumentation"/>
+      <element id="module-output" name="com.oracle.truffle.dsl.processor"/>
+      <element id="module-output" name="com.oracle.truffle.api.interop"/>
+      <element id="module-output" name="com.oracle.truffle.dsl.processor.interop"/>
+      <element artifact-name="GRAAL_SDK" id="artifact"/>
+    </root>
+  </artifact>
+</component>

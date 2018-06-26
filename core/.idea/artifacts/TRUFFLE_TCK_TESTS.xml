@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="TRUFFLE_TCK_TESTS">
+    <output-path>$PROJECT_DIR$/mxbuild/artifacts/TRUFFLE_TCK_TESTS</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/.idea/ant-mx-archive.xml</file>
+        <target>archive_TRUFFLE_TCK_TESTS</target>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="com.oracle.truffle.tck.tests"/>
+      <element artifact-name="POLYGLOT_TCK" id="artifact"/>
+      <element artifact-name="TRUFFLE_TCK_COMMON" id="artifact"/>
+    </root>
+  </artifact>
+</component>
