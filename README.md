@@ -6,6 +6,9 @@ A [Graal](https://github.com/oracle/graal) and [Truffle](https://github.com/orac
 1. Clone repo with `git clone --recurse-submodules https://github.com/secure-software-engineering/Jimple-Interpreter.git`
 2. [Download](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html) and install GraalVM (currently no Windows support)
 
+## Tools
+
+- Start Graal's Ideal Graph Visualizer with 'igv' in terminal. The visualizer shows Graal's IR and can help with debugging
 
 ## Pointers
 
