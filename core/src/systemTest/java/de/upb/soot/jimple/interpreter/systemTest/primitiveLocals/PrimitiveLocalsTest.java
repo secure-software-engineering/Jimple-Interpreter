@@ -11,7 +11,7 @@ public class PrimitiveLocalsTest extends AbstractInterpreterSystemTest {
 
   @Test
   public void primitive_int() {
-    final Object res = interpret("void primitive_int");
+    final Object res = interpret("void primitive_int()");
     assertEmtpyResult(res);
     assertPrintsOutput("512");
   }

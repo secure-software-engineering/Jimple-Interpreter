@@ -23,7 +23,7 @@ public abstract class AbstractInterpreterSystemTest {
   private static ByteArrayOutputStream out;
 
   static {
-    final Configuration configuration = new Configuration("target/systemTest-classes");
+    final Configuration configuration = new Configuration("target/systemTest-target-classes");
     out = new ByteArrayOutputStream();
     configuration.setOutputStream(new PrintStream(out));
     interpreter = new JimpleInterpreter(configuration);
@@ -46,8 +46,13 @@ public abstract class AbstractInterpreterSystemTest {
     out.reset();
   }
 
-  protected Object interpret(String methodSig) {
-    return interpreter.interpret(new EntryPoint(String.format("<%s: %s>", getTargetClass(), methodSig)));
+  /**
+   *
+   * @param methodSubSig The sub-signature of this method e.g., 'void foo(int,float)', 'int bar()'
+   * @return
+   */
+  protected Object interpret(String methodSubSig) {
+    return interpreter.interpret(new EntryPoint(String.format("<%s: %s>", getTargetClass(), methodSubSig)));
   }
 
   /**
