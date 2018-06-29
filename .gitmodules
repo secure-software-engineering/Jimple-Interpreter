@@ -2,7 +2,3 @@
 	path = soot
 	url = https://github.com/secure-software-engineering/soot-panathon.git
 	branch = jimpleInterpreter
-[submodule "simplelanguage"]
-	path = simplelanguage
-	url = https://github.com/graalvm/simplelanguage.git
-	branch = master
