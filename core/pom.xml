@@ -121,6 +121,12 @@
             <artifactId>soot</artifactId>
             <version>${soot.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
         <!-- Logging dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
