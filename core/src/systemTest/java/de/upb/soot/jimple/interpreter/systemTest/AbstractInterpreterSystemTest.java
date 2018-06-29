@@ -26,6 +26,7 @@ public abstract class AbstractInterpreterSystemTest {
     final Configuration configuration = new Configuration("target/systemTest-target-classes");
     out = new ByteArrayOutputStream();
     configuration.setOutputStream(new PrintStream(out));
+    configuration.setDumpJimple(true);
     interpreter = new JimpleInterpreter(configuration);
   }
 
@@ -48,7 +49,8 @@ public abstract class AbstractInterpreterSystemTest {
 
   /**
    *
-   * @param methodSubSig The sub-signature of this method e.g., 'void foo(int,float)', 'int bar()'
+   * @param methodSubSig
+   *          The sub-signature of this method e.g., 'void foo(int,float)', 'int bar()'
    * @return
    */
   protected Object interpret(String methodSubSig) {

@@ -2,6 +2,7 @@ package de.upb.soot.jimple.interpreter;
 
 import org.jboss.util.NotImplementedException;
 
+import soot.SootMethod;
 import soot.jimple.AbstractStmtSwitch;
 import soot.jimple.AssignStmt;
 import soot.jimple.BreakpointStmt;
@@ -22,12 +23,14 @@ import soot.jimple.ThrowStmt;
 /**
  * @author Manuel Benz created on 29.06.18
  */
-public class StmtInterpreter extends AbstractStmtSwitch {
+public class StmtInterpreter extends AbstractStmtSwitch<IValue> {
 
-  private AbstractExpressionInterpreter expressionInterpreter;
+  private AbstractValueInterpreter valueInterpreter;
+  private SootMethod curMethod;
+  private Environment curEnvironment;
 
-  public StmtInterpreter(AbstractExpressionInterpreter expressionInterpreter) {
-    this.expressionInterpreter = expressionInterpreter;
+  public StmtInterpreter(AbstractValueInterpreter valueInterpreter) {
+    this.valueInterpreter = valueInterpreter;
   }
 
   @Override
@@ -42,12 +45,18 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseAssignStmt(AssignStmt stmt) {
-    super.caseAssignStmt(stmt);
+    stmt.getRightOp().apply(valueInterpreter);
+    final IValue right = valueInterpreter.getResult();
+    stmt.getLeftOp().apply(valueInterpreter);
+    curEnvironment.putLocal(valueInterpreter.getResult(), right);
   }
 
   @Override
   public void caseIdentityStmt(IdentityStmt stmt) {
-    super.caseIdentityStmt(stmt);
+    stmt.getRightOp().apply(valueInterpreter);
+    final IValue right = valueInterpreter.getResult();
+    stmt.getLeftOp().apply(valueInterpreter);
+    curEnvironment.putLocal(valueInterpreter.getResult(), right);
   }
 
   @Override
@@ -108,5 +117,15 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   @Override
   public void defaultCase(Object obj) {
     throw new NotImplementedException(String.format("%s statement not supported", obj));
+  }
+
+  public void setCurMethod(SootMethod curMethod) {
+    this.curMethod = curMethod;
+    valueInterpreter.setCurMethod(curMethod);
+  }
+
+  public void setCurEnvironment(Environment curEnvironment) {
+    this.curEnvironment = curEnvironment;
+    valueInterpreter.setCurEnvironment(curEnvironment);
   }
 }

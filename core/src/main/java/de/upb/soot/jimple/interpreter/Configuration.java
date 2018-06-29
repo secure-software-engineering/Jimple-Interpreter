@@ -13,6 +13,7 @@ public class Configuration {
   private InputStream inputStream = System.in;
   private PrintStream errorStream = System.err;
   private boolean reuseSoot = false;
+  private boolean dumpJimple = false;
 
   public Configuration(String classPath) {
     this.classPath = classPath;
@@ -42,7 +43,7 @@ public class Configuration {
     this.errorStream = errorStream;
   }
 
-  public boolean getUseExistingSootInstance() {
+  public boolean isReuseSoot() {
     return reuseSoot;
   }
 
@@ -52,5 +53,13 @@ public class Configuration {
 
   public String getClassPath() {
     return classPath;
+  }
+
+  public boolean isDumpJimple() {
+    return dumpJimple;
+  }
+
+  public void setDumpJimple(boolean dumpJimple) {
+    this.dumpJimple = dumpJimple;
   }
 }

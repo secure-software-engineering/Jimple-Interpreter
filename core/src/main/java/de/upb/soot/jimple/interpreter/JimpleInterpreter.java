@@ -1,14 +1,14 @@
 package de.upb.soot.jimple.interpreter;
 
-import de.upb.soot.jimple.interpreter.concrete.ConcreteExpressionInterpreter;
+import de.upb.soot.jimple.interpreter.concrete.ConcreteValueInterpreter;
 
 import java.util.Collections;
 import java.util.Iterator;
 
-import soot.Body;
 import soot.G;
 import soot.PackManager;
 import soot.Scene;
+import soot.SootMethod;
 import soot.SourceLocator;
 import soot.Unit;
 import soot.jimple.Stmt;
@@ -20,14 +20,13 @@ import soot.options.Options;
 public class JimpleInterpreter {
 
   private final Configuration configuration;
-
   private final StmtInterpreter stmtInterpreter;
 
   public JimpleInterpreter(Configuration configuration) {
     this.configuration = configuration;
-    stmtInterpreter = new StmtInterpreter(new ConcreteExpressionInterpreter());
+    stmtInterpreter = new StmtInterpreter(new ConcreteValueInterpreter());
 
-    if (!configuration.getUseExistingSootInstance()) {
+    if (!configuration.isReuseSoot()) {
       initSoot();
     }
   }
@@ -42,30 +41,38 @@ public class JimpleInterpreter {
     opt.set_exclude(Collections.emptyList());
     opt.set_whole_program(true);
     opt.set_src_prec(Options.src_prec_class);
-    opt.set_output_format(Options.output_format_none);
+    if (configuration.isDumpJimple()) {
+      opt.set_output_format(Options.output_format_jimple);
+      opt.set_no_writeout_body_releasing(false);
+    } else {
+      opt.set_output_format(Options.output_format_none);
+    }
 
     Scene.v().loadNecessaryClasses();
     PackManager.v().getPack("wjpp").apply();
+    PackManager.v().writeOutput();
   }
 
   public Object interpret(EntryPoint entryPoint) {
-    final Body body = entryPoint.getMethod().retrieveActiveBody();
-    final Iterator<Unit> iterator = body.getUnits().iterator();
+    final SootMethod entryMethod = entryPoint.getMethod();
+    final Iterator<Unit> iterator = entryMethod.retrieveActiveBody().getUnits().iterator();
     for (int i = 0; i < entryPoint.getUnitIndex(); i++) {
       if (iterator.hasNext()) {
         iterator.next();
       } else {
-        throw new IllegalArgumentException(String.format("Method %s does not contain in line %d",
-            entryPoint.getMethod().toString(), entryPoint.getUnitIndex()));
+        throw new IllegalArgumentException(
+            String.format("Method %s does not contain in line %d", entryMethod.toString(), entryPoint.getUnitIndex()));
       }
     }
-    return interpret(body, iterator);
+    return interpret(entryMethod, iterator, new Environment());
   }
 
-  private Object interpret(Body body, Iterator<Unit> startUnit) {
+  private Object interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
     Object res = null;
-    while (startUnit.hasNext()) {
-      final Unit next = startUnit.next();
+    stmtInterpreter.setCurMethod(method);
+    stmtInterpreter.setCurEnvironment(environment);
+    while (units.hasNext()) {
+      final Unit next = units.next();
       res = interpret((Stmt) next);
     }
     return res;
