@@ -1,6 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
-import de.upb.soot.jimple.interpreter.concrete.ConcreteStmtInterpreter;
+import de.upb.soot.jimple.interpreter.concrete.ConcreteExpressionInterpreter;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -11,7 +11,6 @@ import soot.PackManager;
 import soot.Scene;
 import soot.SourceLocator;
 import soot.Unit;
-import soot.jimple.AbstractStmtSwitch;
 import soot.jimple.Stmt;
 import soot.options.Options;
 
@@ -22,11 +21,11 @@ public class JimpleInterpreter {
 
   private final Configuration configuration;
 
-  private final AbstractStmtSwitch stmtInterpreter;
+  private final StmtInterpreter stmtInterpreter;
 
   public JimpleInterpreter(Configuration configuration) {
     this.configuration = configuration;
-    stmtInterpreter = new ConcreteStmtInterpreter();
+    stmtInterpreter = new StmtInterpreter(new ConcreteExpressionInterpreter());
 
     if (!configuration.getUseExistingSootInstance()) {
       initSoot();
