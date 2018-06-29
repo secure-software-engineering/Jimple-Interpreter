@@ -45,7 +45,6 @@ public class JimpleInterpreter {
     opt.set_output_format(Options.output_format_none);
 
     Scene.v().loadNecessaryClasses();
-    PackManager.v().getPack("jb").apply();
     PackManager.v().getPack("wjpp").apply();
   }
 

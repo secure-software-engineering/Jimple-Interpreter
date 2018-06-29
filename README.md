@@ -1,21 +1,13 @@
 # Jimple-Interpreter
-A [Graal](https://github.com/oracle/graal) and [Truffle](https://github.com/oracle/graal/tree/master/truffle) based interpreter for Jimple
+A Jimple interpreter
 
 ## Setup
 
 1. Clone repo with `git clone --recurse-submodules https://github.com/secure-software-engineering/Jimple-Interpreter.git`
-2. [Download](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html) and install GraalVM (currently no Windows support)
 
-- The `simpleLanguage` directory contains Graal's toy language to show off the framework. Use it as reference.
+## Hints
 
-## Tools
-
-- Start Graal's Ideal Graph Visualizer with 'igv' in terminal. The visualizer shows Graal's IR and can help with debugging
+- Do not forget to run `mvn test` to generate the test targets if they were changed or extended. The IDE does not cover this behavior.
+- All Maven commands can be executed on specific subproject if all dependent subprojects can be found in the local Maven repository. Thus, if you want to avoid rebuilding Soot each time when only wanting to test a specific submodule, execute `mvn clean install` in the root directory and execute further Maven commands in the submodules directory. Remember to reinstall Soot if source code changes.
 
 ## Pointers
-
-- [Graal VM Download](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html)
-- [Graal GitHub](https://github.com/oracle/graal)
-- [Truffle GitHub](https://github.com/oracle/graal/tree/master/truffle)
-- [Truffle API JDoc](http://www.graalvm.org/truffle/javadoc/)
-- [Publications and Presentations](https://wiki.openjdk.java.net/display/Graal/Publications+and+Presentations)
