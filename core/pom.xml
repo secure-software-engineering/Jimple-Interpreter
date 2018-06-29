@@ -12,9 +12,16 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <!--Plugin versions-->
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <!--Dependency versions-->
+        <soot.version>3.1.0-SNAPSHOT</soot.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <junit.version>4.12</junit.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
+        <powermock-mockito-release-full.version>1.6.4</powermock-mockito-release-full.version>
     </properties>
 
     <build>
@@ -112,37 +119,37 @@
         <dependency>
             <groupId>ca.mcgill.sable</groupId>
             <artifactId>soot</artifactId>
-            <version>3.1.0-SNAPSHOT</version>
+            <version>${soot.version}</version>
         </dependency>
         <!-- Logging dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.5</version>
+            <version>${slf4j-api.version}</version>
             <optional>true</optional>
         </dependency>
         <!-- Testing dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.10.8</version>
+            <version>${mockito-all.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-mockito-release-full</artifactId>
-            <version>1.6.1</version>
+            <version>${powermock-mockito-release-full.version}</version>
             <type>pom</type>
             <scope>test</scope>
         </dependency>
