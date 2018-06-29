@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter.cli;
 
+import de.upb.soot.jimple.interpreter.IValue;
 import de.upb.soot.jimple.interpreter.JimpleInterpreter;
 
 import org.kohsuke.args4j.CmdLineException;
@@ -16,7 +17,7 @@ public class Main {
     try {
       parser.parseArgument(args);
       JimpleInterpreter interpreter = new JimpleInterpreter(options.toConfig());
-      final Object res = interpreter.interpret(options.getEntryPoint());
+      final IValue res = interpreter.interpret(options.getEntryPoint());
       System.out.println(res);
     } catch (CmdLineException e) {
       System.err.println(e.getMessage());

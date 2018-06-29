@@ -14,7 +14,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void defaultCase(Object obj) {
-    throw new NotImplementedException(String.format("%s expression not supported"));
+    throw new NotImplementedException(String.format("%s expression not supported", obj));
   }
 
   public SootMethod getCurMethod() {

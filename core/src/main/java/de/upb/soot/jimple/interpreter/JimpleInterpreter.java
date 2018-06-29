@@ -5,6 +5,8 @@ import de.upb.soot.jimple.interpreter.concrete.ConcreteValueInterpreter;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.jboss.util.file.Files;
+
 import soot.G;
 import soot.PackManager;
 import soot.Scene;
@@ -43,17 +45,21 @@ public class JimpleInterpreter {
     opt.set_src_prec(Options.src_prec_class);
     if (configuration.isDumpJimple()) {
       opt.set_output_format(Options.output_format_jimple);
-      opt.set_no_writeout_body_releasing(false);
+      opt.set_no_writeout_body_releasing(true);
     } else {
       opt.set_output_format(Options.output_format_none);
     }
 
     Scene.v().loadNecessaryClasses();
     PackManager.v().getPack("wjpp").apply();
-    PackManager.v().writeOutput();
+
+    if (configuration.isDumpJimple()) {
+      Files.delete(opt.output_dir());
+      PackManager.v().writeOutput();
+    }
   }
 
-  public Object interpret(EntryPoint entryPoint) {
+  public IValue interpret(EntryPoint entryPoint) {
     final SootMethod entryMethod = entryPoint.getMethod();
     final Iterator<Unit> iterator = entryMethod.retrieveActiveBody().getUnits().iterator();
     for (int i = 0; i < entryPoint.getUnitIndex(); i++) {
@@ -67,8 +73,8 @@ public class JimpleInterpreter {
     return interpret(entryMethod, iterator, new Environment());
   }
 
-  private Object interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
-    Object res = null;
+  private IValue interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
+    IValue res = null;
     stmtInterpreter.setCurMethod(method);
     stmtInterpreter.setCurEnvironment(environment);
     while (units.hasNext()) {
@@ -78,7 +84,7 @@ public class JimpleInterpreter {
     return res;
   }
 
-  private Object interpret(Stmt stmt) {
+  private IValue interpret(Stmt stmt) {
     stmt.apply(stmtInterpreter);
     return stmtInterpreter.getResult();
   }
