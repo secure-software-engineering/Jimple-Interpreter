@@ -1,9 +1,12 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JObject;
+
 import org.jboss.util.NotImplementedException;
 
 import soot.Local;
 import soot.SootMethod;
+import soot.Value;
 import soot.jimple.AbstractJimpleValueSwitch;
 import soot.jimple.ArrayRef;
 import soot.jimple.CastExpr;
@@ -66,110 +69,142 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   // # Common interpretation behavior between concrete and symbolic
 
-  @Override public void caseArrayRef(ArrayRef v) {
+  @Override
+  public void caseArrayRef(ArrayRef v) {
     super.caseArrayRef(v);
   }
 
-  @Override public void caseInterfaceInvokeExpr(InterfaceInvokeExpr v) {
+  @Override
+  public void caseInterfaceInvokeExpr(InterfaceInvokeExpr v) {
     super.caseInterfaceInvokeExpr(v);
   }
 
-  @Override public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
+  @Override
+  public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
     super.caseSpecialInvokeExpr(v);
   }
 
-  @Override public void caseStaticInvokeExpr(StaticInvokeExpr v) {
+  @Override
+  public void caseStaticInvokeExpr(StaticInvokeExpr v) {
     super.caseStaticInvokeExpr(v);
   }
 
-  @Override public void caseVirtualInvokeExpr(VirtualInvokeExpr v) {
+  @Override
+  public void caseVirtualInvokeExpr(VirtualInvokeExpr v) {
     super.caseVirtualInvokeExpr(v);
   }
 
-  @Override public void caseDynamicInvokeExpr(DynamicInvokeExpr v) {
+  @Override
+  public void caseDynamicInvokeExpr(DynamicInvokeExpr v) {
     super.caseDynamicInvokeExpr(v);
   }
 
-  @Override public void caseCastExpr(CastExpr v) {
+  @Override
+  public void caseCastExpr(CastExpr v) {
     super.caseCastExpr(v);
   }
 
-  @Override public void caseInstanceOfExpr(InstanceOfExpr v) {
+  @Override
+  public void caseInstanceOfExpr(InstanceOfExpr v) {
     super.caseInstanceOfExpr(v);
   }
 
-  @Override public void caseNewArrayExpr(NewArrayExpr v) {
+  @Override
+  public void caseNewArrayExpr(NewArrayExpr v) {
     super.caseNewArrayExpr(v);
   }
 
-  @Override public void caseNewMultiArrayExpr(NewMultiArrayExpr v) {
+  @Override
+  public void caseNewMultiArrayExpr(NewMultiArrayExpr v) {
     super.caseNewMultiArrayExpr(v);
   }
 
-  @Override public void caseNewExpr(NewExpr v) {
+  @Override
+  public void caseNewExpr(NewExpr v) {
     super.caseNewExpr(v);
   }
 
-  @Override public void caseLengthExpr(LengthExpr v) {
+  @Override
+  public void caseLengthExpr(LengthExpr v) {
     super.caseLengthExpr(v);
   }
 
-  @Override public void caseInstanceFieldRef(InstanceFieldRef v) {
+  @Override
+  public void caseInstanceFieldRef(InstanceFieldRef v) {
     super.caseInstanceFieldRef(v);
   }
 
-  @Override public void caseLocal(Local v) {
+  @Override
+  public void caseLocal(Local v) {
     super.caseLocal(v);
   }
 
-  @Override public void caseParameterRef(ParameterRef v) {
+  @Override
+  public void caseParameterRef(ParameterRef v) {
     super.caseParameterRef(v);
   }
 
-  @Override public void caseCaughtExceptionRef(CaughtExceptionRef v) {
+  @Override
+  public void caseCaughtExceptionRef(CaughtExceptionRef v) {
     super.caseCaughtExceptionRef(v);
   }
 
-  @Override public void caseThisRef(ThisRef v) {
-    super.caseThisRef(v);
+  @Override
+  public void caseThisRef(ThisRef v) {
+    final JObject thisInstance = curEnvironment.getThisInstance();
+    if (thisInstance == null) {
+      interpretException(v, "This pointer reference where this-instance not set");
+    }
+    setResult(thisInstance);
   }
 
-  @Override public void caseStaticFieldRef(StaticFieldRef v) {
+  @Override
+  public void caseStaticFieldRef(StaticFieldRef v) {
     super.caseStaticFieldRef(v);
   }
 
-  @Override public void caseDoubleConstant(DoubleConstant v) {
+  @Override
+  public void caseDoubleConstant(DoubleConstant v) {
     super.caseDoubleConstant(v);
   }
 
-  @Override public void caseFloatConstant(FloatConstant v) {
+  @Override
+  public void caseFloatConstant(FloatConstant v) {
     super.caseFloatConstant(v);
   }
 
-  @Override public void caseIntConstant(IntConstant v) {
+  @Override
+  public void caseIntConstant(IntConstant v) {
     super.caseIntConstant(v);
   }
 
-  @Override public void caseLongConstant(LongConstant v) {
+  @Override
+  public void caseLongConstant(LongConstant v) {
     super.caseLongConstant(v);
   }
 
-  @Override public void caseNullConstant(NullConstant v) {
+  @Override
+  public void caseNullConstant(NullConstant v) {
     super.caseNullConstant(v);
   }
 
-  @Override public void caseStringConstant(StringConstant v) {
+  @Override
+  public void caseStringConstant(StringConstant v) {
     super.caseStringConstant(v);
   }
 
-  @Override public void caseClassConstant(ClassConstant v) {
+  @Override
+  public void caseClassConstant(ClassConstant v) {
     super.caseClassConstant(v);
   }
 
-  @Override public void caseMethodHandle(MethodHandle v) {
+  @Override
+  public void caseMethodHandle(MethodHandle v) {
     super.caseMethodHandle(v);
   }
-
   // end
 
+  protected void interpretException(Value v, final String msg) {
+    throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, v));
+  }
 }
