@@ -103,8 +103,6 @@
                             <testClassesDirectory>${project.build.directory}/systemTest-classes</testClassesDirectory>
                             <testSourceDirectory>${project.basedir}/src/systemTest/java</testSourceDirectory>
                             <trimStackTrace>false</trimStackTrace>
-                            <reuseForks>false</reuseForks>
-                            <forkCount>1</forkCount>
                         </configuration>
                     </execution>
                 </executions>

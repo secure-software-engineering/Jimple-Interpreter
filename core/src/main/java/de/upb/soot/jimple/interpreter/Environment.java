@@ -1,6 +1,7 @@
 package de.upb.soot.jimple.interpreter;
 
 import de.upb.soot.jimple.interpreter.values.JObject;
+import soot.Local;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 public class Environment {
 
-  private final Map<IValue, IValue> idToValue = new HashMap<>();
+  private final Map<Local, Object> idToValue = new HashMap<>();
   private final JObject thisInstance;
 
   public Environment() {
@@ -21,8 +22,8 @@ public class Environment {
     this.thisInstance = thisInstance;
   }
 
-  public IValue getLocal(IValue id) {
-    final IValue iValue = idToValue.get(id);
+  public Object getLocalValue(Local id) {
+    final Object iValue = idToValue.get(id);
 
     if (iValue != null) {
       return iValue;
@@ -31,7 +32,7 @@ public class Environment {
     }
   }
 
-  public void putLocal(IValue id, IValue value) {
+  public void setLocal(Local id, Object value) {
     idToValue.put(id, value);
   }
 

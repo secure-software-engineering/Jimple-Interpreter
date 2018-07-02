@@ -37,7 +37,7 @@ import soot.jimple.VirtualInvokeExpr;
 /**
  * @author Manuel Benz created on 29.06.18
  */
-public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch<IValue> {
+public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch {
   private final JimpleInterpreter jimpleInterpreter;
   private SootMethod curMethod;
   private Environment curEnvironment;
@@ -121,7 +121,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseNewExpr(NewExpr v) {
-    super.caseNewExpr(v);
+    setResult(new JObject(v.getBaseType().getSootClass()));
   }
 
   @Override
@@ -136,7 +136,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseLocal(Local v) {
-    super.caseLocal(v);
+    setResult(v);
   }
 
   @Override

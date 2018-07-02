@@ -58,7 +58,7 @@ public class JimpleInterpreter {
     }
   }
 
-  public IValue interpret(EntryPoint entryPoint) {
+  public String interpret(EntryPoint entryPoint) {
     final SootMethod entryMethod = entryPoint.getMethod();
     final Iterator<Unit> iterator = entryMethod.retrieveActiveBody().getUnits().iterator();
     for (int i = 0; i < entryPoint.getUnitIndex(); i++) {
@@ -69,14 +69,14 @@ public class JimpleInterpreter {
             String.format("Method %s does not contain in line %d", entryMethod.toString(), entryPoint.getUnitIndex()));
       }
     }
-    return interpret(entryMethod, iterator, new Environment());
+    return interpret(entryMethod, iterator, new Environment()).toString();
   }
 
-  public IValue interpret(SootMethod method, Environment environment) {
+  protected Object interpret(SootMethod method, Environment environment) {
     return interpret(method, method.retrieveActiveBody().getUnits().iterator(), environment);
   }
 
-  private IValue interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
+  private Object interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
     stmtInterpreter.setCurMethod(method);
     stmtInterpreter.setCurEnvironment(environment);
     while (units.hasNext()) {

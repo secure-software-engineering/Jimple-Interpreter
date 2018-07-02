@@ -2,6 +2,7 @@ package de.upb.soot.jimple.interpreter;
 
 import org.jboss.util.NotImplementedException;
 
+import soot.Local;
 import soot.SootMethod;
 import soot.jimple.AbstractStmtSwitch;
 import soot.jimple.AssignStmt;
@@ -17,13 +18,14 @@ import soot.jimple.NopStmt;
 import soot.jimple.RetStmt;
 import soot.jimple.ReturnStmt;
 import soot.jimple.ReturnVoidStmt;
+import soot.jimple.Stmt;
 import soot.jimple.TableSwitchStmt;
 import soot.jimple.ThrowStmt;
 
 /**
  * @author Manuel Benz created on 29.06.18
  */
-public class StmtInterpreter extends AbstractStmtSwitch<IValue> {
+public class StmtInterpreter extends AbstractStmtSwitch {
 
   private final JimpleInterpreter jimpleInterpreter;
   private AbstractValueInterpreter valueInterpreter;
@@ -42,23 +44,36 @@ public class StmtInterpreter extends AbstractStmtSwitch<IValue> {
 
   @Override
   public void caseInvokeStmt(InvokeStmt stmt) {
-    super.caseInvokeStmt(stmt);
+    stmt.getInvokeExpr().apply(valueInterpreter);
+    setResult(valueInterpreter.getResult());
   }
 
   @Override
   public void caseAssignStmt(AssignStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
-    final IValue right = valueInterpreter.getResult();
+    final Object right = valueInterpreter.getResult();
     stmt.getLeftOp().apply(valueInterpreter);
-    curEnvironment.putLocal(valueInterpreter.getResult(), right);
+
+    final Object left = valueInterpreter.getResult();
+    if (left instanceof Local) {
+      curEnvironment.setLocal((Local) left, right);
+    } else {
+      defaultCase(stmt);
+    }
   }
 
   @Override
   public void caseIdentityStmt(IdentityStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
-    final IValue right = valueInterpreter.getResult();
+    final Object right = valueInterpreter.getResult();
     stmt.getLeftOp().apply(valueInterpreter);
-    curEnvironment.putLocal(valueInterpreter.getResult(), right);
+
+    final Object left = valueInterpreter.getResult();
+    if (left instanceof Local) {
+      curEnvironment.setLocal((Local) left, right);
+    } else {
+      interpretException(stmt, String.format("Identity statements only allow for locals on left side but got %s.", left));
+    }
   }
 
   @Override
@@ -129,5 +144,9 @@ public class StmtInterpreter extends AbstractStmtSwitch<IValue> {
   public void setCurEnvironment(Environment curEnvironment) {
     this.curEnvironment = curEnvironment;
     valueInterpreter.setCurEnvironment(curEnvironment);
+  }
+
+  protected void interpretException(Stmt s, final String msg) {
+    throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, s));
   }
 }

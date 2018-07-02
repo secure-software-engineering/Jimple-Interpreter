@@ -1,6 +1,5 @@
 package de.upb.soot.jimple.interpreter.cli;
 
-import de.upb.soot.jimple.interpreter.IValue;
 import de.upb.soot.jimple.interpreter.JimpleInterpreter;
 
 import org.kohsuke.args4j.CmdLineException;
