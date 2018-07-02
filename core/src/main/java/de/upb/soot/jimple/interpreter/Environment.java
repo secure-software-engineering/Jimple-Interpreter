@@ -1,5 +1,7 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,31 +11,31 @@ import java.util.Map;
 public class Environment {
 
   private final Map<IValue, IValue> idToValue = new HashMap<>();
-  private Environment parent;
+  private final JObject thisInstance;
 
   public Environment() {
     this(null);
   }
 
-  public Environment(Environment parent) {
-    this.parent = parent;
+  public Environment(JObject thisInstance) {
+    this.thisInstance = thisInstance;
   }
 
-  public IValue getValue(IValue id) {
+  public IValue getLocal(IValue id) {
     final IValue iValue = idToValue.get(id);
 
-    if (iValue == null) {
-      if (parent != null) {
-        return parent.getValue(id);
-      } else {
-        throw new IllegalArgumentException("Given local does not exist in scope: " + id);
-      }
+    if (iValue != null) {
+      return iValue;
+    } else {
+      throw new IllegalArgumentException("Given local does not exist in scope: " + id);
     }
-
-    return iValue;
   }
 
   public void putLocal(IValue id, IValue value) {
     idToValue.put(id, value);
+  }
+
+  public JObject getThisInstance() {
+    return thisInstance;
   }
 }

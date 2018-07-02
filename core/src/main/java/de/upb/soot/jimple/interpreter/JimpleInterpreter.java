@@ -13,7 +13,6 @@ import soot.Scene;
 import soot.SootMethod;
 import soot.SourceLocator;
 import soot.Unit;
-import soot.jimple.Stmt;
 import soot.options.Options;
 
 /**
@@ -26,7 +25,7 @@ public class JimpleInterpreter {
 
   public JimpleInterpreter(Configuration configuration) {
     this.configuration = configuration;
-    stmtInterpreter = new StmtInterpreter(new ConcreteValueInterpreter());
+    stmtInterpreter = new StmtInterpreter(this, new ConcreteValueInterpreter(this));
 
     if (!configuration.isReuseSoot()) {
       initSoot();
@@ -73,19 +72,17 @@ public class JimpleInterpreter {
     return interpret(entryMethod, iterator, new Environment());
   }
 
+  public IValue interpret(SootMethod method, Environment environment) {
+    return interpret(method, method.retrieveActiveBody().getUnits().iterator(), environment);
+  }
+
   private IValue interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
-    IValue res = null;
     stmtInterpreter.setCurMethod(method);
     stmtInterpreter.setCurEnvironment(environment);
     while (units.hasNext()) {
       final Unit next = units.next();
-      res = interpret((Stmt) next);
+      next.apply(stmtInterpreter);
     }
-    return res;
-  }
-
-  private IValue interpret(Stmt stmt) {
-    stmt.apply(stmtInterpreter);
     return stmtInterpreter.getResult();
   }
 }

@@ -25,11 +25,13 @@ import soot.jimple.ThrowStmt;
  */
 public class StmtInterpreter extends AbstractStmtSwitch<IValue> {
 
+  private final JimpleInterpreter jimpleInterpreter;
   private AbstractValueInterpreter valueInterpreter;
   private SootMethod curMethod;
   private Environment curEnvironment;
 
-  public StmtInterpreter(AbstractValueInterpreter valueInterpreter) {
+  public StmtInterpreter(JimpleInterpreter jimpleInterpreter, AbstractValueInterpreter valueInterpreter) {
+    this.jimpleInterpreter = jimpleInterpreter;
     this.valueInterpreter = valueInterpreter;
   }
 
