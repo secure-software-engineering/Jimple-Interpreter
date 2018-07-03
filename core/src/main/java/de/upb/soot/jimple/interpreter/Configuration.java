@@ -1,5 +1,8 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.buildins.JavaLangSystem;
+import de.upb.soot.jimple.interpreter.values.JClassObject;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 
@@ -61,5 +64,10 @@ public class Configuration {
 
   public void setDumpJimple(boolean dumpJimple) {
     this.dumpJimple = dumpJimple;
+  }
+
+  public JClassObject[] getBuildIns() {
+    // we may allow for custom build-ins later on
+    return new JClassObject[] { new JavaLangSystem(outputStream, errorStream, inputStream) };
   }
 }

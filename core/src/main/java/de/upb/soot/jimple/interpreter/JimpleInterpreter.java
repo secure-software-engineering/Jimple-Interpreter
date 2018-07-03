@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.buildins.MethodDelegate;
 import de.upb.soot.jimple.interpreter.concrete.ConcreteValueInterpreter;
 
 import java.util.Collections;
@@ -22,14 +23,18 @@ public class JimpleInterpreter {
 
   private final Configuration configuration;
   private final StmtInterpreter stmtInterpreter;
+  private final ClassRegistry classRegistry;
 
   public JimpleInterpreter(Configuration configuration) {
     this.configuration = configuration;
-    stmtInterpreter = new StmtInterpreter(this, new ConcreteValueInterpreter(this));
 
     if (!configuration.isReuseSoot()) {
       initSoot();
     }
+
+    // this has to run after Soot was initialized
+    classRegistry = new ClassRegistry(this, configuration.getBuildIns());
+    stmtInterpreter = new StmtInterpreter(this, new ConcreteValueInterpreter(this));
   }
 
   private void initSoot() {
@@ -61,19 +66,33 @@ public class JimpleInterpreter {
   public String interpret(EntryPoint entryPoint) {
     final SootMethod entryMethod = entryPoint.getMethod();
     final Iterator<Unit> iterator = entryMethod.retrieveActiveBody().getUnits().iterator();
-    for (int i = 0; i < entryPoint.getUnitIndex(); i++) {
-      if (iterator.hasNext()) {
-        iterator.next();
-      } else {
-        throw new IllegalArgumentException(
-            String.format("Method %s does not contain in line %d", entryMethod.toString(), entryPoint.getUnitIndex()));
+
+    final int entryLine = entryPoint.getLineNumber();
+    if (entryLine > 0) {
+      while (iterator.hasNext()) {
+        final Unit next = iterator.next();
+        if (next.getJavaSourceStartLineNumber() == entryLine - 1) {
+          break;
+        }
+      }
+
+      // throw exception if we didn't find the given line number
+      if (!iterator.hasNext()) {
+        throw new IllegalArgumentException(String.format(
+            "Method %s does not contain a statement in line %d or line numbers are not present for this method.",
+            entryMethod.toString(), entryLine));
       }
     }
+
     return interpret(entryMethod, iterator, new Environment()).toString();
   }
 
   protected Object interpret(SootMethod method, Environment environment) {
-    return interpret(method, method.retrieveActiveBody().getUnits().iterator(), environment);
+    if (method instanceof MethodDelegate) {
+      return ((MethodDelegate) method).delegate(environment);
+    } else {
+      return interpret(method, method.retrieveActiveBody().getUnits().iterator(), environment);
+    }
   }
 
   private Object interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
@@ -84,5 +103,9 @@ public class JimpleInterpreter {
       next.apply(stmtInterpreter);
     }
     return stmtInterpreter.getResult();
+  }
+
+  public ClassRegistry getClassRegistry() {
+    return classRegistry;
   }
 }

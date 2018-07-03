@@ -49,7 +49,7 @@ public abstract class AbstractInterpreterSystemTest {
   protected static void assertPrintsOutput(String expected) {
     final String output = out.toString();
     Assert.assertTrue(String.format("Output does not contain expected string.\nExpected: %s\nOutput: %s", expected, output),
-        output.contains("expect"));
+        output.contains(expected));
   }
 
   protected static void assertEmtpyResult(Object result) {
@@ -94,6 +94,12 @@ public abstract class AbstractInterpreterSystemTest {
       throw new RuntimeException("The method with name " + targetMethodSubsig + " in class " + targetClassSig
           + " was not found in the Soot Scene.");
     }
+
+    // we do not need a calling context for static methods
+    if (targetMethod.isStatic()) {
+      return targetMethod;
+    }
+
     SootClass dummyClass = makeDummyClass(targetMethod);
     Scene.v().addBasicClass(dummyClass.toString(), SootClass.BODIES);
     SootClass c = Scene.v().forceResolve(dummyClass.toString(), SootClass.BODIES);

@@ -11,7 +11,7 @@ public class EntryPoint {
   private String entryMethod;
 
   public EntryPoint(String entryMethod) {
-    this(entryMethod, 1);
+    this(entryMethod, 0);
   }
 
   public EntryPoint(String entryMethod, int entryLine) {
@@ -23,7 +23,7 @@ public class EntryPoint {
     return Scene.v().getMethod(entryMethod);
   }
 
-  public int getUnitIndex() {
-    return entryLine - 1;
+  public int getLineNumber() {
+    return entryLine;
   }
 }

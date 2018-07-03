@@ -16,7 +16,7 @@ public class Main {
     try {
       parser.parseArgument(args);
       JimpleInterpreter interpreter = new JimpleInterpreter(options.toConfig());
-      final IValue res = interpreter.interpret(options.getEntryPoint());
+      final String res = interpreter.interpret(options.getEntryPoint());
       System.out.println(res);
     } catch (CmdLineException e) {
       System.err.println(e.getMessage());

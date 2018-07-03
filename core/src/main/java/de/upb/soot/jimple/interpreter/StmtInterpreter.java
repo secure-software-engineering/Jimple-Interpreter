@@ -118,7 +118,7 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseReturnVoidStmt(ReturnVoidStmt stmt) {
-    super.caseReturnVoidStmt(stmt);
+    setResult("");
   }
 
   @Override

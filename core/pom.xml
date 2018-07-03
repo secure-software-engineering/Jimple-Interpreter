@@ -23,6 +23,7 @@
         <mockito-all.version>1.10.19</mockito-all.version>
         <powermock-mockito-release-full.version>1.6.4</powermock-mockito-release-full.version>
         <guava.version>25.1-jre</guava.version>
+        <commons-lang3.version>3.7</commons-lang3.version>
     </properties>
 
     <build>
@@ -122,6 +123,12 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
         <!-- Logging dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -145,14 +152,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito-all.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-mockito-release-full</artifactId>
             <version>${powermock-mockito-release-full.version}</version>
             <type>pom</type>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -1,10 +1,12 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JClassObject;
 import de.upb.soot.jimple.interpreter.values.JObject;
 
 import org.jboss.util.NotImplementedException;
 
 import soot.Local;
+import soot.SootField;
 import soot.SootMethod;
 import soot.Value;
 import soot.jimple.AbstractJimpleValueSwitch;
@@ -38,12 +40,14 @@ import soot.jimple.VirtualInvokeExpr;
  * @author Manuel Benz created on 29.06.18
  */
 public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch {
-  private final JimpleInterpreter jimpleInterpreter;
-  private SootMethod curMethod;
-  private Environment curEnvironment;
+  protected final JimpleInterpreter jimpleInterpreter;
+  protected final ClassRegistry classRegistry;
+  protected SootMethod curMethod;
+  protected Environment curEnvironment;
 
   public AbstractValueInterpreter(JimpleInterpreter jimpleInterpreter) {
     this.jimpleInterpreter = jimpleInterpreter;
+    this.classRegistry = jimpleInterpreter.getClassRegistry();
   }
 
   @Override
@@ -51,16 +55,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
     throw new NotImplementedException(String.format("%s expression not supported", obj));
   }
 
-  public SootMethod getCurMethod() {
-    return curMethod;
-  }
-
   protected void setCurMethod(SootMethod curMethod) {
     this.curMethod = curMethod;
-  }
-
-  public Environment getCurEnvironment() {
-    return curEnvironment;
   }
 
   protected void setCurEnvironment(Environment curEnvironment) {
@@ -91,7 +87,34 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseVirtualInvokeExpr(VirtualInvokeExpr v) {
-    super.caseVirtualInvokeExpr(v);
+    v.getBase().apply(this);
+    final Object base = getResult();
+
+    if (base instanceof Local) {
+      final Object baseObject = curEnvironment.getLocalValue((Local) base);
+      if (!(baseObject instanceof JObject)) {
+        interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", baseObject));
+      }
+
+      Object[] args = new Object[v.getArgCount()];
+
+      for (int i = 0; i < args.length; i++) {
+        v.getArg(i).apply(this);
+        final Object argval = getResult();
+        if (argval instanceof Local) {
+          args[i] = curEnvironment.getLocalValue((Local) argval);
+        } else {
+          args[i] = argval;
+        }
+      }
+
+      final JObject jbaseObject = (JObject) baseObject;
+      final Environment environment = new Environment(jbaseObject, args);
+      final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
+      setResult(result);
+    } else {
+      defaultCase(v);
+    }
   }
 
   @Override
@@ -121,7 +144,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseNewExpr(NewExpr v) {
-    setResult(new JObject(v.getBaseType().getSootClass()));
+    final JClassObject clazzObj = classRegistry.getClassObject(v.getBaseType().getSootClass());
+    setResult(clazzObj.newInstance());
   }
 
   @Override
@@ -160,37 +184,41 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseStaticFieldRef(StaticFieldRef v) {
-    super.caseStaticFieldRef(v);
+    final SootField field = v.getField();
+    final JClassObject classObject = classRegistry.getClassObject(field.getDeclaringClass());
+    final Object fieldValue = classObject.getFieldValue(field);
+    setResult(fieldValue);
   }
 
   @Override
   public void caseDoubleConstant(DoubleConstant v) {
-    super.caseDoubleConstant(v);
+    setResult(v.value);
   }
 
   @Override
   public void caseFloatConstant(FloatConstant v) {
-    super.caseFloatConstant(v);
+    setResult(v.value);
   }
 
   @Override
   public void caseIntConstant(IntConstant v) {
-    super.caseIntConstant(v);
+    setResult(v.value);
   }
 
   @Override
   public void caseLongConstant(LongConstant v) {
-    super.caseLongConstant(v);
+    setResult(v.value);
   }
 
   @Override
   public void caseNullConstant(NullConstant v) {
-    super.caseNullConstant(v);
+    // TODO will null work here?
+    setResult(null);
   }
 
   @Override
   public void caseStringConstant(StringConstant v) {
-    super.caseStringConstant(v);
+    setResult(v.value);
   }
 
   @Override
@@ -205,6 +233,6 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   // end
 
   protected void interpretException(Value v, final String msg) {
-    throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, v));
+    throw new IllegalStateException(String.format("%s Method: %s, Value: %s", msg, curMethod, v));
   }
 }
