@@ -36,7 +36,7 @@ public abstract class AbstractInterpreterSystemTest {
 
   protected final static JimpleInterpreter interpreter;
 
-  private static ByteArrayOutputStream out;
+  protected static ByteArrayOutputStream out;
 
   static {
     final Configuration configuration = new Configuration("target/systemTest-target-classes");
