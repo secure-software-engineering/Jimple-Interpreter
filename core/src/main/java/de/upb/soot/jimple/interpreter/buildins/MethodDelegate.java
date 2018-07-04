@@ -2,6 +2,7 @@ package de.upb.soot.jimple.interpreter.buildins;
 
 import de.upb.soot.jimple.interpreter.Environment;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.apache.commons.lang3.ClassUtils;
@@ -27,6 +28,29 @@ public abstract class MethodDelegate extends SootMethod {
   public MethodDelegate(SootMethod orig) {
     super(orig.getName(), orig.getParameterTypes(), orig.getReturnType(), orig.getModifiers(), orig.getExceptions());
     this.original = orig;
+  }
+
+  /**
+   * Creates a MethodDelegate that executes the given SootMethod on the given Java! instance object via reflection.
+   * 
+   * @param method
+   * @param instance
+   * @return
+   */
+  public static MethodDelegate instanceInvokeDelegate(SootMethod method, Object instance) {
+    return new MethodDelegate(method) {
+      @Override
+      public Object delegate(Environment env) {
+        try {
+          final Method declaredMethod = instance.getClass().getDeclaredMethod(method.getName(), getJavaParams());
+          // this only works for primitive types and string constants. we cannot convert a JObject to its Java
+          // representation
+          return declaredMethod.invoke(instance, env.getMethodArguments());
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    };
   }
 
   public abstract Object delegate(Environment env);

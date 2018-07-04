@@ -67,7 +67,7 @@ public class Configuration {
   }
 
   public JClassObject[] getBuildIns() {
-    // we may allow for custom build-ins later on
+    // TODO we may allow for custom build-ins later on
     return new JClassObject[] { new JavaLangSystem(outputStream, errorStream, inputStream) };
   }
 }

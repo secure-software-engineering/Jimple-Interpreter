@@ -55,6 +55,9 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     stmt.getLeftOp().apply(valueInterpreter);
 
     final Object left = valueInterpreter.getResult();
+
+    // TODO cast int constants to byte and char
+
     if (left instanceof Local) {
       curEnvironment.setLocal((Local) left, right);
     } else {

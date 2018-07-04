@@ -19,7 +19,7 @@ public final class ClassRegistry {
     this.classes = new HashMap<>();
     for (JClassObject buildIn : buildIns) {
       if (classes.put(buildIn.getDeclaringClass(), buildIn) != null) {
-        throw new IllegalArgumentException("Build in classes have to be unique");
+        throw new IllegalArgumentException("Build-in classes have to be unique");
       }
     }
   }

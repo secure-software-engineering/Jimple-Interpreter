@@ -34,12 +34,16 @@ public class JObject implements JValue {
   }
 
   /**
-   * Can be used to delegate to another method in build-ins
+   * Used to get the corresponding SootMethod for this object. e.g., if the original SootMethod references a supertype
+   * implementation, we will have to return the correct subtype implementation here.
+   *
+   * Is also useful for build-in method delegates.
    * 
    * @param method
-   * @return
+   * @return The SootMethod which has to be executed on this object
    */
   public SootMethod getMethod(SootMethod method) {
+    // TODO implement dynamic dispatch here
     return method;
   }
 }
