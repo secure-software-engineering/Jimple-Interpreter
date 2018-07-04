@@ -1,8 +1,11 @@
 package de.upb.soot.jimple.interpreter.buildins;
 
 import de.upb.soot.jimple.interpreter.Environment;
+import de.upb.soot.jimple.interpreter.emulation.JavaEmulator;
+import de.upb.soot.jimple.interpreter.values.JObject;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ClassUtils;
@@ -43,9 +46,12 @@ public abstract class MethodDelegate extends SootMethod {
       public Object delegate(Environment env) {
         try {
           final Method declaredMethod = instance.getClass().getDeclaredMethod(method.getName(), getJavaParams());
-          // FIXME this only works for primitive types and string constants. we cannot convert a JObject to its Java
-          // representation. Use serialization to convert JObject to a Java object and the other way round?
-          return declaredMethod.invoke(instance, env.getMethodArguments());
+
+          // convert JObjects to JavaObjects if necessary
+          final Object[] args = Arrays.stream(env.getMethodArguments())
+              .map(arg -> arg instanceof JObject ? JavaEmulator.toJavaObject((JObject) arg) : arg).toArray();
+
+          return JavaEmulator.toJimpleObject(declaredMethod.invoke(instance, args));
         } catch (Exception e) {
           throw new RuntimeException(e);
         }
