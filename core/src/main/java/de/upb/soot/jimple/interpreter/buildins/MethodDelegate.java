@@ -56,18 +56,13 @@ public abstract class MethodDelegate extends SootMethod {
   public abstract Object delegate(Environment env);
 
   protected Class[] getJavaParams() {
-    Class[] res = new Class[getParameterCount()];
-    final List<Type> parameterTypes = getParameterTypes();
-    for (int i = 0; i < parameterTypes.size(); i++) {
-      final Type type = parameterTypes.get(i);
-
+    return getParameterTypes().stream().map(pt -> {
       try {
-        res[i] = ClassUtils.getClass(type.toString());
+        return ClassUtils.getClass(pt.toString());
       } catch (ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
-    }
-    return res;
+    }).toArray(Class[]::new);
   }
 
   @Override
