@@ -8,11 +8,13 @@ import java.util.Map;
 import soot.Local;
 
 /**
+ * Models the current scope, including local variables and parameters passed into the method modeled by this scope.
+ *
  * @author Manuel Benz created on 29.06.18
  */
 public class Environment {
 
-  private final Map<Local, Object> idToValue = new HashMap<>();
+  private final Map<Local, Object> localToValue = new HashMap<>();
   private final JObject thisInstance;
   private final Object[] arguments;
 
@@ -26,7 +28,7 @@ public class Environment {
   }
 
   public Object getLocalValue(Local id) {
-    final Object iValue = idToValue.get(id);
+    final Object iValue = localToValue.get(id);
 
     if (iValue != null) {
       return iValue;
@@ -35,12 +37,24 @@ public class Environment {
     }
   }
 
+  /**
+   * Assigns the value of the parameter with the given index to the given local.
+   * 
+   * @param id
+   * @param paramIndex
+   */
   public void setLocal(Local id, int paramIndex) {
-    idToValue.put(id, arguments[paramIndex]);
+    localToValue.put(id, arguments[paramIndex]);
   }
 
+  /**
+   * Assigns the given value (JObject or primitive) to the given local.
+   * 
+   * @param id
+   * @param value
+   */
   public void setLocal(Local id, Object value) {
-    idToValue.put(id, value);
+    localToValue.put(id, value);
   }
 
   public JObject getThisInstance() {

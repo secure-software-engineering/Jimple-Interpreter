@@ -43,8 +43,8 @@ public abstract class MethodDelegate extends SootMethod {
       public Object delegate(Environment env) {
         try {
           final Method declaredMethod = instance.getClass().getDeclaredMethod(method.getName(), getJavaParams());
-          // this only works for primitive types and string constants. we cannot convert a JObject to its Java
-          // representation
+          // FIXME this only works for primitive types and string constants. we cannot convert a JObject to its Java
+          // representation. Use serialization to convert JObject to a Java object and the other way round?
           return declaredMethod.invoke(instance, env.getMethodArguments());
         } catch (Exception e) {
           throw new RuntimeException(e);
