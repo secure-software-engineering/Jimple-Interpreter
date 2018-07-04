@@ -24,6 +24,7 @@
         <powermock-mockito-release-full.version>1.6.4</powermock-mockito-release-full.version>
         <guava.version>25.1-jre</guava.version>
         <commons-lang3.version>3.7</commons-lang3.version>
+        <kryo.version>5.0.0-RC1</kryo.version>
     </properties>
 
     <build>
@@ -112,6 +113,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>${kryo.version}</version>
+        </dependency>
         <dependency>
             <groupId>ca.mcgill.sable</groupId>
             <artifactId>soot</artifactId>

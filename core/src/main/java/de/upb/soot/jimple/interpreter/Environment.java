@@ -17,14 +17,25 @@ public class Environment {
   private final Map<Local, Object> localToValue = new HashMap<>();
   private final JObject thisInstance;
   private final Object[] arguments;
+  private final Environment parent;
 
-  public Environment(Object... arguments) {
-    this(null, arguments);
-  }
-
-  public Environment(JObject thisInstance, Object... arguments) {
+  private Environment(Environment parent, JObject thisInstance, Object... arguments) {
     this.thisInstance = thisInstance;
     this.arguments = arguments;
+    this.parent = parent;
+  }
+
+  public static Environment createRoot() {
+    // TODO implement parameters to e.g. static void main
+    return new Environment(null, null, null);
+  }
+
+  public Environment createChild(Object... arguments) {
+    return createChild(null, arguments);
+  }
+
+  public Environment createChild(JObject thisInstance, Object... arguments) {
+    return new Environment(this, thisInstance, arguments);
   }
 
   public Object getLocalValue(Local id) {
@@ -63,5 +74,9 @@ public class Environment {
 
   public Object[] getMethodArguments() {
     return arguments;
+  }
+
+  public Environment getParent() {
+    return parent;
   }
 }

@@ -24,18 +24,18 @@ public final class ClassRegistry {
     }
   }
 
-  public JClassObject getClassObject(SootClass clazz) {
-    return classes.computeIfAbsent(clazz, c -> loadClass(c));
+  public JClassObject getClassObject(Environment env, SootClass clazz) {
+    return classes.computeIfAbsent(clazz, c -> loadClass(env, c));
   }
 
-  private JClassObject loadClass(SootClass clazz) {
+  private JClassObject loadClass(Environment env, SootClass clazz) {
     final JClassObject result = new JClassObject(clazz);
     final SootMethod clinit = clazz.getMethodByNameUnsafe(SootMethod.staticInitializerName);
     if (clinit == null) {
       // there is no clinit implemented for the class
       return result;
     }
-    interpreter.interpret(clinit, new Environment(result));
+    interpreter.interpret(clinit, env.createChild(result));
     return result;
   }
 }

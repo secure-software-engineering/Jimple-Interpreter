@@ -18,6 +18,7 @@ import soot.jimple.DoubleConstant;
 import soot.jimple.DynamicInvokeExpr;
 import soot.jimple.FloatConstant;
 import soot.jimple.InstanceFieldRef;
+import soot.jimple.InstanceInvokeExpr;
 import soot.jimple.InstanceOfExpr;
 import soot.jimple.IntConstant;
 import soot.jimple.InterfaceInvokeExpr;
@@ -76,17 +77,21 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   }
 
   @Override
-  public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
-    super.caseSpecialInvokeExpr(v);
-  }
-
-  @Override
   public void caseStaticInvokeExpr(StaticInvokeExpr v) {
     super.caseStaticInvokeExpr(v);
   }
 
   @Override
+  public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
+    caseInstanceInvokeExpr(v);
+  }
+
+  @Override
   public void caseVirtualInvokeExpr(VirtualInvokeExpr v) {
+    caseInstanceInvokeExpr(v);
+  }
+
+  private void caseInstanceInvokeExpr(InstanceInvokeExpr v) {
     v.getBase().apply(this);
     final Object base = getResult();
 
@@ -109,7 +114,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
       }
 
       final JObject jbaseObject = (JObject) baseObject;
-      final Environment environment = new Environment(jbaseObject, args);
+      final Environment environment = curEnvironment.createChild(jbaseObject, args);
       final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
       setResult(result);
     } else {
@@ -144,7 +149,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseNewExpr(NewExpr v) {
-    final JClassObject clazzObj = classRegistry.getClassObject(v.getBaseType().getSootClass());
+    final JClassObject clazzObj = classRegistry.getClassObject(curEnvironment, v.getBaseType().getSootClass());
     setResult(clazzObj.newInstance());
   }
 
@@ -185,7 +190,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   @Override
   public void caseStaticFieldRef(StaticFieldRef v) {
     final SootField field = v.getField();
-    final JClassObject classObject = classRegistry.getClassObject(field.getDeclaringClass());
+    final JClassObject classObject = classRegistry.getClassObject(curEnvironment, field.getDeclaringClass());
     final Object fieldValue = classObject.getFieldValue(field);
     setResult(fieldValue);
   }

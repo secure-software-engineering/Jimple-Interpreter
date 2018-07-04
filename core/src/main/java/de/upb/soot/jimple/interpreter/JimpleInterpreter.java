@@ -84,7 +84,7 @@ public class JimpleInterpreter {
       }
     }
 
-    return interpret(entryMethod, iterator, new Environment()).toString();
+    return interpret(entryMethod, iterator, Environment.createRoot()).toString();
   }
 
   protected Object interpret(SootMethod method, Environment environment) {
@@ -102,10 +102,15 @@ public class JimpleInterpreter {
       final Unit next = units.next();
       next.apply(stmtInterpreter);
     }
+
+    // reset the environment to the calling context
+    stmtInterpreter.setCurEnvironment(environment.getParent());
     return stmtInterpreter.getResult();
   }
 
   public ClassRegistry getClassRegistry() {
     return classRegistry;
   }
+
+
 }
