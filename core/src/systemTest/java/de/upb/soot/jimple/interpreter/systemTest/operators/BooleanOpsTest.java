@@ -1,13 +1,11 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
-import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 11.07.18
  */
-public class BooleanOpsTest extends AbstractInterpreterSystemTest {
+public class BooleanOpsTest extends AbstractOpsTest {
 
   @Test
   public void logicalOr() {
@@ -23,4 +21,5 @@ public class BooleanOpsTest extends AbstractInterpreterSystemTest {
   public void logicalNot() {
     standardSoutTest("logicalNot", "true");
   }
+
 }

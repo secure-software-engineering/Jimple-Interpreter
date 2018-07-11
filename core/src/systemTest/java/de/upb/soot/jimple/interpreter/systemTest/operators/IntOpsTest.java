@@ -1,13 +1,11 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
-import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 11.07.18
  */
-public class IntOpsTest extends AbstractInterpreterSystemTest {
+public class IntOpsTest extends AbstractOpsTest {
 
   @Test
   public void addition() {
@@ -103,4 +101,5 @@ public class IntOpsTest extends AbstractInterpreterSystemTest {
   public void lessOrEqualsThan() {
     standardSoutTest("lessOrEqualsThan", "true");
   }
+
 }

@@ -129,6 +129,12 @@
             <groupId>ca.mcgill.sable</groupId>
             <artifactId>soot</artifactId>
             <version>${soot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>

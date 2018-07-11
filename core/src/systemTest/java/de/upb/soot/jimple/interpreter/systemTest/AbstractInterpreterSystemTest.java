@@ -53,13 +53,14 @@ public abstract class AbstractInterpreterSystemTest {
     out = new ByteArrayOutputStream();
     configuration.setOutputStream(new PrintStream(out));
     configuration.setDumpJimple(true);
-    configuration.setClearJimpleOutDir(false);
+    configuration.setClearJimpleOutDir(true);
     configuration.setAdditionalSootOptions(o -> {
       // exclude all test classes
       o.set_include_all(true);
       o.set_exclude(Lists.newArrayList("de.*", "java.*", "sun.*", "javax.*"));
       o.set_no_bodies_for_excluded(true);
       o.set_include(getIncludes());
+      o.set_output_dir("./jimpleOut/" + getClass().getPackage().getName());
     });
     interpreter = new JimpleInterpreter(configuration);
     System.out.println("Finished building Scene");
@@ -88,7 +89,7 @@ public abstract class AbstractInterpreterSystemTest {
    * 
    * @return
    */
-  private List<String> getIncludes() {
+  protected List<String> getIncludes() {
     return Collections.singletonList(getClass().getPackage().getName() + ".*");
   }
 

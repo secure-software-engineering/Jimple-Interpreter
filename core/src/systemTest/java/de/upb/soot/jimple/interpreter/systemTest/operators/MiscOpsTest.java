@@ -1,13 +1,11 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
-import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 11.07.18
  */
-public class MiscOpsTest extends AbstractInterpreterSystemTest {
+public class MiscOpsTest extends AbstractOpsTest {
 
   @Test
   public void instanceofOperator() {
@@ -18,4 +16,5 @@ public class MiscOpsTest extends AbstractInterpreterSystemTest {
   public void ternaryOperator() {
     standardSoutTest("ternaryOperator", "foo");
   }
+
 }
