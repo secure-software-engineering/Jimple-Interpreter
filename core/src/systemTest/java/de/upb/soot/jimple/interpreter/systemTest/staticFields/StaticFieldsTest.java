@@ -11,23 +11,23 @@ public class StaticFieldsTest extends AbstractInterpreterSystemTest {
 
   @Test
   public void finalField() {
-    standardSoutTest("finalField", "10");
+    standardSoutTest("void finalField()", "10");
   }
 
   @Test
   public void nonFinalField() {
-    standardSoutTest("nonFinalField", "5");
+    standardSoutTest("void nonFinalField()", "5");
   }
 
   @Test
   public void nonFinalFieldAltered() {
-    standardSoutTest("nonFinalFieldAltered", "6");
+    standardSoutTest("void nonFinalFieldAltered()", "6");
   }
 
   @Test
   public void doesNotResetDuringTestMethod() {
-    standardSoutTest("nonFinalField", "5");
-    standardSoutTest("nonFinalFieldAltered", "6");
-    standardSoutTest("nonFinalField", "6");
+    standardSoutTest("void nonFinalField()", "5");
+    standardSoutTest("void nonFinalFieldAltered()", "6");
+    standardSoutTest("void nonFinalField()", "6");
   }
 }

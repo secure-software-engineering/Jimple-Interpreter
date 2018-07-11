@@ -15,7 +15,7 @@
         <!--Plugin versions-->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
         <!--Dependency versions-->
         <soot.version>3.1.0-SNAPSHOT</soot.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
@@ -105,9 +105,18 @@
                             <testClassesDirectory>${project.build.directory}/systemTest-classes</testClassesDirectory>
                             <testSourceDirectory>${project.basedir}/src/systemTest/java</testSourceDirectory>
                             <trimStackTrace>false</trimStackTrace>
+                            <parallel>classes</parallel>
+                            <threadCount>5</threadCount>
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

@@ -12,6 +12,7 @@ import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -34,34 +35,48 @@ import soot.jimple.NullConstant;
 @RunWith(PowerMockRunner.class)
 public abstract class AbstractInterpreterSystemTest {
 
-  protected final static JimpleInterpreter interpreter;
+  private static final String TARGET_SYSTEM_TEST_TARGET_CLASSES = "target/systemTest-target-classes";
+  protected final ByteArrayOutputStream out;
+  protected final JimpleInterpreter interpreter;
 
-  protected static ByteArrayOutputStream out;
-
-  static {
-    final Configuration configuration = new Configuration("target/systemTest-target-classes");
+  public AbstractInterpreterSystemTest() {
     out = new ByteArrayOutputStream();
+    Configuration configuration = new Configuration(TARGET_SYSTEM_TEST_TARGET_CLASSES);
     configuration.setOutputStream(new PrintStream(out));
-    configuration.setDumpJimple(true);
+    configuration.setReuseSoot(true);
     interpreter = new JimpleInterpreter(configuration);
   }
 
-  protected static void assertPrintsOutput(String expected) {
-    final String output = out.toString();
+  @BeforeClass
+  public static void setupSoot() {
+    // start the interpreter once so that a soot instance is build with the default config
+    System.out.println("Building Soot's Scene before tests");
+    final Configuration configuration = new Configuration(TARGET_SYSTEM_TEST_TARGET_CLASSES);
+    configuration.setDumpJimple(true);
+    new JimpleInterpreter(configuration);
+    System.out.println("Finished building Scene");
+  }
+
+  @Before
+  public void setUpTestCase() {
+    out.reset();
+    interpreter.reset();
+  }
+
+  protected String getOutput() {
+    return out.toString();
+  }
+
+  protected void assertPrintsOutput(String expected) {
+    final String output = getOutput();
     Assert.assertTrue(String.format("Output does not contain expected string.\nExpected: %s\nOutput: %s", expected, output),
         output.contains(expected));
   }
 
-  protected static void assertEmtpyResult(Object result) {
+  protected void assertEmtpyResult(Object result) {
     Assert.assertNotNull("Expected empty result but was null", result);
     final String resString = result.toString();
     Assert.assertEquals("Expected empty result but was" + resString, "", resString);
-  }
-
-  @Before
-  public void setUp() throws Exception {
-    out.reset();
-    interpreter.reset();
   }
 
   /**
@@ -79,7 +94,7 @@ public abstract class AbstractInterpreterSystemTest {
    * By default retrieves the name of a target class by taking the test's class name and removing "Test" at the end of the
    * identifier. This assumes that tests are located in the same package as the targets to test and that they are named
    * "<TargetClassName>Test". If this assumption does not hold for a specific test, overwrite accordingly.
-   * 
+   *
    * @return
    */
   protected String getTargetClass() {
@@ -137,7 +152,7 @@ public abstract class AbstractInterpreterSystemTest {
    * Basic test case skeleton that expects a System.out.print* as last executed statement.
    * <p/>
    * Note: Since System.out.print* is a void function, the interpreter returns the empty result.
-   * 
+   *
    * @param targetMethodSubSignature
    *          Sub-signature of the tested method, e.g. 'void foo()'
    * @param expectedOutput
