@@ -240,4 +240,9 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   protected void interpretException(Value v, final String msg) {
     throw new IllegalStateException(String.format("%s Method: %s, Value: %s", msg, curMethod, v));
   }
+
+  public void reset() {
+    curEnvironment = null;
+    curMethod = null;
+  }
 }

@@ -17,6 +17,10 @@ public final class ClassRegistry {
   protected ClassRegistry(JimpleInterpreter interpreter, JClassObject... buildIns) {
     this.interpreter = interpreter;
     this.classes = new HashMap<>();
+    registerBuildins(buildIns);
+  }
+
+  private void registerBuildins(JClassObject[] buildIns) {
     for (JClassObject buildIn : buildIns) {
       if (classes.put(buildIn.getDeclaringClass(), buildIn) != null) {
         throw new IllegalArgumentException("Build-in classes have to be unique");
@@ -37,5 +41,10 @@ public final class ClassRegistry {
     }
     interpreter.interpret(clinit, env.createChild(result));
     return result;
+  }
+
+  public void reset(JClassObject... buildIns) {
+    classes.clear();
+    registerBuildins(buildIns);
   }
 }

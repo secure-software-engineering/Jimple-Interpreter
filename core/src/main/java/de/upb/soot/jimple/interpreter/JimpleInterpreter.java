@@ -112,5 +112,8 @@ public class JimpleInterpreter {
     return classRegistry;
   }
 
-
+  public void reset() {
+    classRegistry.reset(configuration.getBuildIns());
+    stmtInterpreter.reset();
+  }
 }

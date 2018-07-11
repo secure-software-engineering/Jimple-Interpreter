@@ -152,4 +152,10 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   protected void interpretException(Stmt s, final String msg) {
     throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, s));
   }
+
+  public void reset() {
+    curEnvironment = null;
+    curMethod = null;
+    valueInterpreter.reset();
+  }
 }
