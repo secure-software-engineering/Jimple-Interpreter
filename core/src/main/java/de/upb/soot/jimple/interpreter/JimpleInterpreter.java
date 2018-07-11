@@ -3,11 +3,14 @@ package de.upb.soot.jimple.interpreter;
 import de.upb.soot.jimple.interpreter.buildins.MethodDelegate;
 import de.upb.soot.jimple.interpreter.concrete.ConcreteValueInterpreter;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.jboss.util.file.Files;
-
+import org.apache.commons.io.FileSystemUtils;
+import org.apache.commons.io.FileUtils;
 import soot.G;
 import soot.PackManager;
 import soot.Scene;
@@ -58,7 +61,13 @@ public class JimpleInterpreter {
     PackManager.v().getPack("wjpp").apply();
 
     if (configuration.isDumpJimple()) {
-      Files.delete(opt.output_dir());
+      final Path outDir = Paths.get("./jimpleOut");
+      try {
+        FileUtils.deleteDirectory(outDir.toFile());
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      opt.set_output_dir(outDir.toString());
       PackManager.v().writeOutput();
     }
   }

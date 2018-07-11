@@ -13,14 +13,6 @@ public class StaticInvoke {
     System.out.println("foo");
   }
 
-    public static void main(String[] args) {
-        try {
-            staticInvokeReflection();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
-
   public static void staticInvokeReflection() throws NoSuchMethodException {
     // Invoking static method using reflection
     Method method = StaticInvoke.class.getMethod("staticInvoke");

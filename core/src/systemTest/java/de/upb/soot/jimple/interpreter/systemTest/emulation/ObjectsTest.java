@@ -11,13 +11,13 @@ import org.junit.Test;
 public class ObjectsTest extends AbstractInterpreterSystemTest {
 
   @Test
-  public void callWithJObject() {
-    final Object res = interpret("void callWithJObject()");
+  public void jObjectToJavaObject() {
+    final Object res = interpret("void jObjectToJavaObject()");
     assertEmtpyResult(res);
     final String output = out.toString();
     Assert.assertFalse(
         "JObject was not converted to Java Object. The print stream just print the JObject.toString() result: " + out,
         output.contains("de.upb.soot.jimple.interpreter.values.JObject"));
-    assertPrintsOutput("Foo");
+    assertPrintsOutput("foo");
   }
 }

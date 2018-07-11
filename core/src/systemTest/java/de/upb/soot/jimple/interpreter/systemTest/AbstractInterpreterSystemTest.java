@@ -61,6 +61,7 @@ public abstract class AbstractInterpreterSystemTest {
   @Before
   public void setUp() throws Exception {
     out.reset();
+    interpreter.reset();
   }
 
   /**
@@ -132,4 +133,19 @@ public abstract class AbstractInterpreterSystemTest {
     return sootClass;
   }
 
+  /**
+   * Basic test case skeleton that expects a System.out.print* as last executed statement.
+   * <p/>
+   * Note: Since System.out.print* is a void function, the interpreter returns the empty result.
+   * 
+   * @param targetMethodSubSignature
+   *          Sub-signature of the tested method, e.g. 'void foo()'
+   * @param expectedOutput
+   *          String that has to be contained in the printed output to pass the test
+   */
+  protected void standardSoutTest(String targetMethodSubSignature, String expectedOutput) {
+    final Object res = interpret(targetMethodSubSignature);
+    assertEmtpyResult(res);
+    assertPrintsOutput(expectedOutput);
+  }
 }

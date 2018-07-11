@@ -148,4 +148,6 @@ fabric.properties
 .idea/httpRequests
 
 
-**/sootOutput
+**/jimpleOut
+
+*.jimple

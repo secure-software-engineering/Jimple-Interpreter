@@ -1,4 +1,4 @@
-package de.upb.soot.lambdaExpressions;
+package de.upb.soot.jimple.interpreter.systemTest.lambdaExpressions;
 
 abstract class LambdaExpressions {
   public static void lambdaTarget() {

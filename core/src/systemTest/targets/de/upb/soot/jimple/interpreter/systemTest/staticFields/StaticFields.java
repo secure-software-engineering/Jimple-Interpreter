@@ -1,8 +1,22 @@
 package de.upb.soot.jimple.interpreter.systemTest.staticFields;
 
 public class StaticFields {
-  public static void staticFields() {
-    A.methodA();
-    System.out.println(A.a + A.b);
+  private static final int finalInt = 10;
+
+  private static int nonFinalInt = 5;
+
+  public static void finalField() {
+    System.out.println(finalInt);
   }
+
+  public static void nonFinalField() {
+    System.out.println(nonFinalInt);
+  }
+
+  public static void nonFinalFieldAltered() {
+    nonFinalInt++;
+    System.out.println(nonFinalInt);
+  }
+
+
 }

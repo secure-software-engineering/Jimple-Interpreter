@@ -1,4 +1,4 @@
-package de.upb.soot.nestedControlStatements;
+package de.upb.soot.jimple.interpreter.systemTest.nestedControlStatements;
 
 public class NestedControlStatements {
 
