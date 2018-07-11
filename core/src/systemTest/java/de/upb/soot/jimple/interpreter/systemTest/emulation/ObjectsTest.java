@@ -2,7 +2,7 @@ package de.upb.soot.jimple.interpreter.systemTest.emulation;
 
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 04.07.18

@@ -2,7 +2,7 @@ package de.upb.soot.jimple.interpreter.systemTest.constants;
 
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 29.06.18

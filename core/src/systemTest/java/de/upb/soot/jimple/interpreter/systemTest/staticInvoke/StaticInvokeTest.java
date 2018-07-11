@@ -1,9 +1,7 @@
 package de.upb.soot.jimple.interpreter.systemTest.staticInvoke;
 
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz

@@ -13,7 +13,11 @@ public class Objects {
     System.out.println();
   }
 
-  private final class Foo {
+  private static final class Foo {
+
+    public Foo() {
+    }
+
     @Override
     public String toString() {
       return "foo";

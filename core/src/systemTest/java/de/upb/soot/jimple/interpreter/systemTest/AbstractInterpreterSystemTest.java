@@ -4,17 +4,19 @@ import de.upb.soot.jimple.interpreter.Configuration;
 import de.upb.soot.jimple.interpreter.EntryPoint;
 import de.upb.soot.jimple.interpreter.JimpleInterpreter;
 
+import com.google.common.collect.Lists;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
 
 import soot.ArrayType;
 import soot.Local;
@@ -32,51 +34,37 @@ import soot.jimple.NullConstant;
 /**
  * @author Manuel Benz created on 29.06.18
  */
-@RunWith(PowerMockRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class AbstractInterpreterSystemTest {
 
   private static final String TARGET_SYSTEM_TEST_TARGET_CLASSES = "target/systemTest-target-classes";
-  protected final ByteArrayOutputStream out;
-  protected final JimpleInterpreter interpreter;
+  protected ByteArrayOutputStream out;
+  protected JimpleInterpreter interpreter;
 
-  public AbstractInterpreterSystemTest() {
-    out = new ByteArrayOutputStream();
-    Configuration configuration = new Configuration(TARGET_SYSTEM_TEST_TARGET_CLASSES);
-    configuration.setOutputStream(new PrintStream(out));
-    configuration.setReuseSoot(true);
-    interpreter = new JimpleInterpreter(configuration);
-  }
-
-  @BeforeClass
-  public static void setupSoot() {
+  @BeforeAll
+  public void setupInterpreter() {
     // start the interpreter once so that a soot instance is build with the default config
-    System.out.println("Building Soot's Scene before tests");
-    final Configuration configuration = new Configuration(TARGET_SYSTEM_TEST_TARGET_CLASSES);
+    System.out.println("Building Soot's Scene before test class");
+    Configuration configuration = new Configuration(TARGET_SYSTEM_TEST_TARGET_CLASSES);
+    out = new ByteArrayOutputStream();
+    configuration.setOutputStream(new PrintStream(out));
     configuration.setDumpJimple(true);
-    new JimpleInterpreter(configuration);
+    configuration.setClearJimpleOutDir(false);
+    configuration.setAdditionalSootOptions(o -> {
+      // exclude all test classes
+      o.set_include_all(true);
+      o.set_exclude(Lists.newArrayList("de.*", "java.*", "sun.*", "javax.*"));
+      o.set_no_bodies_for_excluded(true);
+      o.set_include(getIncludes());
+    });
+    interpreter = new JimpleInterpreter(configuration);
     System.out.println("Finished building Scene");
   }
 
-  @Before
+  @BeforeEach
   public void setUpTestCase() {
     out.reset();
     interpreter.reset();
-  }
-
-  protected String getOutput() {
-    return out.toString();
-  }
-
-  protected void assertPrintsOutput(String expected) {
-    final String output = getOutput();
-    Assert.assertTrue(String.format("Output does not contain expected string.\nExpected: %s\nOutput: %s", expected, output),
-        output.contains(expected));
-  }
-
-  protected void assertEmtpyResult(Object result) {
-    Assert.assertNotNull("Expected empty result but was null", result);
-    final String resString = result.toString();
-    Assert.assertEquals("Expected empty result but was" + resString, "", resString);
   }
 
   /**
@@ -88,6 +76,16 @@ public abstract class AbstractInterpreterSystemTest {
   protected Object interpret(String methodSubSig) {
     final SootMethod dummyMain = createTestTarget(getTargetClass(), methodSubSig);
     return interpreter.interpret(new EntryPoint(dummyMain.getSignature()));
+  }
+
+  /**
+   * By default returns the package of the current class. So only classes below this package are analyzed by Soot and
+   * available. Overwrite to include the JDK for example ("java.*").
+   * 
+   * @return
+   */
+  private List<String> getIncludes() {
+    return Collections.singletonList(getClass().getPackage().getName() + ".*");
   }
 
   /**
@@ -162,5 +160,21 @@ public abstract class AbstractInterpreterSystemTest {
     final Object res = interpret(targetMethodSubSignature);
     assertEmtpyResult(res);
     assertPrintsOutput(expectedOutput);
+  }
+
+  protected String getOutput() {
+    return out.toString();
+  }
+
+  protected void assertPrintsOutput(String expected) {
+    final String output = getOutput();
+    Assertions.assertTrue(output.contains(expected),
+        String.format("Output does not contain expected string.\nExpected: %s\nOutput: %s", expected, output));
+  }
+
+  protected void assertEmtpyResult(Object result) {
+    Assertions.assertNotNull(result, "Expected empty result but was null");
+    final String resString = result.toString();
+    Assertions.assertEquals("", resString, "Expected empty result but was" + resString);
   }
 }

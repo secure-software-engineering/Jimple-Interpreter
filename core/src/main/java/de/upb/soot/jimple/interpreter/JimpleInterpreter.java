@@ -3,14 +3,14 @@ package de.upb.soot.jimple.interpreter;
 import de.upb.soot.jimple.interpreter.buildins.MethodDelegate;
 import de.upb.soot.jimple.interpreter.concrete.ConcreteValueInterpreter;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
-import org.apache.commons.io.FileSystemUtils;
 import org.apache.commons.io.FileUtils;
+
 import soot.G;
 import soot.PackManager;
 import soot.Scene;
@@ -53,21 +53,29 @@ public class JimpleInterpreter {
     if (configuration.isDumpJimple()) {
       opt.set_output_format(Options.output_format_jimple);
       opt.set_no_writeout_body_releasing(true);
+      opt.set_output_dir("./jimpleOut");
     } else {
       opt.set_output_format(Options.output_format_none);
+    }
+
+    // set custom options for new Soot instance
+    final Consumer<Options> additionalSootOptions = configuration.getAdditionalSootOptions();
+    if (additionalSootOptions != null) {
+      additionalSootOptions.accept(opt);
     }
 
     Scene.v().loadNecessaryClasses();
     PackManager.v().getPack("wjpp").apply();
 
     if (configuration.isDumpJimple()) {
-      final Path outDir = Paths.get("./jimpleOut");
-      try {
-        FileUtils.deleteDirectory(outDir.toFile());
-      } catch (IOException e) {
-        e.printStackTrace();
+      if (configuration.isClearJimpleOutDir()) {
+        try {
+          FileUtils.deleteDirectory(new File(opt.output_dir()));
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
       }
-      opt.set_output_dir(outDir.toString());
+
       PackManager.v().writeOutput();
     }
   }

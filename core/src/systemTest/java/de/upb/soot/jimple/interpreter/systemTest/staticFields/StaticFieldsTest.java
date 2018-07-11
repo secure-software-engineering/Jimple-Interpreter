@@ -2,7 +2,7 @@ package de.upb.soot.jimple.interpreter.systemTest.staticFields;
 
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Manuel Benz created on 11.07.18

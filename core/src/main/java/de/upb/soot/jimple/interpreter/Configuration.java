@@ -5,6 +5,9 @@ import de.upb.soot.jimple.interpreter.values.JClassObject;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
+
+import soot.options.Options;
 
 /**
  * @author Manuel Benz created on 29.06.18
@@ -17,6 +20,8 @@ public class Configuration {
   private PrintStream errorStream = System.err;
   private boolean reuseSoot = false;
   private boolean dumpJimple = false;
+  private Consumer<Options> additionalSootOptions;
+  private boolean clearJimpleOutDir = true;
 
   public Configuration(String classPath) {
     this.classPath = classPath;
@@ -64,6 +69,22 @@ public class Configuration {
 
   public void setDumpJimple(boolean dumpJimple) {
     this.dumpJimple = dumpJimple;
+  }
+
+  public Consumer<Options> getAdditionalSootOptions() {
+    return additionalSootOptions;
+  }
+
+  public void setAdditionalSootOptions(Consumer<Options> additionalOptions) {
+    this.additionalSootOptions = additionalOptions;
+  }
+
+  public boolean isClearJimpleOutDir() {
+    return clearJimpleOutDir;
+  }
+
+  public void setClearJimpleOutDir(boolean clearJimpleOutDir) {
+    this.clearJimpleOutDir = clearJimpleOutDir;
   }
 
   public JClassObject[] getBuildIns() {
