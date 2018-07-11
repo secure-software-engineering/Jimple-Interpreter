@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import soot.ArrayType;
 import soot.Local;
@@ -38,6 +40,8 @@ import soot.jimple.NullConstant;
 public abstract class AbstractInterpreterSystemTest {
 
   private static final String TARGET_SYSTEM_TEST_TARGET_CLASSES = "target/systemTest-target-classes";
+  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInterpreterSystemTest.class);
+
   protected ByteArrayOutputStream out;
   protected JimpleInterpreter interpreter;
 
@@ -157,6 +161,12 @@ public abstract class AbstractInterpreterSystemTest {
    *          String that has to be contained in the printed output to pass the test
    */
   protected void standardSoutTest(String targetMethodSubSignature, String expectedOutput) {
+    if (!targetMethodSubSignature.contains(" ")) {
+      // we just got a name but not a signature due to not having a return type
+      LOGGER.warn("Test method name without signature given, implying void method with no arguments.");
+      targetMethodSubSignature = "void " + targetMethodSubSignature + "()";
+    }
+
     final Object res = interpret(targetMethodSubSignature);
     assertEmtpyResult(res);
     assertPrintsOutput(expectedOutput);
