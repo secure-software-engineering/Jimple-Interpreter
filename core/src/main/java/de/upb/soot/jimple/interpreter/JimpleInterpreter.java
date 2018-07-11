@@ -79,7 +79,7 @@ public class JimpleInterpreter {
       // throw exception if we didn't find the given line number
       if (!iterator.hasNext()) {
         throw new IllegalArgumentException(String.format(
-            "Method %s does not contain a statement in line %d or line numbers are not present for this method.",
+            "Method %s does not contain a statement in line %d or line number tags are not set for this method.",
             entryMethod.toString(), entryLine));
       }
     }
