@@ -2,3 +2,7 @@
 	path = soot
 	url = https://github.com/secure-software-engineering/soot-panathon.git
 	branch = jimpleInterpreter
+[submodule "maven-compiler-plugin"]
+	path = maven-compiler-plugin
+	url = https://github.com/mbenz89/maven-compiler-plugin.git
+	branch = master

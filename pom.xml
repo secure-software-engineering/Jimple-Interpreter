@@ -16,6 +16,7 @@
     </properties>
 
     <modules>
+        <module>maven-compiler-plugin</module>
         <module>soot</module>
         <module>core</module>
         <module>cli</module>

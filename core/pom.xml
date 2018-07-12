@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--Plugin versions-->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.7.1-MB-SNAPSHOT</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
         <!--Dependency versions-->
         <soot.version>3.1.0-SNAPSHOT</soot.version>
@@ -84,6 +84,7 @@
                                 <testInclude>**/*.java</testInclude>
                             </testIncludes>
                             <outputDirectory>${project.build.directory}/systemTest-classes</outputDirectory>
+                            <testPath></testPath>
                         </configuration>
                     </execution>
                 </executions>
@@ -106,6 +107,9 @@
                             <trimStackTrace>false</trimStackTrace>
                             <parallel>classes</parallel>
                             <threadCount>8</threadCount>
+                            <!-- include systemTest targets into test compile to be able to use target code in test cases-->
+                            <!-- Note that this configuration is (at least currently) only available in out fork-->
+                            <additionalClasspathElements>${systemTest-target-classfiles}</additionalClasspathElements>
                         </configuration>
                     </execution>
                 </executions>
