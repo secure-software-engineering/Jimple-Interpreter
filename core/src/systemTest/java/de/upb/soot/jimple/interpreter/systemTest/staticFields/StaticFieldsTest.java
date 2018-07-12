@@ -3,6 +3,7 @@ package de.upb.soot.jimple.interpreter.systemTest.staticFields;
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
  * @author Manuel Benz created on 11.07.18
@@ -10,18 +11,18 @@ import org.junit.jupiter.api.Test;
 public class StaticFieldsTest extends AbstractInterpreterSystemTest {
 
   @Test
-  public void finalField() {
-    standardSoutTest("void finalField()", "10");
+  public void finalField(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void nonFinalField() {
-    standardSoutTest("void nonFinalField()", "5");
+  public void nonFinalField(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void nonFinalFieldAltered() {
-    standardSoutTest("void nonFinalFieldAltered()", "6");
+  public void nonFinalFieldAltered(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test

@@ -8,14 +8,17 @@ import com.google.common.collect.Lists;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -187,5 +190,51 @@ public abstract class AbstractInterpreterSystemTest {
     Assertions.assertNotNull(result, "Expected empty result but was null");
     final String resString = result.toString();
     Assertions.assertEquals("", resString, "Expected empty result but was" + resString);
+  }
+
+  /**
+   * Compares the output and return value of the executed target-method with the interpreted target-method.
+   * <p/>
+   * Determines the target-method (method to test) by using same name as the test-method in a class retrieved from
+   * {@link AbstractInterpreterSystemTest#getTargetClass()}.
+   * <p/>
+   * Make sure to name your test methods equal to the target method that should be interpreted and your test-classes
+   * #TargetClassName#Test!
+   * 
+   * @param args
+   */
+  protected void assertInterpretationEqualsExecution(TestInfo testInfo, Object... args) {
+    if (args.length != 0) {
+      LOGGER.warn("Arguments to interpreter currently not supported! Arguments will be ignored...");
+    }
+
+    final PrintStream oldOut = System.out;
+    ByteArrayOutputStream newOut = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(newOut));
+
+    try {
+      final String targetClass = getTargetClass();
+      final Class<?> targetClazz = Class.forName(targetClass);
+      final Object targetInstance = targetClazz.newInstance();
+      final String targetMethodName = testInfo.getTestMethod().get().getName();
+      final Method targetMethod = targetClazz.getMethod(targetMethodName);
+      final String executedResult = Objects.toString(targetMethod.invoke(targetInstance), "");
+      final String executedOutput = newOut.toString();
+
+      final String returnType = targetMethod.getReturnType().getName();
+      final String interpretedResult = Objects.toString(interpret(returnType + " " + targetMethodName + "()"), "");
+      final String interpretedOutput = getOutput();
+
+      Assertions.assertEquals(executedResult, interpretedResult,
+          String.format("Return values of interpreted and executed target method differ. Executed: %s, Interpreted: %s",
+              executedResult, interpretedResult));
+      Assertions.assertEquals(executedOutput, interpretedOutput,
+          String.format("Output of interpreted and executed target method differ. Executed: %s, Interpreted: %s",
+              executedOutput, interpretedOutput));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    System.setOut(oldOut);
   }
 }

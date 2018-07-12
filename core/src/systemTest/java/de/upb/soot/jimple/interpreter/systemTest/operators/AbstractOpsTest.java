@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Manuel Benz created on 11.07.18
  */
-public class AbstractOpsTest extends AbstractInterpreterSystemTest {
+public abstract class AbstractOpsTest extends AbstractInterpreterSystemTest {
   @Override
   protected List<String> getIncludes() {
     // we can exclude everything but this class since we do not have dependencies in this package

@@ -1,6 +1,7 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
  * @author Manuel Benz created on 11.07.18
@@ -8,8 +9,8 @@ import org.junit.jupiter.api.Test;
 public class BooleanOpsTest extends AbstractOpsTest {
 
   @Test
-  public void logicalOr() {
-    standardSoutTest("logicalOr", "true");
+  public void logicalOr(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
