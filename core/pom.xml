@@ -23,6 +23,7 @@
         <commons-lang3.version>3.7</commons-lang3.version>
         <junit-jupiter-engine.version>5.3.0-M1</junit-jupiter-engine.version>
         <junit-platform-launcher.version>1.3.0-M1</junit-platform-launcher.version>
+        <systemTest-target-classfiles>${project.build.directory}/systemTest-target-classes</systemTest-target-classfiles>
     </properties>
 
     <build>
@@ -68,7 +69,7 @@
                             <testIncludes>
                                 <testInclude>**/*.java</testInclude>
                             </testIncludes>
-                            <outputDirectory>${project.build.directory}/systemTest-target-classes</outputDirectory>
+                            <outputDirectory>${systemTest-target-classfiles}</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -120,6 +121,11 @@
                         <version>${junit-jupiter-engine.version}</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${systemTest-target-classfiles}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
             </plugin>
         </plugins>
     </build>
