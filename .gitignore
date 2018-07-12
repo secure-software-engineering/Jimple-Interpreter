@@ -151,3 +151,6 @@ fabric.properties
 **/jimpleOut
 
 *.jimple
+
+# wrongly generated options
+src/
