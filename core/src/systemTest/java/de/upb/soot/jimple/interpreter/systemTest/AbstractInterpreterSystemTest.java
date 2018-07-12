@@ -182,8 +182,7 @@ public abstract class AbstractInterpreterSystemTest {
 
   protected void assertPrintsOutput(String expected) {
     final String output = getOutput();
-    Assertions.assertTrue(output.contains(expected),
-        String.format("Output does not contain expected string.\nExpected: %s\nOutput: %s", expected, output));
+    Assertions.assertTrue(output.contains(expected), "Output does not contain expected string.");
   }
 
   protected void assertEmtpyResult(Object result) {
@@ -226,11 +225,8 @@ public abstract class AbstractInterpreterSystemTest {
       final String interpretedOutput = getOutput();
 
       Assertions.assertEquals(executedResult, interpretedResult,
-          String.format("Return values of interpreted and executed target method differ. Executed: %s, Interpreted: %s",
-              executedResult, interpretedResult));
-      Assertions.assertEquals(executedOutput, interpretedOutput,
-          String.format("Output of interpreted and executed target method differ. Executed: %s, Interpreted: %s",
-              executedOutput, interpretedOutput));
+          "Return values of interpreted and executed target method differ");
+      Assertions.assertEquals(executedOutput, interpretedOutput, "Output of interpreted and executed target method differ.");
     } catch (Exception e) {
       throw new RuntimeException(e);
     }

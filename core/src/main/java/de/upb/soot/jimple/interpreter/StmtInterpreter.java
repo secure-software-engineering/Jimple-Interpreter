@@ -144,11 +144,6 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     valueInterpreter.setCurMethod(curMethod);
   }
 
-  public void setCurEnvironment(Environment curEnvironment) {
-    this.curEnvironment = curEnvironment;
-    valueInterpreter.setCurEnvironment(curEnvironment);
-  }
-
   protected void interpretException(Stmt s, final String msg) {
     throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, s));
   }
@@ -157,5 +152,14 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     curEnvironment = null;
     curMethod = null;
     valueInterpreter.reset();
+  }
+
+  public Environment getCurEnvironment() {
+    return curEnvironment;
+  }
+
+  public void setCurEnvironment(Environment curEnvironment) {
+    this.curEnvironment = curEnvironment;
+    valueInterpreter.setCurEnvironment(curEnvironment);
   }
 }

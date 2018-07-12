@@ -101,6 +101,7 @@ public class JimpleInterpreter {
       }
     }
 
+    // TODO implement toString in JObject to interpret real toString of the object
     return interpret(entryMethod, iterator, Environment.createRoot()).toString();
   }
 
