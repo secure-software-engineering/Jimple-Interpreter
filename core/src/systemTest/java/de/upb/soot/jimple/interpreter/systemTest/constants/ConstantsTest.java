@@ -3,54 +3,55 @@ package de.upb.soot.jimple.interpreter.systemTest.constants;
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 29.06.18
+ * @author Manuel Benz created on 12.07.18
  */
-public class ConstantsTest extends AbstractInterpreterSystemTest {
+class ConstantsTest extends AbstractInterpreterSystemTest {
 
   @Test
-  public void intConstant() {
-    standardSoutTest("void intConstant()", "512");
+  void intConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void byteConstant() {
-    standardSoutTest("void byteConstant()", "0");
+  void byteConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void charConstant() {
-    standardSoutTest("void charConstant()", "a");
+  void charConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void shortConstant() {
-    standardSoutTest("void shortConstant()", "10");
+  void shortConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void floatConstant() {
-    standardSoutTest("void floatConstant()", "3.14");
+  void floatConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void longConstant() {
-    standardSoutTest("void longConstant()", "123456789");
+  void longConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void doubleConstant() {
-    standardSoutTest("void doubleConstant()", "1.96969654");
+  void doubleConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void stringConstant() {
-    standardSoutTest("void stringConstant()", "foo");
+  void classConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void classConstant() {
-    standardSoutTest("void classConstant()", "de.upb.soot.jimple.interpreter.systemTest.constants.Constants");
+  void stringConstant(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 }

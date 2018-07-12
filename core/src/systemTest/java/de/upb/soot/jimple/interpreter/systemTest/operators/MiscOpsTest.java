@@ -1,20 +1,20 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 11.07.18
+ * @author Manuel Benz created on 12.07.18
  */
-public class MiscOpsTest extends AbstractOpsTest {
+class MiscOpsTest extends AbstractOpsTest {
 
   @Test
-  public void instanceofOperator() {
-    standardSoutTest("instanceofOperator", "true");
+  void instanceofOperator(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void ternaryOperator() {
-    standardSoutTest("ternaryOperator", "foo");
+  void ternaryOperator(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
-
 }

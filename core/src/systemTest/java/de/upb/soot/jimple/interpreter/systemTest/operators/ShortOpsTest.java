@@ -1,105 +1,105 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 11.07.18
+ * @author Manuel Benz created on 12.07.18
  */
-public class ShortOpsTest extends AbstractOpsTest {
+class ShortOpsTest extends AbstractOpsTest {
 
   @Test
-  public void addition() {
-    standardSoutTest("addition", "10");
+  void addition(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void subtraction() {
-    standardSoutTest("subtraction", "0");
+  void subtraction(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void multiplication() {
-    standardSoutTest("multiplication", "25");
+  void multiplication(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void division() {
-    standardSoutTest("division", "1");
+  void division(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void modulus() {
-    standardSoutTest("modulus", "0");
+  void modulus(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void simpleAssignmentOperator() {
-    standardSoutTest("simpleAssignmentOperator", "5");
+  void simpleAssignmentOperator(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseAnd() {
-    standardSoutTest("bitwiseAnd", "5");
+  void bitwiseAnd(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseOr() {
-    standardSoutTest("bitwiseOr", "5");
+  void bitwiseOr(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseXor() {
-    standardSoutTest("bitwiseXor", "0");
+  void bitwiseXor(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseCompliment() {
-    standardSoutTest("bitwiseCompliment", "-6");
+  void bitwiseCompliment(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseLeftShift() {
-    standardSoutTest("bitwiseLeftShift", "20");
+  void bitwiseLeftShift(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseRightShift() {
-    standardSoutTest("bitwiseRightShift", "1");
+  void bitwiseRightShift(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void bitwiseRightShiftZerofill() {
-    standardSoutTest("bitwiseRightShiftZerofill", "1");
+  void bitwiseRightShiftZerofill(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void equals() {
-    standardSoutTest("equals", "true");
+  void equals(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void notEquals() {
-    standardSoutTest("notEquals", "false");
+  void notEquals(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void greateThan() {
-    standardSoutTest("greateThan", "false");
+  void greateThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void lessThan() {
-    standardSoutTest("lessThan", "false");
+  void lessThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void greaterOrEqualsThan() {
-    standardSoutTest("greaterOrEqualsThan", "true");
+  void greaterOrEqualsThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void lessOrEqualsThan() {
-    standardSoutTest("lessOrEqualsThan", "true");
+  void lessOrEqualsThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
-
 }

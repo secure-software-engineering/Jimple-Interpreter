@@ -3,20 +3,20 @@ package de.upb.soot.jimple.interpreter.systemTest.emulation;
 import de.upb.soot.jimple.interpreter.systemTest.AbstractInterpreterSystemTest;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 04.07.18
+ * @author Manuel Benz created on 12.07.18
  */
-public class ObjectsTest extends AbstractInterpreterSystemTest {
+class ObjectsTest extends AbstractInterpreterSystemTest {
 
   @Test
-  public void jObjectToJavaObject() {
-    standardSoutTest("void jObjectToJavaObject()", "foo");
+  void jObjectToJavaObject(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void systemOut() {
-    standardSoutTest("void systemOut()", "\n");
+  void systemOut(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
-
 }

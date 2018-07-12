@@ -1,70 +1,70 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 11.07.18
+ * @author Manuel Benz created on 12.07.18
  */
-public class DoubleOpsTest extends AbstractOpsTest {
+class DoubleOpsTest extends AbstractOpsTest {
 
   @Test
-  public void addition() {
-    standardSoutTest("addition", "1.6777222E7");
+  void addition(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void subtraction() {
-    standardSoutTest("subtraction", "-1.6777212E7");
+  void subtraction(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void multiplication() {
-    standardSoutTest("multiplication", "8.3886085E7");
+  void multiplication(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void division() {
-    standardSoutTest("division", "2.980232061133858E-7");
+  void division(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void modulus() {
-    standardSoutTest("modulus", "5.0");
+  void modulus(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void simpleAssignmentOperator() {
-    standardSoutTest("simpleAssignmentOperator", "1.6777217E7");
+  void simpleAssignmentOperator(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void equals() {
-    standardSoutTest("equals", "false");
+  void equals(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void notEquals() {
-    standardSoutTest("notEquals", "true");
+  void notEquals(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void greateThan() {
-    standardSoutTest("greateThan", "true");
+  void greateThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void lessThan() {
-    standardSoutTest("lessThan", "false");
+  void lessThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void greaterOrEqualsThan() {
-    standardSoutTest("greaterOrEqualsThan", "true");
+  void greaterOrEqualsThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
   @Test
-  public void lessOrEqualsThan() {
-    standardSoutTest("lessOrEqualsThan", "false");
+  void lessOrEqualsThan(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
-
 }

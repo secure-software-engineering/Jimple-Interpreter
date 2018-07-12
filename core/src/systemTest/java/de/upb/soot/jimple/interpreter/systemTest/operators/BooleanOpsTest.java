@@ -1,26 +1,25 @@
 package de.upb.soot.jimple.interpreter.systemTest.operators;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 /**
- * @author Manuel Benz created on 11.07.18
+ * @author Manuel Benz
+ * created on 12.07.18
  */
-public class BooleanOpsTest extends AbstractOpsTest {
+class BooleanOpsTest extends AbstractOpsTest {
 
-  @Test
-  public void logicalOr(TestInfo testInfo) {
+  @Test void logicalOr(TestInfo testInfo) {
     assertInterpretationEqualsExecution(testInfo);
   }
 
-  @Test
-  public void logicalAnd() {
-    standardSoutTest("logicalAnd", "true");
+  @Test void logicalAnd(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
 
-  @Test
-  public void logicalNot() {
-    standardSoutTest("logicalNot", "true");
+  @Test void logicalNot(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
   }
-
 }
