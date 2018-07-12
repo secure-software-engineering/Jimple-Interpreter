@@ -2,14 +2,41 @@ package de.upb.soot.jimple.interpreter.systemTest.interfaces;
 
 public class Interfaces {
   public void singleInterface() {
-    A1 a1 = new C();
-    a1.printA1();
+    B i1 = new B();
+    i1.printI1();
+  }
+
+  public void singleInterfaceDynDispatch() {
+    I1 i1 = new B();
+    i1.printI1();
   }
 
   public void multipleInterface() {
-    A1 a1 = new C();
-    A2 a2 = new C();
-    a1.printA1();
-    a2.printA2();
+    C c = new C();
+    c.printI1();
+    c.printI2();
+  }
+
+  public void inheritanceAndInterface() {
+    final A a = new A();
+    a.printI2();
+    a.printI1();
+  }
+
+  public void overwriteInterfaceMethod() {
+    final D d = new D();
+    d.printI2();
+    d.printI1();
+    ((C) d).printI2();
+  }
+
+  public void anonymousImpl() {
+    I2 i2 = new I2() {
+      @Override
+      public void printI2() {
+        System.out.println("anonymous i2");
+      }
+    };
+    i2.printI2();
   }
 }
