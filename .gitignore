@@ -153,4 +153,4 @@ fabric.properties
 *.jimple
 
 # wrongly generated options
-src/
+/src/
