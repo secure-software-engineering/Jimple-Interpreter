@@ -153,7 +153,7 @@ Also, if we do not want to interpret the JDK or other libraries, it would make s
 
 ## Writing or changing system tests
 
-> The existing test cases are really just a starting point. Makes sure to add test cases for all sorts of corner cases you can come up with!
+> The existing test cases are really just a starting point. Make sure to add test cases for all sorts of corner cases you can come up with!
 
 The system test directory structure looks as follows:
 
