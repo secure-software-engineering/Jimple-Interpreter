@@ -39,10 +39,10 @@ This should allow us to work independently but still profit from the improvement
 
 > Feel free to further separate the tasks as needed!
 
-#### Method invocation and dynamic dispatch
+### Method invocation and dynamic dispatch
 
 ###### Current state
-virtualinvoke is the only implemented invoke statement and does lack support for dynamic dispatch. 
+- virtualinvoke is the only implemented invoke statement and does lack support for dynamic dispatch. 
 
 ###### TODO
 - Implement other invokes
@@ -62,7 +62,7 @@ virtualinvoke is the only implemented invoke statement and does lack support for
 - staticInvoke
 - lambdaExpressions
 
-#### Field references
+### Field references
 
 ###### Current state
 - static field reference does work partly  
@@ -82,10 +82,10 @@ virtualinvoke is the only implemented invoke statement and does lack support for
 - staticInvoke
 - lambdaExpressions
 
-#### Operators
+### Operators
 
 ###### Current state
-none
+- none
 
 ###### TODO
 - Implement all kinds of operators on various Java data types
@@ -96,10 +96,10 @@ none
 ###### Test case packages
 - operators
 
-#### Control statements
+### Control statements
 
 ###### Current state
-none
+- none
 
 ###### TODO
 - Implement loops and conditionals
@@ -113,10 +113,10 @@ none
 - controlStatements
 - nestedControlStatements (depends on controlStatements and arrays!)
 
-#### Misc
+### Misc
 
 ###### Current state
-none
+- none
 
 ###### TODO
 - improve error messages (high priority)
@@ -136,7 +136,7 @@ none
 - generics
 - constants
 
-#### Jimple<->Java object conversion and emulation
+### Jimple<->Java object conversion and emulation
 
 This is needed if we want to call native methods that require Java objects as parameters or receiver. Our internal representation has to be converted to a native Java object.
 
@@ -178,7 +178,7 @@ In any case, make sure to derive your test class form `de.upb.soot.jimple.interp
 - All pieces of a test case have to be in the same package or a sub package of the tested class! Do not use classes of other packages in your target code!
 - Make sure to use the JUnit5 (Jupiter) API and nothing else! Your idea may sometimes include the JUnit4 package when using `@Test`.
 
-##### In IntelliJ IDEA it is pretty easy to generate a system test:
+#### In IntelliJ IDEA it is pretty easy to generate a system test:
 
 1. Write a *target* method that should be interpreted(void method with no arguments) in a class located in `src/systemTest/target`
 2. If the class already has a corresponding test class in `src/systemTest/java`, just `alt+enter` on the new method and then select `Generate missed test methods`.
