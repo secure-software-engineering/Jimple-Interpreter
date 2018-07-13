@@ -56,10 +56,10 @@ public abstract class AbstractInterpreterSystemTest {
     out = new ByteArrayOutputStream();
     configuration.setOutputStream(new PrintStream(out));
     configuration.setDumpJimple(true);
-    configuration.setClearJimpleOutDir(true);
+    configuration.setClearJimpleOutDir(false);
     configuration.setAdditionalSootOptions(o -> {
       // exclude all test classes
-      o.set_include_all(true);
+      o.set_include_all(false);
       o.set_exclude(Lists.newArrayList("de.*", "java.*", "sun.*", "javax.*"));
       o.set_no_bodies_for_excluded(true);
       o.set_include(getIncludes());
