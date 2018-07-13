@@ -25,7 +25,7 @@ Concrete interpreter for Soot's Java intermediate representation Jimple (with am
 ## Coding together
 
 For the contest, we have prepared about 200 test cases of which we will try to get as many as possible to pass.
-Therefore, we will gather in groups working on the [Tasks](#Tasks) which try to separate functionality to independent working blocks. Of course, these are not always completely independent from each other. This shouldn't be too bad since, after all, we of course want to create something together :). So make sure to communicate with the other groups if you are stuck or have ideas for their tasks.
+Therefore, we will gather in groups working on the [Tasks](#tasks) which try to separate functionality to independent working blocks. Of course, these are not always completely independent from each other. This shouldn't be too bad since, after all, we of course want to create something together :). So make sure to communicate with the other groups if you are stuck or have ideas for their tasks.
 
 Nevertheless, we want to make distributed coding as painless as possible. Thus, the `develop` branch is write protected. Make sure that one member of your team creates a branch for your team by invoking `git checkout -b <branchname>` before starting to code.
 After pushing this branch back to the repository, your fellow team mates can then work on this branch by pulling and checking it out locally. Of course, you are free to create as many branches as you need! 
