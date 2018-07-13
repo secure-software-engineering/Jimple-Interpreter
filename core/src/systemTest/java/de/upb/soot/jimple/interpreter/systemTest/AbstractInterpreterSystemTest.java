@@ -99,7 +99,7 @@ public abstract class AbstractInterpreterSystemTest {
   /**
    * By default retrieves the name of a target class by taking the test's class name and removing "Test" at the end of the
    * identifier. This assumes that tests are located in the same package as the targets to test and that they are named
-   * "<TargetClassName>Test". If this assumption does not hold for a specific test, overwrite accordingly.
+   * "#TargetClassName#Test". If this assumption does not hold for a specific test, overwrite accordingly.
    *
    * @return
    */
