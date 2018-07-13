@@ -9,9 +9,8 @@ Concrete interpreter for Soot's Java intermediate representation Jimple (with am
 1. Give me (Manuel) your GitHub account name, so that I can give you write access to this repo ! :)
 2. Clone repo with `git clone --recurse-submodules https://github.com/secure-software-engineering/Jimple-Interpreter.git`
 3. Run `mvn install` in the *root* directory<sup>1</sup>  (This will fail as soon as the tests of the *core* project are executed, which is totally fine!)
-4. From now on it is sufficient to run `mvn clean test` in the `core` directory to build and run tests
+4. From now on it is sufficient to run `mvn clean test` in the `core` directory to build and run tests (Further paths and commands are stated relative to this `core` directory!)
 5. Import the whole `Jimple-Interpreter` (the *root*) directory into an IDE of your choice. Make sure to import it as a Maven project and to include all submodules since this is a Maven multi module project
-    - From here on paths and commands are relative to the `core` directory
 6. You can find the interpreter's source code in `src/main/java` and a lot of (not-yet-passing) test cases in `sry/systemTest/java`<sup>2</sup>. Since we had to use some Maven wizardry to get things to work as they do, your IDE might not be able to detect `src/systemTest/java` and `src/systemTest/targets` as "Test Sources Root" and `src/systemTest/resources` as "Test Resources Root". Make sure to configure your IDE accordingly to get the full support when working at test cases and test targets (code to-be-analyzed)<sup>3</sup>
 7. You are ready to go! Try to run the test cases in `src/systemTest/java` inside your IDE. 12 of the test should already be passing!
 8. It might be a good idea to debug through one of the already passing test cases to get some insights on how the interpreter is generally working
