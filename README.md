@@ -2,7 +2,7 @@
 Concrete interpreter for Soot's Java intermediate representation Jimple (with ambitions to be extended for symbolic/concolic execution).
 
 
-**Let's get some things done, Panathon!**
+**Let's get this done, Panathon!**
 
 ## Setup
 
