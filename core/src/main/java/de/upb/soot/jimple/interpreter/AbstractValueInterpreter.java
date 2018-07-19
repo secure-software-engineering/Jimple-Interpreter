@@ -40,7 +40,7 @@ import soot.jimple.VirtualInvokeExpr;
 /**
  * @author Manuel Benz created on 29.06.18
  */
-public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch {
+public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch<Object> {
 	protected final JimpleInterpreter jimpleInterpreter;
 	protected final ClassRegistry classRegistry;
 	protected SootMethod curMethod;
