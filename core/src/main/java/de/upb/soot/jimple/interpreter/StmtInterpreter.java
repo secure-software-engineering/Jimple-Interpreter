@@ -4,6 +4,7 @@ import org.jboss.util.NotImplementedException;
 
 import soot.Local;
 import soot.SootMethod;
+import soot.Value;
 import soot.jimple.AbstractStmtSwitch;
 import soot.jimple.AssignStmt;
 import soot.jimple.BreakpointStmt;
@@ -52,15 +53,15 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   public void caseAssignStmt(AssignStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
     final Object right = valueInterpreter.getResult();
-    stmt.getLeftOp().apply(valueInterpreter);
 
-    final Object left = valueInterpreter.getResult();
+    final Value leftOp = stmt.getLeftOp();
 
     // TODO cast int constants to byte and char
 
-    if (left instanceof Local) {
-      curEnvironment.setLocal((Local) left, right);
+    if (leftOp instanceof Local) {
+      curEnvironment.setLocal((Local) leftOp, right);
     } else {
+      // TODO field
       defaultCase(stmt);
     }
   }
@@ -69,13 +70,13 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   public void caseIdentityStmt(IdentityStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
     final Object right = valueInterpreter.getResult();
-    stmt.getLeftOp().apply(valueInterpreter);
 
-    final Object left = valueInterpreter.getResult();
-    if (left instanceof Local) {
-      curEnvironment.setLocal((Local) left, right);
+    final Value leftOp = stmt.getLeftOp();
+    if (leftOp instanceof Local) {
+      curEnvironment.setLocal((Local) leftOp, right);
     } else {
-      interpretException(stmt, String.format("Identity statements only allow for locals on left side but got %s.", left));
+      interpretException(stmt,
+          String.format("Identity statements only allow for locals on leftOp side but got %s.", leftOp));
     }
   }
 
