@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+import soot.FastHierarchy;
+import soot.Scene;
 import soot.SootClass;
 import soot.SootField;
 import soot.SootMethod;
@@ -44,7 +46,10 @@ public class JObject implements JValue {
    * @return The SootMethod which has to be executed on this object
    */
   public SootMethod getMethod(SootMethod method, boolean virtualCall) {
-    // TODO implement dynamic dispatch here
-    return method;
+    if(virtualCall) {
+	    	FastHierarchy hierarchy = Scene.v().getOrMakeFastHierarchy();
+    		return hierarchy.resolveConcreteDispatch(declaringClass, method);
+    } else
+    		return method;
   }
 }
