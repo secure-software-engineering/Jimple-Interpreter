@@ -1,7 +1,13 @@
 package de.upb.soot.jimple.interpreter.systemTest.inheritance;
 
 public class Inheritance {
-  public void dynDispatch() {
+  public void dynDispatch1() {
+    A b = new D();
+    b.print();
+    b.methodA();
+  }
+
+  public void dynDispatch2() {
     A b = new B();
     b.print();
     b.methodA();

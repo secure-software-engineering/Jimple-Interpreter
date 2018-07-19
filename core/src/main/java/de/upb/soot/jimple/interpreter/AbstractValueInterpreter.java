@@ -129,7 +129,6 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
     final Environment environment = curEnvironment.createChild(jbaseObject, mapArguments(v));
     final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod(), virtualCall), environment);
     setResult(result);
-
   }
 
   @Override

@@ -42,14 +42,16 @@ public class JObject implements JValue {
    * Is also useful for build-in method delegates.
    * 
    * @param method
-   * @param virtualCall indicates whether virtual call resolution should be used 
+   * @param virtualCall
+   *          indicates whether virtual call resolution should be used
    * @return The SootMethod which has to be executed on this object
    */
   public SootMethod getMethod(SootMethod method, boolean virtualCall) {
-    if(virtualCall) {
-	    	FastHierarchy hierarchy = Scene.v().getOrMakeFastHierarchy();
-    		return hierarchy.resolveConcreteDispatch(declaringClass, method);
-    } else
-    		return method;
+    if (virtualCall) {
+      FastHierarchy hierarchy = Scene.v().getOrMakeFastHierarchy();
+      return hierarchy.resolveConcreteDispatch(declaringClass, method);
+    } else {
+      return method;
+    }
   }
 }
