@@ -1,10 +1,9 @@
 package de.upb.soot.jimple.interpreter;
 
-import de.upb.soot.jimple.interpreter.values.JClassObject;
-import de.upb.soot.jimple.interpreter.values.JObject;
-
 import org.jboss.util.NotImplementedException;
 
+import de.upb.soot.jimple.interpreter.values.JClassObject;
+import de.upb.soot.jimple.interpreter.values.JObject;
 import soot.Local;
 import soot.SootField;
 import soot.SootMethod;
@@ -22,6 +21,7 @@ import soot.jimple.InstanceInvokeExpr;
 import soot.jimple.InstanceOfExpr;
 import soot.jimple.IntConstant;
 import soot.jimple.InterfaceInvokeExpr;
+import soot.jimple.InvokeExpr;
 import soot.jimple.LengthExpr;
 import soot.jimple.LongConstant;
 import soot.jimple.MethodHandle;
@@ -78,8 +78,32 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseStaticInvokeExpr(StaticInvokeExpr v) {
-    super.caseStaticInvokeExpr(v);
+	  //load class if it has not yet been loaded
+	  SootMethod callee = v.getMethod();
+	  classRegistry.getClassObject(curEnvironment, callee.getDeclaringClass());
+	  
+      final Environment environment = curEnvironment.createChild(mapArguments(v));
+      final Object result = jimpleInterpreter.interpret(callee, environment);
+      setResult(result);
   }
+
+	/**
+	 * Returns the actual-argument list extreacted from curEnvironment that corresponds to the invoke-expression v.
+	 */
+	private Object[] mapArguments(InvokeExpr v) {
+		Object[] args = new Object[v.getArgCount()];
+	
+	      for (int i = 0; i < args.length; i++) {
+	        v.getArg(i).apply(this);
+	        final Object argval = getResult();
+	        if (argval instanceof Local) {
+	          args[i] = curEnvironment.getLocalValue((Local) argval);
+	        } else {
+	          args[i] = argval;
+	        }
+	      }
+		return args;
+	}
 
   @Override
   public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
@@ -101,20 +125,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
         interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", baseObject));
       }
 
-      Object[] args = new Object[v.getArgCount()];
-
-      for (int i = 0; i < args.length; i++) {
-        v.getArg(i).apply(this);
-        final Object argval = getResult();
-        if (argval instanceof Local) {
-          args[i] = curEnvironment.getLocalValue((Local) argval);
-        } else {
-          args[i] = argval;
-        }
-      }
-
       final JObject jbaseObject = (JObject) baseObject;
-      final Environment environment = curEnvironment.createChild(jbaseObject, args);
+      final Environment environment = curEnvironment.createChild(jbaseObject, mapArguments(v));
       final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
       setResult(result);
     } else {
