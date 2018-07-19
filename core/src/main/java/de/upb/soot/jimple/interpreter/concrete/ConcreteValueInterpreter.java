@@ -14,6 +14,7 @@ import soot.Type;
 import soot.Value;
 import soot.jimple.AddExpr;
 import soot.jimple.AndExpr;
+import soot.jimple.BinopExpr;
 import soot.jimple.CmpExpr;
 import soot.jimple.CmpgExpr;
 import soot.jimple.CmplExpr;
@@ -44,45 +45,29 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
 
   @Override
   public void caseAddExpr(AddExpr v) {
-    /*
-     * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html#jls-5.6.2 We use binary number promotion to fit the
-     * parameter types of the operands
-     */
 
-    final Value leftOp = v.getOp1();
-    leftOp.apply(this);
-    final Object leftVal = getResult();
-    final Value rightOp = v.getOp2();
-    rightOp.apply(this);
-    final Object rightVal = getResult();
+    evalNumericBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected long applyLong(Long a, Long b) {
+        return a + b;
+      }
 
-    final Type resultType = v.getType();
+      @Override
+      protected int applyInteger(Integer a, Integer b) {
+        return a + b;
+      }
 
-    final Type leftType = leftOp.getType();
-    final Type rightType = rightOp.getType();
-    if (leftType.equals(DoubleType.v()) || rightType.equals(DoubleType.v())) {
-      setResult(castToJavaType((Double) leftVal + (Double) rightVal, resultType));
-    }
-  }
+      @Override
+      protected float applyFloat(Float a, Float b) {
+        return a + b;
+      }
 
-  private Object castToJavaType(Object val, Type type) {
-    if (type.equals(IntType.v())) {
-      return (Integer) val;
-    } else if (type.equals(DoubleType.v())) {
-      return (Double) val;
-    } else if (type.equals(FloatType.v())) {
-      return (Float) val;
-    } else if (type.equals(LongType.v())) {
-      return (Long) val;
-    } else if (type.equals(ShortType.v())) {
-      return (Short) val;
-    } else if (type.equals(ByteType.v())) {
-      return (Byte) val;
-    } else if (type.equals(BooleanType.v())) {
-      return (Boolean) val;
-    } else {
-      throw new IllegalArgumentException("Unknown type " + type);
-    }
+      @Override
+      protected double applyDouble(Double a, Double b) {
+        return a + b;
+      }
+    });
+
   }
 
   @Override
@@ -183,5 +168,53 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   @Override
   public void caseNegExpr(NegExpr v) {
     super.caseNegExpr(v);
+  }
+
+  private void evalNumericBinOp(BinopExpr v, BinOpInterpreter op) {
+    final Value leftOp = v.getOp1();
+    leftOp.apply(this);
+    final Object leftVal = getResult();
+
+    final Value rightOp = v.getOp2();
+    rightOp.apply(this);
+    final Object rightVal = getResult();
+
+    final Type resultType = v.getType();
+    final Type leftType = leftOp.getType();
+    final Type rightType = rightOp.getType();
+
+    /*
+     * We use binary number promotion to fit the parameter types of the operands
+     * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html#jls-5.6.2
+     */
+    if (leftType.equals(DoubleType.v()) || rightType.equals(DoubleType.v())) {
+      setResult(castToJavaType(op.applyDouble((Double) leftVal, (Double) rightVal), resultType));
+    } else if (leftType.equals(FloatType.v()) || rightType.equals(FloatType.v())) {
+      setResult(castToJavaType(op.applyFloat((Float) leftVal, (Float) rightVal), resultType));
+    } else if (leftType.equals(LongType.v()) || rightType.equals(LongType.v())) {
+      setResult(castToJavaType(op.applyLong((Long) leftVal, (Long) rightVal), resultType));
+    } else {
+      setResult(castToJavaType(op.applyInteger((Integer) leftVal, (Integer) rightVal), resultType));
+    }
+  }
+
+  private Object castToJavaType(Object val, Type type) {
+    if (type.equals(IntType.v())) {
+      return (Integer) val;
+    } else if (type.equals(DoubleType.v())) {
+      return (Double) val;
+    } else if (type.equals(FloatType.v())) {
+      return (Float) val;
+    } else if (type.equals(LongType.v())) {
+      return (Long) val;
+    } else if (type.equals(ShortType.v())) {
+      return (Short) val;
+    } else if (type.equals(ByteType.v())) {
+      return (Byte) val;
+    } else if (type.equals(BooleanType.v())) {
+      return (Boolean) val;
+    } else {
+      throw new IllegalArgumentException("Unknown type " + type);
+    }
   }
 }
