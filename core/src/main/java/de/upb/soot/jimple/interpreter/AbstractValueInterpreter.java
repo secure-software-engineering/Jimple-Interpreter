@@ -78,6 +78,10 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
 	@Override
 	public void caseStaticInvokeExpr(StaticInvokeExpr v) {
+		caseStaticOrSpecialInvokeExpr(v);
+	}
+
+	protected void caseStaticOrSpecialInvokeExpr(InvokeExpr v) {
 		// load class if it has not yet been loaded
 		SootMethod callee = v.getMethod();
 		classRegistry.getClassObject(curEnvironment, callee.getDeclaringClass());
@@ -108,7 +112,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
 	@Override
 	public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
-		caseInstanceInvokeExpr(v);
+		caseStaticOrSpecialInvokeExpr(v);
 	}
 
 	@Override
