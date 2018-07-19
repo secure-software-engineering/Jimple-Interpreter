@@ -1,13 +1,8 @@
 package de.upb.soot.jimple.interpreter;
 
-import org.jboss.util.NotImplementedException;
+import org.apache.commons.lang3.ClassUtils;
 
-import soot.ByteType;
-import soot.DoubleType;
-import soot.FloatType;
-import soot.IntType;
-import soot.LongType;
-import soot.ShortType;
+import soot.PrimType;
 import soot.Type;
 
 /**
@@ -16,21 +11,21 @@ import soot.Type;
 public class Utils {
 
   public static Class<?> jimpleTypeToJavaClass(Type jimpleType) {
-    if (jimpleType.equals(IntType.v())) {
-      return Integer.class;
-    } else if (jimpleType.equals(LongType.v())) {
-      return Long.class;
-    } else if (jimpleType.equals(ShortType.v())) {
-      return Short.class;
-    } else if (jimpleType.equals(FloatType.v())) {
-      return Float.class;
-    } else if (jimpleType.equals(DoubleType.v())) {
-      return Double.class;
-    } else if (jimpleType.equals(ByteType.v())) {
-      return Byte.class;
-    } else {
-      throw new NotImplementedException("Type not supported: " + jimpleType);
+    try {
+      // we only work with boxed types so we should make sure to use them here to no run into complications during casting of
+      // Objects to prim types in castJavaObjectToType
+      if (jimpleType instanceof PrimType) {
+        return ClassUtils.getClass(((PrimType) jimpleType).boxedType().toString());
+      } else {
+        return ClassUtils.getClass(jimpleType.toString());
+      }
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
     }
+  }
 
+  public static Object castJavaObjectToType(Object val, Type type) {
+    final Class<?> aClass = jimpleTypeToJavaClass(type);
+    return aClass.cast(val);
   }
 }

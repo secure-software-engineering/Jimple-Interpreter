@@ -2,14 +2,11 @@ package de.upb.soot.jimple.interpreter.concrete;
 
 import de.upb.soot.jimple.interpreter.AbstractValueInterpreter;
 import de.upb.soot.jimple.interpreter.JimpleInterpreter;
+import de.upb.soot.jimple.interpreter.Utils;
 
-import soot.BooleanType;
-import soot.ByteType;
 import soot.DoubleType;
 import soot.FloatType;
-import soot.IntType;
 import soot.LongType;
-import soot.ShortType;
 import soot.Type;
 import soot.Value;
 import soot.jimple.AddExpr;
@@ -188,33 +185,14 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html#jls-5.6.2
      */
     if (leftType.equals(DoubleType.v()) || rightType.equals(DoubleType.v())) {
-      setResult(castToJavaType(op.applyDouble((Double) leftVal, (Double) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(op.applyDouble((Double) leftVal, (Double) rightVal), resultType));
     } else if (leftType.equals(FloatType.v()) || rightType.equals(FloatType.v())) {
-      setResult(castToJavaType(op.applyFloat((Float) leftVal, (Float) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(op.applyFloat((Float) leftVal, (Float) rightVal), resultType));
     } else if (leftType.equals(LongType.v()) || rightType.equals(LongType.v())) {
-      setResult(castToJavaType(op.applyLong((Long) leftVal, (Long) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(op.applyLong((Long) leftVal, (Long) rightVal), resultType));
     } else {
-      setResult(castToJavaType(op.applyInteger((Integer) leftVal, (Integer) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(op.applyInteger((Integer) leftVal, (Integer) rightVal), resultType));
     }
   }
 
-  private Object castToJavaType(Object val, Type type) {
-    if (type.equals(IntType.v())) {
-      return (Integer) val;
-    } else if (type.equals(DoubleType.v())) {
-      return (Double) val;
-    } else if (type.equals(FloatType.v())) {
-      return (Float) val;
-    } else if (type.equals(LongType.v())) {
-      return (Long) val;
-    } else if (type.equals(ShortType.v())) {
-      return (Short) val;
-    } else if (type.equals(ByteType.v())) {
-      return (Byte) val;
-    } else if (type.equals(BooleanType.v())) {
-      return (Boolean) val;
-    } else {
-      throw new IllegalArgumentException("Unknown type " + type);
-    }
-  }
 }

@@ -1,14 +1,13 @@
 package de.upb.soot.jimple.interpreter.buildins;
 
 import de.upb.soot.jimple.interpreter.Environment;
+import de.upb.soot.jimple.interpreter.Utils;
 import de.upb.soot.jimple.interpreter.emulation.JavaEmulator;
 import de.upb.soot.jimple.interpreter.values.JObject;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-
-import org.apache.commons.lang3.ClassUtils;
 
 import soot.Body;
 import soot.Context;
@@ -45,7 +44,34 @@ public abstract class MethodDelegate extends SootMethod {
       @Override
       public Object delegate(Environment env) {
         try {
-          final Method declaredMethod = instance.getClass().getDeclaredMethod(method.getName(), getJavaParams());
+          Method declaredMethod = null;
+          final Class[] actualParameterTypes = getJavaParams();
+
+          Method[] methods = instance.getClass().getMethods();
+
+          outer: for (Method m : methods) {
+            if (m.getName().equals(method.getName())) {
+              Class<?>[] requiredParameterTypes = m.getParameterTypes();
+
+              // condition on the desired parameter types comes here
+              if (requiredParameterTypes.length == actualParameterTypes.length) {
+                for (int i = 0; i < actualParameterTypes.length; i++) {
+                  Class actual = actualParameterTypes[i];
+                  final Class<?> required = requiredParameterTypes[i];
+                  if (!required.isAssignableFrom(actual)) {
+                    continue outer;
+                  }
+                }
+                declaredMethod = m;
+                break outer;
+              }
+            }
+          }
+
+          if (declaredMethod == null) {
+            throw new IllegalArgumentException(
+                String.format("No fitting method '{}' found for class '{}'", method, instance));
+          }
 
           // convert JObjects to JavaObjects if necessary
           final Object[] args = Arrays.stream(env.getMethodArguments())
@@ -62,13 +88,7 @@ public abstract class MethodDelegate extends SootMethod {
   public abstract Object delegate(Environment env);
 
   protected Class[] getJavaParams() {
-    return getParameterTypes().stream().map(pt -> {
-      try {
-        return ClassUtils.getClass(pt.toString());
-      } catch (ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-    }).toArray(Class[]::new);
+    return getParameterTypes().stream().map(pt -> Utils.jimpleTypeToJavaClass(pt)).toArray(Class[]::new);
   }
 
   @Override

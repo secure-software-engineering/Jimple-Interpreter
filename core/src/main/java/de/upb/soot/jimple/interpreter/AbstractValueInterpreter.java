@@ -5,20 +5,9 @@ import de.upb.soot.jimple.interpreter.values.JObject;
 
 import org.jboss.util.NotImplementedException;
 
-import soot.ArrayType;
-import soot.BooleanType;
-import soot.ByteType;
-import soot.CharType;
-import soot.DoubleType;
-import soot.FloatType;
-import soot.IntType;
 import soot.Local;
-import soot.LongType;
-import soot.RefType;
-import soot.ShortType;
 import soot.SootField;
 import soot.SootMethod;
-import soot.TypeSwitch;
 import soot.Value;
 import soot.jimple.AbstractJimpleValueSwitch;
 import soot.jimple.ArrayRef;
@@ -140,61 +129,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   public void caseCastExpr(CastExpr v) {
     v.getOp().apply(this);
     final Object val = getResult();
-
-    final TypeSwitch typeSwitch = new TypeSwitch() {
-      @Override
-      public void caseArrayType(ArrayType t) {
-        super.caseArrayType(t);
-      }
-
-      @Override
-      public void caseBooleanType(BooleanType t) {
-        super.caseBooleanType(t);
-      }
-
-      @Override
-      public void caseByteType(ByteType t) {
-        setResult(((Number) val).shortValue());
-      }
-
-      @Override
-      public void caseCharType(CharType t) {
-        setResult((char) ((Number) val).shortValue());
-      }
-
-      @Override
-      public void caseDoubleType(DoubleType t) {
-        setResult(((Number) val).doubleValue());
-      }
-
-      @Override
-      public void caseFloatType(FloatType t) {
-        setResult(((Number) val).floatValue());
-      }
-
-      @Override
-      public void caseIntType(IntType t) {
-        setResult(((Number) val).intValue());
-      }
-
-      @Override
-      public void caseLongType(LongType t) {
-        setResult(((Number) val).longValue());
-      }
-
-      @Override
-      public void caseRefType(RefType t) {
-        super.caseRefType(t);
-      }
-
-      @Override
-      public void caseShortType(ShortType t) {
-        setResult(((Number) val).shortValue());
-      }
-    };
-
-    v.getType().apply(typeSwitch);
-    setResult(typeSwitch.getResult());
+    setResult(Utils.castJavaObjectToType(val, v.getCastType()));
   }
 
   @Override
