@@ -95,31 +95,27 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
     v.getBase().apply(this);
     final Object base = getResult();
 
-    if (base instanceof Local) {
-      final Object baseObject = curEnvironment.getLocalValue((Local) base);
-      if (!(baseObject instanceof JObject)) {
-        interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", baseObject));
-      }
-
-      Object[] args = new Object[v.getArgCount()];
-
-      for (int i = 0; i < args.length; i++) {
-        v.getArg(i).apply(this);
-        final Object argval = getResult();
-        if (argval instanceof Local) {
-          args[i] = curEnvironment.getLocalValue((Local) argval);
-        } else {
-          args[i] = argval;
-        }
-      }
-
-      final JObject jbaseObject = (JObject) baseObject;
-      final Environment environment = curEnvironment.createChild(jbaseObject, args);
-      final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
-      setResult(result);
-    } else {
-      defaultCase(v);
+    if (!(base instanceof JObject)) {
+      interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", base));
     }
+
+    Object[] args = new Object[v.getArgCount()];
+
+    for (int i = 0; i < args.length; i++) {
+      v.getArg(i).apply(this);
+      final Object argval = getResult();
+      if (argval instanceof Local) {
+        args[i] = curEnvironment.getLocalValue((Local) argval);
+      } else {
+        args[i] = argval;
+      }
+    }
+
+    final JObject jbaseObject = (JObject) base;
+    final Environment environment = curEnvironment.createChild(jbaseObject, args);
+    final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
+    setResult(result);
+
   }
 
   @Override
@@ -165,7 +161,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseLocal(Local v) {
-    setResult(v);
+    setResult(curEnvironment.getLocalValue(v));
   }
 
   @Override
