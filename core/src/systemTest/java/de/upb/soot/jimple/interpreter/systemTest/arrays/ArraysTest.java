@@ -29,4 +29,9 @@ class ArraysTest extends AbstractInterpreterSystemTest {
   void twoDimensions(TestInfo testInfo) {
     assertInterpretationEqualsExecution(testInfo);
   }
+
+  @Test
+  void primitiveArrayLengt(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
+  }
 }

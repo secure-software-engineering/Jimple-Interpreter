@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JArray;
 import de.upb.soot.jimple.interpreter.values.JClassObject;
 import de.upb.soot.jimple.interpreter.values.JObject;
 
@@ -83,10 +84,17 @@ public class StmtInterpreter extends AbstractStmtSwitch {
       final JObject base = (JObject) valueInterpreter.getResult();
       base.setFieldValue(((InstanceFieldRef) leftOp).getField(), val);
     } else if (leftOp instanceof ArrayRef) {
-
+      ((ArrayRef) leftOp).getBase().apply(valueInterpreter);
+      final JArray jArray = (JArray) valueInterpreter.getResult();
+      ((ArrayRef) leftOp).getIndex().apply(valueInterpreter);
+      final Integer index = (Integer) valueInterpreter.getResult();
+      jArray.setValue(index, val);
     } else {
       defaultCase(stmt);
     }
+
+    // TODO do we really want to have the right side as evaluated value of an assignment?
+    setResult(val);
   }
 
   @Override

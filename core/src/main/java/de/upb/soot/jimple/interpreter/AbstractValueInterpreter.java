@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JArray;
 import de.upb.soot.jimple.interpreter.values.JClassConstant;
 import de.upb.soot.jimple.interpreter.values.JClassObject;
 import de.upb.soot.jimple.interpreter.values.JObject;
@@ -71,7 +72,13 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseArrayRef(ArrayRef v) {
-    super.caseArrayRef(v);
+    v.getBase().apply(this);
+    final JArray jArray = (JArray) getResult();
+
+    v.getIndex().apply(this);
+    final Integer index = (Integer) getResult();
+
+    setResult(jArray.getValue(index));
   }
 
   @Override
@@ -160,12 +167,13 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseNewArrayExpr(NewArrayExpr v) {
-    super.caseNewArrayExpr(v);
+    v.getSize().apply(this);
+    setResult(new JArray((Integer) getResult()));
   }
 
   @Override
   public void caseNewMultiArrayExpr(NewMultiArrayExpr v) {
-    super.caseNewMultiArrayExpr(v);
+    defaultCase(v);
   }
 
   @Override
@@ -176,7 +184,9 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseLengthExpr(LengthExpr v) {
-    super.caseLengthExpr(v);
+    v.getOp().apply(this);
+    final JArray jArray = (JArray)getResult();
+    setResult(jArray.getLength());
   }
 
   @Override
