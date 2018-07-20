@@ -52,11 +52,15 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   @Override
   public void caseAssignStmt(AssignStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
-    final Object right = valueInterpreter.getResult();
+    Object right = valueInterpreter.getResult();
 
     final Value leftOp = stmt.getLeftOp();
 
-    // TODO cast int constants to byte and char
+    // if we have a prim (boxed) type, we might have to cast because the right side does oftentimes not uniquely identify the
+    // type. e.g. byte and short constants are actually integer values
+    if (right instanceof Number) {
+      right = Utils.castJavaObjectToType(right, leftOp.getType());
+    }
 
     if (leftOp instanceof Local) {
       curEnvironment.setLocal((Local) leftOp, right);

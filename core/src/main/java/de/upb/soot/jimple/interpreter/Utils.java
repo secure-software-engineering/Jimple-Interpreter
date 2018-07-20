@@ -27,13 +27,15 @@ public class Utils {
   public static Object castJavaObjectToType(Object val, Type type) {
     final Class<?> aClass = jimpleTypeToJavaClass(type);
 
-    // we cannot just cast number objects, we have to create new objects with the valueOf method
-    if (Number.class.isAssignableFrom(aClass)) {
-      try {
+    try {
+      // we cannot just cast number objects, we have to create new objects with the valueOf method
+      if (Number.class.isAssignableFrom(aClass)) {
         return aClass.getMethod("valueOf", String.class).invoke(null, val.toString());
-      } catch (Exception e) {
-        throw new RuntimeException(e);
+      } else if (aClass.equals(Character.class)) {
+        return Character.valueOf((char) ((Number) val).intValue());
       }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
 
     return aClass.cast(val);
