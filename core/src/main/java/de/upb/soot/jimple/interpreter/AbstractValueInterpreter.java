@@ -79,7 +79,11 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseStaticInvokeExpr(StaticInvokeExpr v) {
-    super.caseStaticInvokeExpr(v);
+    final SootMethod methodToCall = v.getMethod();
+    final JClassObject classObject = classRegistry.getClassObject(curEnvironment, methodToCall.getDeclaringClass());
+    final Object result = jimpleInterpreter.interpret(classObject.getMethod(methodToCall, false),
+        curEnvironment.createChild(classObject, mapArguments(v)));
+    setResult(result);
   }
 
   /**
