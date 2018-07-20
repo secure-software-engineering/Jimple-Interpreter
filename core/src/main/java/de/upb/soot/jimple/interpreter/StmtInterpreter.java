@@ -83,7 +83,7 @@ public class StmtInterpreter extends AbstractStmtSwitch {
       final JObject base = (JObject) valueInterpreter.getResult();
       base.setFieldValue(((InstanceFieldRef) leftOp).getField(), val);
     } else if (leftOp instanceof ArrayRef) {
-      
+
     } else {
       defaultCase(stmt);
     }
@@ -141,7 +141,8 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseReturnStmt(ReturnStmt stmt) {
-    super.caseReturnStmt(stmt);
+    stmt.getOp().apply(valueInterpreter);
+    setResult(valueInterpreter.getResult());
   }
 
   @Override
