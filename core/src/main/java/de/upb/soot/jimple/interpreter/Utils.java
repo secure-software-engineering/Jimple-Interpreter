@@ -25,6 +25,10 @@ public class Utils {
   }
 
   public static <T> T castJavaObject(Object val, Class<T> aClass) {
+    if (val.getClass().equals(aClass)) {
+      return (T) val;
+    }
+
     try {
       // we cannot just cast number objects, we have to create new objects with the valueOf method
       if (Number.class.isAssignableFrom(aClass)) {

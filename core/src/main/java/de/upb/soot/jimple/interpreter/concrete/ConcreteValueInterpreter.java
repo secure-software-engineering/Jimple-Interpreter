@@ -4,6 +4,8 @@ import de.upb.soot.jimple.interpreter.AbstractValueInterpreter;
 import de.upb.soot.jimple.interpreter.JimpleInterpreter;
 import de.upb.soot.jimple.interpreter.Utils;
 
+import org.apache.commons.lang3.BooleanUtils;
+
 import soot.DoubleType;
 import soot.FloatType;
 import soot.LongType;
@@ -42,8 +44,7 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
 
   @Override
   public void caseAddExpr(AddExpr v) {
-
-    evalNumericBinOp(v, new BinOpInterpreter() {
+    evalBinOp(v, new BinOpInterpreter() {
       @Override
       protected Long applyLong(Long a, Long b) {
         return a + b;
@@ -68,106 +69,429 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   }
 
   @Override
-  public void caseAndExpr(AndExpr v) {
-    super.caseAndExpr(v);
-  }
+  public void caseSubExpr(SubExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a - b;
+      }
 
-  @Override
-  public void caseCmpExpr(CmpExpr v) {
-    super.caseCmpExpr(v);
-  }
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a - b;
+      }
 
-  @Override
-  public void caseCmpgExpr(CmpgExpr v) {
-    super.caseCmpgExpr(v);
-  }
+      @Override
+      protected Float applyFloat(Float a, Float b) {
+        return a - b;
+      }
 
-  @Override
-  public void caseCmplExpr(CmplExpr v) {
-    super.caseCmplExpr(v);
-  }
-
-  @Override
-  public void caseDivExpr(DivExpr v) {
-    super.caseDivExpr(v);
-  }
-
-  @Override
-  public void caseEqExpr(EqExpr v) {
-    super.caseEqExpr(v);
-  }
-
-  @Override
-  public void caseGeExpr(GeExpr v) {
-    super.caseGeExpr(v);
-  }
-
-  @Override
-  public void caseGtExpr(GtExpr v) {
-    super.caseGtExpr(v);
-  }
-
-  @Override
-  public void caseLeExpr(LeExpr v) {
-    super.caseLeExpr(v);
-  }
-
-  @Override
-  public void caseLtExpr(LtExpr v) {
-    super.caseLtExpr(v);
+      @Override
+      protected Double applyDouble(Double a, Double b) {
+        return a - b;
+      }
+    });
   }
 
   @Override
   public void caseMulExpr(MulExpr v) {
-    super.caseMulExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a * b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a * b;
+      }
+
+      @Override
+      protected Float applyFloat(Float a, Float b) {
+        return a * b;
+      }
+
+      @Override
+      protected Double applyDouble(Double a, Double b) {
+        return a * b;
+      }
+    });
+  }
+
+  @Override
+  public void caseDivExpr(DivExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a / b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a / b;
+      }
+
+      @Override
+      protected Float applyFloat(Float a, Float b) {
+        return a / b;
+      }
+
+      @Override
+      protected Double applyDouble(Double a, Double b) {
+        return a / b;
+      }
+    });
+  }
+
+  @Override
+  public void caseAndExpr(AndExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a & b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a & b;
+      }
+    });
+  }
+
+  @Override
+  public void caseCmpExpr(CmpExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Object applyLong(Long a, Long b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyInteger(Integer a, Integer b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyFloat(Float a, Float b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyDouble(Double a, Double b) {
+        return a == b;
+      }
+    });
+  }
+
+  @Override
+  public void caseCmpgExpr(CmpgExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a > b;
+      }
+    });
+  }
+
+  @Override
+  public void caseCmplExpr(CmplExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Object applyLong(Long a, Long b) {
+        return a < b;
+      }
+
+      @Override
+      protected Object applyInteger(Integer a, Integer b) {
+        return a < b;
+      }
+
+      @Override
+      protected Object applyFloat(Float a, Float b) {
+        return a < b;
+      }
+
+      @Override
+      protected Object applyDouble(Double a, Double b) {
+        return a < b;
+      }
+    });
+  }
+
+  @Override
+  public void caseEqExpr(EqExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Object applyLong(Long a, Long b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyInteger(Integer a, Integer b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyFloat(Float a, Float b) {
+        return a == b;
+      }
+
+      @Override
+      protected Object applyDouble(Double a, Double b) {
+        return a == b;
+      }
+    });
+  }
+
+  @Override
+  public void caseGeExpr(GeExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a >= b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a >= b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a >= b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a >= b;
+      }
+    });
+  }
+
+  @Override
+  public void caseGtExpr(GtExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a > b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a > b;
+      }
+    });
+  }
+
+  @Override
+  public void caseLeExpr(LeExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a <= b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a <= b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a <= b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a <= b;
+      }
+    });
+  }
+
+  @Override
+  public void caseLtExpr(LtExpr v) {
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a < b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a < b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a < b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a < b;
+      }
+    });
   }
 
   @Override
   public void caseNeExpr(NeExpr v) {
-    super.caseNeExpr(v);
+
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Boolean applyLong(Long a, Long b) {
+        return a != b;
+      }
+
+      @Override
+      protected Boolean applyInteger(Integer a, Integer b) {
+        return a != b;
+      }
+
+      @Override
+      protected Boolean applyFloat(Float a, Float b) {
+        return a != b;
+      }
+
+      @Override
+      protected Boolean applyDouble(Double a, Double b) {
+        return a != b;
+      }
+    });
   }
 
   @Override
   public void caseOrExpr(OrExpr v) {
-    super.caseOrExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a | b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a | b;
+      }
+    });
   }
 
   @Override
   public void caseRemExpr(RemExpr v) {
-    super.caseRemExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Object applyLong(Long a, Long b) {
+        return a % b;
+      }
+
+      @Override
+      protected Object applyInteger(Integer a, Integer b) {
+        return a % b;
+      }
+
+      @Override
+      protected Object applyFloat(Float a, Float b) {
+        return a % b;
+      }
+
+      @Override
+      protected Object applyDouble(Double a, Double b) {
+        return a % b;
+      }
+    });
   }
 
   @Override
   public void caseShlExpr(ShlExpr v) {
-    super.caseShlExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a << b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a << b;
+      }
+    });
   }
 
   @Override
   public void caseShrExpr(ShrExpr v) {
-    super.caseShrExpr(v);
-  }
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a >> b;
+      }
 
-  @Override
-  public void caseSubExpr(SubExpr v) {
-    super.caseSubExpr(v);
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a >> b;
+      }
+    });
   }
 
   @Override
   public void caseUshrExpr(UshrExpr v) {
-    super.caseUshrExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a >>> b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a >>> b;
+      }
+    });
   }
 
   @Override
   public void caseXorExpr(XorExpr v) {
-    super.caseXorExpr(v);
+    evalBinOp(v, new BinOpInterpreter() {
+      @Override
+      protected Long applyLong(Long a, Long b) {
+        return a ^ b;
+      }
+
+      @Override
+      protected Integer applyInteger(Integer a, Integer b) {
+        return a ^ b;
+      }
+    });
   }
 
   @Override
   public void caseNegExpr(NegExpr v) {
-    super.caseNegExpr(v);
+    v.getOp().apply(this);
+    final Object result = getResult();
+    setResult(BooleanUtils.negate((Boolean) result));
   }
 
-  private void evalNumericBinOp(BinopExpr v, BinOpInterpreter op) {
+  private void evalBinOp(BinopExpr v, BinOpInterpreter op) {
     final Value leftOp = v.getOp1();
     leftOp.apply(this);
     final Object leftVal = getResult();

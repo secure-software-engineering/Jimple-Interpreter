@@ -1,11 +1,10 @@
 package de.upb.soot.jimple.interpreter.concrete;
 
 /**
- * @author Manuel Benz
- * created on 19.07.18
+ * @author Manuel Benz created on 19.07.18
  */
 abstract class BinOpInterpreter {
-  public Number apply(Number a, Number b) {
+  public Object apply(Number a, Number b) {
     if (a instanceof Double || b instanceof Double) {
       return applyDouble((Double) a, (Double) b);
     } else if (a instanceof Float || b instanceof Float) {
@@ -15,16 +14,19 @@ abstract class BinOpInterpreter {
     } else if (a instanceof Integer || b instanceof Integer) {
       return applyInteger((Integer) a, (Integer) b);
     } else {
-      throw new IllegalArgumentException(
-          "Unhandled type of a. N1: " + a.getClass() + ", N2: " + b.getClass());
+      throw new IllegalArgumentException("Unhandled type of a. N1: " + a.getClass() + ", N2: " + b.getClass());
     }
   }
 
-  protected abstract Long applyLong(Long a, Long b);
+  protected abstract Object applyLong(Long a, Long b);
 
-  protected abstract Integer applyInteger(Integer a, Integer b);
+  protected abstract Object applyInteger(Integer a, Integer b);
 
-  protected abstract Float applyFloat(Float a, Float b);
+  protected Object applyFloat(Float a, Float b) {
+    throw new IllegalArgumentException("Operation is not supported for Float");
+  }
 
-  protected abstract Double applyDouble(Double a, Double b);
+  protected Object applyDouble(Double a, Double b) {
+    throw new IllegalArgumentException("Operation is not supported for Double");
+  }
 }
