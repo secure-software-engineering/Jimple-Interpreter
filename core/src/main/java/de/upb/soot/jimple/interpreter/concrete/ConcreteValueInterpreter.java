@@ -488,7 +488,8 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseNegExpr(NegExpr v) {
     v.getOp().apply(this);
     final Object result = getResult();
-    setResult(BooleanUtils.negate((Boolean) result));
+    final Integer res = BooleanUtils.toIntegerObject(BooleanUtils.negate(BooleanUtils.toBoolean((Integer) result)));
+    setResult(res);
   }
 
   private void evalBinOp(BinopExpr v, BinOpInterpreter op) {

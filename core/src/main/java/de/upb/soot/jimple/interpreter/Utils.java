@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ClassUtils;
 
 import soot.PrimType;
@@ -35,6 +36,8 @@ public class Utils {
         return (T) aClass.getMethod("valueOf", String.class).invoke(null, val.toString());
       } else if (aClass.equals(Character.class)) {
         return (T) Character.valueOf((char) ((Number) val).intValue());
+      } else if (aClass.equals(Boolean.class)) {
+        return (T) BooleanUtils.toBooleanObject((Integer) val);
       }
     } catch (Exception e) {
       throw new RuntimeException(e);
