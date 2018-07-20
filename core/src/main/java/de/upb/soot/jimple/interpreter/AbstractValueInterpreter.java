@@ -181,7 +181,10 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseInstanceFieldRef(InstanceFieldRef v) {
-    super.caseInstanceFieldRef(v);
+    v.getBase().apply(this);
+    final JObject object = (JObject) getResult();
+    final Object val = object.getFieldValue(v.getField());
+    setResult(val);
   }
 
   @Override

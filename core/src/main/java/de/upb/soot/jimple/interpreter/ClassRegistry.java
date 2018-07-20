@@ -29,11 +29,18 @@ public final class ClassRegistry {
   }
 
   public JClassObject getClassObject(Environment env, SootClass clazz) {
-    return classes.computeIfAbsent(clazz, c -> loadClass(env, c));
+    JClassObject jClassObject = classes.get(clazz);
+    if (jClassObject == null) {
+      jClassObject = registerClass(env, clazz);
+    }
+    return jClassObject;
   }
 
-  private JClassObject loadClass(Environment env, SootClass clazz) {
+  private JClassObject registerClass(Environment env, SootClass clazz) {
     final JClassObject result = new JClassObject(clazz);
+    // we need to register the clazz object before calling clint since otherwise we will get an endless loop due to
+    // recursivle resolving the same class if a static field of the same class is accessed in the initializer
+    classes.put(clazz, result);
     final SootMethod clinit = clazz.getMethodByNameUnsafe(SootMethod.staticInitializerName);
     if (clinit == null) {
       // there is no clinit implemented for the class
