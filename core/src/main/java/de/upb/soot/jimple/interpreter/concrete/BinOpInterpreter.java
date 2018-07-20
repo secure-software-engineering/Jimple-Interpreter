@@ -20,11 +20,11 @@ abstract class BinOpInterpreter {
     }
   }
 
-  protected abstract long applyLong(Long a, Long b);
+  protected abstract Long applyLong(Long a, Long b);
 
-  protected abstract int applyInteger(Integer a, Integer b);
+  protected abstract Integer applyInteger(Integer a, Integer b);
 
-  protected abstract float applyFloat(Float a, Float b);
+  protected abstract Float applyFloat(Float a, Float b);
 
-  protected abstract double applyDouble(Double a, Double b);
+  protected abstract Double applyDouble(Double a, Double b);
 }

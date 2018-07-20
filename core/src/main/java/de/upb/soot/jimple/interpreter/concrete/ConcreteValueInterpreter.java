@@ -45,22 +45,22 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
 
     evalNumericBinOp(v, new BinOpInterpreter() {
       @Override
-      protected long applyLong(Long a, Long b) {
+      protected Long applyLong(Long a, Long b) {
         return a + b;
       }
 
       @Override
-      protected int applyInteger(Integer a, Integer b) {
+      protected Integer applyInteger(Integer a, Integer b) {
         return a + b;
       }
 
       @Override
-      protected float applyFloat(Float a, Float b) {
+      protected Float applyFloat(Float a, Float b) {
         return a + b;
       }
 
       @Override
-      protected double applyDouble(Double a, Double b) {
+      protected Double applyDouble(Double a, Double b) {
         return a + b;
       }
     });
@@ -185,13 +185,20 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html#jls-5.6.2
      */
     if (leftType.equals(DoubleType.v()) || rightType.equals(DoubleType.v())) {
-      setResult(Utils.castJavaObjectToType(op.applyDouble((Double) leftVal, (Double) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(
+          op.applyDouble(Utils.castJavaObject(leftVal, Double.class), Utils.castJavaObject(rightVal, Double.class)),
+          resultType));
     } else if (leftType.equals(FloatType.v()) || rightType.equals(FloatType.v())) {
-      setResult(Utils.castJavaObjectToType(op.applyFloat((Float) leftVal, (Float) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(
+          op.applyFloat(Utils.castJavaObject(leftVal, Float.class), Utils.castJavaObject(rightVal, Float.class)),
+          resultType));
     } else if (leftType.equals(LongType.v()) || rightType.equals(LongType.v())) {
-      setResult(Utils.castJavaObjectToType(op.applyLong((Long) leftVal, (Long) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(
+          op.applyLong(Utils.castJavaObject(leftVal, Long.class), Utils.castJavaObject(rightVal, Long.class)), resultType));
     } else {
-      setResult(Utils.castJavaObjectToType(op.applyInteger((Integer) leftVal, (Integer) rightVal), resultType));
+      setResult(Utils.castJavaObjectToType(
+          op.applyInteger(Utils.castJavaObject(leftVal, Integer.class), Utils.castJavaObject(rightVal, Integer.class)),
+          resultType));
     }
   }
 
