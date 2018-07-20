@@ -5,16 +5,19 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 import soot.FastHierarchy;
+import soot.RefType;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootField;
 import soot.SootMethod;
+import soot.Type;
 
 /**
  * @author Manuel Benz created on 02.07.18
  */
 public class JObject implements JValue {
 
+  private static final FastHierarchy HIERARCHY = Scene.v().getOrMakeFastHierarchy();
   protected final SootClass declaringClass;
   protected final Map<SootField, Object> fieldMap;
 
@@ -48,10 +51,18 @@ public class JObject implements JValue {
    */
   public SootMethod getMethod(SootMethod method, boolean virtualCall) {
     if (virtualCall) {
-      FastHierarchy hierarchy = Scene.v().getOrMakeFastHierarchy();
-      return hierarchy.resolveConcreteDispatch(declaringClass, method);
+      return HIERARCHY.resolveConcreteDispatch(declaringClass, method);
     } else {
       return method;
     }
+  }
+
+  public JObject castTo(Type toType) {
+    // we really just have to check if the cast is legal. either up or down cast should work for this.
+    final RefType thisType = declaringClass.getType();
+    if (HIERARCHY.canStoreType(toType, thisType) || HIERARCHY.canStoreType(thisType, toType)) {
+      return this;
+    }
+    throw new IllegalStateException(String.format("Illegal cast from {} to {}", thisType, toType));
   }
 }

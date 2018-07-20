@@ -1,5 +1,6 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JClassConstant;
 import de.upb.soot.jimple.interpreter.values.JClassObject;
 import de.upb.soot.jimple.interpreter.values.JObject;
 
@@ -133,7 +134,13 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   public void caseCastExpr(CastExpr v) {
     v.getOp().apply(this);
     final Object val = getResult();
-    setResult(Utils.castJavaObjectToType(val, v.getCastType()));
+    if (val instanceof JObject) {
+      JObject casted = ((JObject) val).castTo(v.getCastType());
+      setResult(casted);
+    } else {
+      setResult(Utils.castJavaObjectToType(val, v.getCastType()));
+    }
+
   }
 
   @Override
@@ -232,7 +239,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseClassConstant(ClassConstant v) {
-    super.caseClassConstant(v);
+    // we cannot use class for name here since we might not have the class in our classpath
+    setResult(new JClassConstant(v));
   }
 
   @Override
