@@ -76,6 +76,10 @@ public class Environment {
     return arguments;
   }
 
+  public Object getArgument(int index) {
+    return arguments[index];
+  }
+
   public Environment getParent() {
     return parent;
   }

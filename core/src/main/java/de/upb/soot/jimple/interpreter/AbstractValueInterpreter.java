@@ -194,7 +194,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseParameterRef(ParameterRef v) {
-    super.caseParameterRef(v);
+    setResult(curEnvironment.getArgument(v.getIndex()));
   }
 
   @Override
