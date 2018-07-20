@@ -11,6 +11,12 @@ public class MiscOps {
     System.out.println(result);
   }
 
+  public void instanceofOperator2() {
+    A a = new A();
+    boolean result = a instanceof A;
+    System.out.println(result);
+  }
+
   public void ternaryOperator() {
     boolean a = true;
     String d = a ? "foo" : "bar";

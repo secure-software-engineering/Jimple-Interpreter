@@ -65,4 +65,8 @@ public class JObject implements JValue {
     }
     throw new IllegalStateException(String.format("Illegal cast from {} to {}", thisType, toType));
   }
+
+  public Boolean instanceOf(Type checkType) {
+    return checkType.equals(getDeclaringClass().getType());
+  }
 }

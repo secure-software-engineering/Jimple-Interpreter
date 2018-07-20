@@ -7,6 +7,7 @@ import de.upb.soot.jimple.interpreter.values.JObject;
 import org.jboss.util.NotImplementedException;
 
 import soot.Local;
+import soot.RefType;
 import soot.SootField;
 import soot.SootMethod;
 import soot.Value;
@@ -145,7 +146,16 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseInstanceOfExpr(InstanceOfExpr v) {
-    super.caseInstanceOfExpr(v);
+    v.getOp().apply(this);
+    final Object object = getResult();
+    if (object instanceof JObject) {
+      setResult(((JObject) object).instanceOf(v.getCheckType()));
+    } else if (object instanceof String) {
+      // its a string constant
+      setResult(v.getCheckType().equals(RefType.v("java.lang.String")));
+    } else {
+      defaultCase(v);
+    }
   }
 
   @Override
