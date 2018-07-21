@@ -162,23 +162,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseCmpExpr(CmpExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Object applyLong(Long a, Long b) {
-        return a == b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyInteger(Integer a, Integer b) {
-        return a == b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyFloat(Float a, Float b) {
-        return a == b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyDouble(Double a, Double b) {
-        return a == b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
     });
   }
@@ -187,23 +187,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseCmpgExpr(CmpgExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a > b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a > b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a > b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a > b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
     });
   }
@@ -212,23 +212,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseCmplExpr(CmplExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Object applyLong(Long a, Long b) {
-        return a < b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Object applyInteger(Integer a, Integer b) {
-        return a < b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Object applyFloat(Float a, Float b) {
-        return a < b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Object applyDouble(Double a, Double b) {
-        return a < b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
     });
   }
@@ -237,23 +237,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseEqExpr(EqExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Object applyLong(Long a, Long b) {
-        return a == b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyInteger(Integer a, Integer b) {
-        return a == b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyFloat(Float a, Float b) {
-        return a == b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
 
       @Override
-      protected Object applyDouble(Double a, Double b) {
-        return a == b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a == b);
       }
     });
   }
@@ -262,23 +262,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseGeExpr(GeExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a >= b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a >= b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a >= b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a >= b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a >= b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a >= b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a >= b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a >= b);
       }
     });
   }
@@ -287,23 +287,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseGtExpr(GtExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a > b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a > b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a > b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a > b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a > b);
       }
     });
   }
@@ -312,23 +312,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseLeExpr(LeExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a <= b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a <= b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a <= b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a <= b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a <= b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a <= b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a <= b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a <= b);
       }
     });
   }
@@ -337,23 +337,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
   public void caseLtExpr(LtExpr v) {
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a < b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a < b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a < b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a < b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a < b);
       }
     });
   }
@@ -363,23 +363,23 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
 
     evalBinOp(v, new BinOpInterpreter() {
       @Override
-      protected Boolean applyLong(Long a, Long b) {
-        return a != b;
+      protected Integer applyLong(Long a, Long b) {
+        return BooleanUtils.toIntegerObject(a != b);
       }
 
       @Override
-      protected Boolean applyInteger(Integer a, Integer b) {
-        return a != b;
+      protected Integer applyInteger(Integer a, Integer b) {
+        return BooleanUtils.toIntegerObject(a != b);
       }
 
       @Override
-      protected Boolean applyFloat(Float a, Float b) {
-        return a != b;
+      protected Integer applyFloat(Float a, Float b) {
+        return BooleanUtils.toIntegerObject(a != b);
       }
 
       @Override
-      protected Boolean applyDouble(Double a, Double b) {
-        return a != b;
+      protected Integer applyDouble(Double a, Double b) {
+        return BooleanUtils.toIntegerObject(a != b);
       }
     });
   }

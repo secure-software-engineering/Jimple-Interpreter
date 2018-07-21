@@ -83,7 +83,7 @@ public abstract class AbstractInterpreterSystemTest {
    */
   protected Object interpret(String methodSubSig) {
     final SootMethod dummyMain = createTestTarget(getTargetClass(), methodSubSig);
-    return interpreter.interpret(new EntryPoint(dummyMain.getSignature()));
+    return interpreter.interpretMethod(new EntryPoint(dummyMain.getSignature()));
   }
 
   /**

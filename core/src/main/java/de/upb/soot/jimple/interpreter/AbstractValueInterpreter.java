@@ -85,8 +85,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   public void caseStaticInvokeExpr(StaticInvokeExpr v) {
     final SootMethod methodToCall = v.getMethod();
     final JClassObject classObject = classRegistry.getClassObject(curEnvironment, methodToCall.getDeclaringClass());
-    final Object result = jimpleInterpreter.interpret(classObject.getMethod(methodToCall, false),
-        curEnvironment.createChild(classObject, mapArguments(v)));
+    final Object result = jimpleInterpreter.interpretMethod(
+        curEnvironment.createChild(classObject.getMethod(methodToCall, false), classObject, mapArguments(v)));
     setResult(result);
   }
 
@@ -123,8 +123,9 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
     }
 
     final JObject jbaseObject = (JObject) base;
-    final Environment environment = curEnvironment.createChild(jbaseObject, mapArguments(v));
-    final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod(), virtualCall), environment);
+    final Environment environment
+        = curEnvironment.createChild(jbaseObject.getMethod(v.getMethod(), virtualCall), jbaseObject, mapArguments(v));
+    final Object result = jimpleInterpreter.interpretMethod(environment);
     setResult(result);
   }
 
@@ -276,7 +277,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   // end
 
   protected void interpretException(Value v, final String msg) {
-    throw new InterpretException(v,msg);
+    throw new InterpretException(v, msg);
   }
 
   public void reset() {

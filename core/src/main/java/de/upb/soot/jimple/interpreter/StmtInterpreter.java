@@ -8,7 +8,6 @@ import org.jboss.util.NotImplementedException;
 
 import soot.Local;
 import soot.SootField;
-import soot.SootMethod;
 import soot.Value;
 import soot.jimple.AbstractStmtSwitch;
 import soot.jimple.ArrayRef;
@@ -27,7 +26,6 @@ import soot.jimple.RetStmt;
 import soot.jimple.ReturnStmt;
 import soot.jimple.ReturnVoidStmt;
 import soot.jimple.StaticFieldRef;
-import soot.jimple.Stmt;
 import soot.jimple.TableSwitchStmt;
 import soot.jimple.ThrowStmt;
 
@@ -40,7 +38,6 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   private final ClassRegistry classRegistry;
   private final AbstractValueInterpreter valueInterpreter;
 
-  private SootMethod curMethod;
   private Environment curEnvironment;
 
   public StmtInterpreter(JimpleInterpreter jimpleInterpreter, AbstractValueInterpreter valueInterpreter) {
@@ -106,7 +103,7 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     if (leftOp instanceof Local) {
       curEnvironment.setLocal((Local) leftOp, right);
     } else {
-      interpretException(stmt,
+      throw new InterpretException(
           String.format("Identity statements only allow for locals on leftOp side but got %s.", leftOp));
     }
   }
@@ -128,7 +125,9 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseIfStmt(IfStmt stmt) {
-    super.caseIfStmt(stmt);
+    stmt.getCondition().apply(valueInterpreter);
+    final Object result = valueInterpreter.getResult();
+    setResult(result);
   }
 
   @Override
@@ -173,26 +172,14 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     throw new NotImplementedException(String.format("%s statement not supported", obj));
   }
 
-  public void setCurMethod(SootMethod curMethod) {
-    this.curMethod = curMethod;
-  }
-
-  protected void interpretException(Stmt s, final String msg) {
-    throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, s));
-  }
-
   public void reset() {
     curEnvironment = null;
-    curMethod = null;
     valueInterpreter.reset();
-  }
-
-  public Environment getCurEnvironment() {
-    return curEnvironment;
   }
 
   public void setCurEnvironment(Environment curEnvironment) {
     this.curEnvironment = curEnvironment;
     valueInterpreter.setCurEnvironment(curEnvironment);
   }
+
 }

@@ -16,6 +16,8 @@ import soot.SootClass;
 import soot.SootMethod;
 import soot.SootMethodRef;
 import soot.Type;
+import soot.jimple.Jimple;
+import soot.jimple.JimpleBody;
 import soot.tagkit.Host;
 import soot.tagkit.Tag;
 import soot.util.NumberedString;
@@ -212,7 +214,10 @@ public abstract class MethodDelegate extends SootMethod {
 
   @Override
   public Body retrieveActiveBody() {
-    return original.retrieveActiveBody();
+    // we need to fake this for the pc
+    final JimpleBody jimpleBody = new JimpleBody();
+    jimpleBody.getUnits().add(Jimple.v().newNopStmt());
+    return jimpleBody;
   }
 
   @Override

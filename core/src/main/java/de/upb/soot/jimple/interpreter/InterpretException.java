@@ -3,6 +3,7 @@ package de.upb.soot.jimple.interpreter;
 import soot.SootMethod;
 import soot.Unit;
 import soot.Value;
+import soot.jimple.Stmt;
 
 /**
  * @author Manuel Benz created on 21.07.18
@@ -33,7 +34,7 @@ public class InterpretException extends RuntimeException {
   }
 
   private static String msg(Value v, String msg) {
-    return String.format("Value ‘%s‘: %s", v, msg);
+    return String.format("Val ‘%s‘: %s", v, msg);
   }
 
   private static String msg(SootMethod method, Unit unit) {

@@ -46,7 +46,7 @@ public final class ClassRegistry {
       // there is no clinit implemented for the class
       return result;
     }
-    interpreter.interpret(clinit, env.createChild(result));
+    interpreter.interpretMethod(env.createChild(clinit, result));
     return result;
   }
 

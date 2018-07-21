@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import soot.Local;
+import soot.PatchingChain;
+import soot.SootMethod;
+import soot.Unit;
 
 /**
  * Models the current scope, including local variables and parameters passed into the method modeled by this scope.
@@ -18,24 +21,41 @@ public class Environment {
   private final JObject thisInstance;
   private final Object[] arguments;
   private final Environment parent;
+  private final PC pc;
+  private final SootMethod method;
 
-  private Environment(Environment parent, JObject thisInstance, Object... arguments) {
+  private Environment(Environment parent, SootMethod method, PC pc, JObject thisInstance, Object... arguments) {
     this.thisInstance = thisInstance;
     this.arguments = arguments;
     this.parent = parent;
+    this.method = method;
+    this.pc = pc;
   }
 
-  public static Environment createRoot() {
+  public static Environment createRoot(SootMethod method) {
     // TODO implement parameters to e.g. static void main
-    return new Environment(null, null, null);
+    return createRoot(method, null);
   }
 
-  public Environment createChild(Object... arguments) {
-    return createChild(null, arguments);
+  public static Environment createRoot(SootMethod method, Unit startingUnit) {
+    // TODO implement parameters to e.g. static void main
+    final PatchingChain<Unit> units = method.retrieveActiveBody().getUnits();
+
+    if (startingUnit == null) {
+      startingUnit = units.getFirst();
+    }
+
+    final PC pc = new PC(units, startingUnit);
+    return new Environment(null, method, pc, null);
   }
 
-  public Environment createChild(JObject thisInstance, Object... arguments) {
-    return new Environment(this, thisInstance, arguments);
+  public Environment createChild(SootMethod method, Object... arguments) {
+    return createChild(method, null, arguments);
+  }
+
+  public Environment createChild(SootMethod method, JObject thisInstance, Object... arguments) {
+    final PC pc = new PC(method.retrieveActiveBody().getUnits());
+    return new Environment(this, method, pc, thisInstance, arguments);
   }
 
   public Object getLocalValue(Local id) {
@@ -82,5 +102,13 @@ public class Environment {
 
   public Environment getParent() {
     return parent;
+  }
+
+  public PC getPc() {
+    return pc;
+  }
+
+  public SootMethod getMethod() {
+    return method;
   }
 }

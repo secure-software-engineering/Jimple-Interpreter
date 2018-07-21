@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 
 import soot.G;
 import soot.PackManager;
+import soot.PatchingChain;
 import soot.Scene;
 import soot.SootMethod;
 import soot.SourceLocator;
@@ -80,15 +81,18 @@ public class JimpleInterpreter {
     }
   }
 
-  public String interpret(EntryPoint entryPoint) {
+  public String interpretMethod(EntryPoint entryPoint) {
     final SootMethod entryMethod = entryPoint.getMethod();
-    final Iterator<Unit> iterator = entryMethod.retrieveActiveBody().getUnits().iterator();
+    final PatchingChain<Unit> units = entryMethod.retrieveActiveBody().getUnits();
+    final Iterator<Unit> iterator = units.iterator();
+
+    Unit startUnit = null;
 
     final int entryLine = entryPoint.getLineNumber();
     if (entryLine > 0) {
       while (iterator.hasNext()) {
-        final Unit next = iterator.next();
-        if (next.getJavaSourceStartLineNumber() == entryLine - 1) {
+        startUnit = iterator.next();
+        if (startUnit.getJavaSourceStartLineNumber() == entryLine - 1) {
           break;
         }
       }
@@ -101,30 +105,40 @@ public class JimpleInterpreter {
       }
     }
 
-    // TODO implement toString in JObject to interpret real toString of the object
-    return interpret(entryMethod, iterator, Environment.createRoot()).toString();
+    // TODO implement toString in JObject to interpretMethod real toString of the object
+    return interpretMethod(Environment.createRoot(entryMethod, startUnit)).toString();
   }
 
-  protected Object interpret(SootMethod method, Environment environment) {
+  protected Object interpretMethod(Environment environment) {
+    final SootMethod method = environment.getMethod();
     if (method instanceof MethodDelegate) {
       return ((MethodDelegate) method).delegate(environment);
     } else {
-      return interpret(method, method.retrieveActiveBody().getUnits().iterator(), environment);
+      return interpretMethodInternal(environment);
     }
   }
 
-  private Object interpret(SootMethod method, Iterator<Unit> units, Environment environment) {
-    stmtInterpreter.setCurMethod(method);
+  /**
+   *
+   * 
+   * @param environment
+   *          Is prepared outside and contains parameters and instance object already
+   * @return
+   */
+  private Object interpretMethodInternal(Environment environment) {
     stmtInterpreter.setCurEnvironment(environment);
-    while (units.hasNext()) {
-      final Unit next = units.next();
+    final PC pc = environment.getPc();
+
+    while (pc.hasNext()) {
+      final Unit next = pc.next();
       try {
         next.apply(stmtInterpreter);
       } catch (InterpretException e) {
-        throw new InterpretException(method, next, e);
+        throw new InterpretException(environment.getMethod(), next, e);
       }
     }
 
+    // epilog
     // reset the environment to the calling context
     stmtInterpreter.setCurEnvironment(environment.getParent());
     return stmtInterpreter.getResult();
