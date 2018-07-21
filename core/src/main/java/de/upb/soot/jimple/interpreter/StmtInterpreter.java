@@ -120,7 +120,7 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseGotoStmt(GotoStmt stmt) {
-    super.caseGotoStmt(stmt);
+    curEnvironment.getPc().goTo(stmt.getTarget());
   }
 
   @Override
@@ -128,6 +128,11 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     stmt.getCondition().apply(valueInterpreter);
     final Object result = valueInterpreter.getResult();
     setResult(result);
+
+    // we branch at true
+    if (result == Integer.valueOf(1)) {
+      curEnvironment.getPc().goTo(stmt.getTarget());
+    }
   }
 
   @Override

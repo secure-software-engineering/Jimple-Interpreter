@@ -38,6 +38,29 @@ import soot.jimple.XorExpr;
  * @author Manuel Benz created on 29.06.18
  */
 public class ConcreteValueInterpreter extends AbstractValueInterpreter {
+
+  private static final BinOpInterpreter COMPARATOR = new BinOpInterpreter() {
+    @Override
+    protected Integer applyLong(Long a, Long b) {
+      return Long.compare(a, b);
+    }
+
+    @Override
+    protected Integer applyInteger(Integer a, Integer b) {
+      return Integer.compare(a, b);
+    }
+
+    @Override
+    protected Integer applyFloat(Float a, Float b) {
+      return Float.compare(a, b);
+    }
+
+    @Override
+    protected Integer applyDouble(Double a, Double b) {
+      return Double.compare(a, b);
+    }
+  };
+
   public ConcreteValueInterpreter(JimpleInterpreter jimpleInterpreter) {
     super(jimpleInterpreter);
   }
@@ -160,77 +183,17 @@ public class ConcreteValueInterpreter extends AbstractValueInterpreter {
 
   @Override
   public void caseCmpExpr(CmpExpr v) {
-    evalBinOp(v, new BinOpInterpreter() {
-      @Override
-      protected Integer applyLong(Long a, Long b) {
-        return BooleanUtils.toIntegerObject(a == b);
-      }
-
-      @Override
-      protected Integer applyInteger(Integer a, Integer b) {
-        return BooleanUtils.toIntegerObject(a == b);
-      }
-
-      @Override
-      protected Integer applyFloat(Float a, Float b) {
-        return BooleanUtils.toIntegerObject(a == b);
-      }
-
-      @Override
-      protected Integer applyDouble(Double a, Double b) {
-        return BooleanUtils.toIntegerObject(a == b);
-      }
-    });
+    evalBinOp(v, COMPARATOR);
   }
 
   @Override
   public void caseCmpgExpr(CmpgExpr v) {
-    evalBinOp(v, new BinOpInterpreter() {
-      @Override
-      protected Integer applyLong(Long a, Long b) {
-        return BooleanUtils.toIntegerObject(a > b);
-      }
-
-      @Override
-      protected Integer applyInteger(Integer a, Integer b) {
-        return BooleanUtils.toIntegerObject(a > b);
-      }
-
-      @Override
-      protected Integer applyFloat(Float a, Float b) {
-        return BooleanUtils.toIntegerObject(a > b);
-      }
-
-      @Override
-      protected Integer applyDouble(Double a, Double b) {
-        return BooleanUtils.toIntegerObject(a > b);
-      }
-    });
+    evalBinOp(v, COMPARATOR);
   }
 
   @Override
   public void caseCmplExpr(CmplExpr v) {
-    evalBinOp(v, new BinOpInterpreter() {
-      @Override
-      protected Integer applyLong(Long a, Long b) {
-        return BooleanUtils.toIntegerObject(a < b);
-      }
-
-      @Override
-      protected Integer applyInteger(Integer a, Integer b) {
-        return BooleanUtils.toIntegerObject(a < b);
-      }
-
-      @Override
-      protected Integer applyFloat(Float a, Float b) {
-        return BooleanUtils.toIntegerObject(a < b);
-      }
-
-      @Override
-      protected Integer applyDouble(Double a, Double b) {
-        return BooleanUtils.toIntegerObject(a < b);
-      }
-    });
+    evalBinOp(v, COMPARATOR);
   }
 
   @Override

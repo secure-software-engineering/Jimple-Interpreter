@@ -33,4 +33,12 @@ public class PC implements Iterator<Unit> {
     next = units.getSuccOf(next);
     return res;
   }
+
+  public void goTo(Unit target) {
+    if (!units.contains(target)) {
+      throw new InterpretException("Target not in current method: " + target);
+    }
+
+    next = target;
+  }
 }
