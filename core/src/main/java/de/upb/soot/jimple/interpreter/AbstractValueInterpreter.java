@@ -173,7 +173,15 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseNewMultiArrayExpr(NewMultiArrayExpr v) {
-    defaultCase(v);
+
+    final int[] sizes = v.getSizes().stream().map(s -> {
+      // evaluate sizes of dimensions first
+      s.apply(AbstractValueInterpreter.this);
+      return getResult();
+    }).mapToInt(s -> ((Integer) s).intValue()).toArray();
+
+    final JArray resultArray = JArray.createMultDimensional(sizes);
+    setResult(resultArray);
   }
 
   @Override
@@ -185,7 +193,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   @Override
   public void caseLengthExpr(LengthExpr v) {
     v.getOp().apply(this);
-    final JArray jArray = (JArray)getResult();
+    final JArray jArray = (JArray) getResult();
     setResult(jArray.getLength());
   }
 
