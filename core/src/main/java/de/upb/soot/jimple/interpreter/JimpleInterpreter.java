@@ -118,7 +118,11 @@ public class JimpleInterpreter {
     stmtInterpreter.setCurEnvironment(environment);
     while (units.hasNext()) {
       final Unit next = units.next();
-      next.apply(stmtInterpreter);
+      try {
+        next.apply(stmtInterpreter);
+      } catch (InterpretException e) {
+        throw new InterpretException(method, next, e);
+      }
     }
 
     // reset the environment to the calling context

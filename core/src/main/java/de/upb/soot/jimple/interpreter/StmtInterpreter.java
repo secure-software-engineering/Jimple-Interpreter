@@ -175,7 +175,6 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   public void setCurMethod(SootMethod curMethod) {
     this.curMethod = curMethod;
-    valueInterpreter.setCurMethod(curMethod);
   }
 
   protected void interpretException(Stmt s, final String msg) {

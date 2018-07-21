@@ -47,7 +47,6 @@ import soot.jimple.VirtualInvokeExpr;
 public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch {
   protected final JimpleInterpreter jimpleInterpreter;
   protected final ClassRegistry classRegistry;
-  protected SootMethod curMethod;
   protected Environment curEnvironment;
 
   public AbstractValueInterpreter(JimpleInterpreter jimpleInterpreter) {
@@ -58,10 +57,6 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   @Override
   public void defaultCase(Object obj) {
     throw new NotImplementedException(String.format("%s expression not supported", obj));
-  }
-
-  protected void setCurMethod(SootMethod curMethod) {
-    this.curMethod = curMethod;
   }
 
   protected void setCurEnvironment(Environment curEnvironment) {
@@ -281,11 +276,10 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   // end
 
   protected void interpretException(Value v, final String msg) {
-    throw new IllegalStateException(String.format("%s Method: %s, Value: %s", msg, curMethod, v));
+    throw new InterpretException(v,msg);
   }
 
   public void reset() {
     curEnvironment = null;
-    curMethod = null;
   }
 }

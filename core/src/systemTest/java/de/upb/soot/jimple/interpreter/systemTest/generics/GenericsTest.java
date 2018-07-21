@@ -30,7 +30,9 @@ class GenericsTest extends AbstractInterpreterSystemTest {
 
   @Override protected List<String> getIncludes() {
     final ArrayList<String> res = new ArrayList<>(super.getIncludes());
-    res.add("java.util.*");
+    res.add("java.util.ArrayList");
+    res.add("java.util.AbstractList");
+    res.add("java.util.AbstractCollection");
     return res;
   }
 }

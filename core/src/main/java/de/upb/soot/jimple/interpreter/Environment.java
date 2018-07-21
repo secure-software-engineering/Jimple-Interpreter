@@ -44,7 +44,7 @@ public class Environment {
     if (iValue != null) {
       return iValue;
     } else {
-      throw new IllegalArgumentException("Given local does not exist in scope: " + id);
+      throw new InterpretException("Given local does not exist in scope: " + id);
     }
   }
 
