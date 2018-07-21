@@ -7,6 +7,7 @@ import soot.Type;
  * @author Manuel Benz created on 02.07.18
  */
 public class JClassObject extends JObject {
+
   public JClassObject(SootClass declaringClass) {
     super(declaringClass);
   }
@@ -24,5 +25,10 @@ public class JClassObject extends JObject {
   public Boolean instanceOf(Type checkType) {
     // FIXME we should change the class hierarchy to get this right!
     throw new IllegalStateException("Class object is no instance in Java");
+  }
+
+  @Override
+  protected boolean isInstanceObject() {
+    return false;
   }
 }
