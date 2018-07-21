@@ -147,6 +147,13 @@ public abstract class AbstractInterpreterSystemTest {
     for (int i = 0; i < sootTestMethod.getParameterCount(); i++) {
       args.add(NullConstant.v());
     }
+
+    final SootMethod constructor = sootTestMethod.getDeclaringClass().getMethodByNameUnsafe("<init>");
+    if (constructor != null) {
+      body.getUnits()
+          .add(Jimple.v().newInvokeStmt(Jimple.v().newSpecialInvokeExpr(allocatedTestObj, constructor.makeRef())));
+    }
+
     body.getUnits()
         .add(Jimple.v().newInvokeStmt(Jimple.v().newVirtualInvokeExpr(allocatedTestObj, sootTestMethod.makeRef(), args)));
 

@@ -1,25 +1,16 @@
-package de.upb.soot.jimple.interpreter.systemTest.specialInvoke;
+package de.upb.soot.jimple.interpreter.systemTest.reflection;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class SpecialInvoke {
-
-  public static void specialInvoke() {
-	  mySpecialInvoke();
-  }
-
-  private static void mySpecialInvoke() {
-	  callee();	
-  }
-
-  private static void callee() {
-    System.out.println("foo");
-  }
+/**
+ * @author Manuel Benz created on 21.07.18
+ */
+public class Reflection {
 
   public static void staticInvokeReflection() throws NoSuchMethodException {
     // Invoking static method using reflection
-    Method method = SpecialInvoke.class.getMethod("mySpecialInvoke");
+    Method method = A.class.getMethod("staticFoo");
     try {
       method.invoke(null);
     } catch (IllegalAccessException e) {
