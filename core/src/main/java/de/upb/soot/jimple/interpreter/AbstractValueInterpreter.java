@@ -83,7 +83,7 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseInterfaceInvokeExpr(InterfaceInvokeExpr v) {
-    super.caseInterfaceInvokeExpr(v);
+    caseInstanceInvokeExpr(v, true);
   }
 
   @Override
