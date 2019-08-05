@@ -83,7 +83,7 @@ public abstract class AbstractInterpreterSystemTest {
    */
   protected Object interpret(String methodSubSig) {
     final SootMethod dummyMain = createTestTarget(getTargetClass(), methodSubSig);
-    return interpreter.interpret(new EntryPoint(dummyMain.getSignature()));
+    return interpreter.interpretMethod(new EntryPoint(dummyMain.getSignature()));
   }
 
   /**
@@ -147,6 +147,13 @@ public abstract class AbstractInterpreterSystemTest {
     for (int i = 0; i < sootTestMethod.getParameterCount(); i++) {
       args.add(NullConstant.v());
     }
+
+    final SootMethod constructor = sootTestMethod.getDeclaringClass().getMethodByNameUnsafe("<init>");
+    if (constructor != null) {
+      body.getUnits()
+          .add(Jimple.v().newInvokeStmt(Jimple.v().newSpecialInvokeExpr(allocatedTestObj, constructor.makeRef())));
+    }
+
     body.getUnits()
         .add(Jimple.v().newInvokeStmt(Jimple.v().newVirtualInvokeExpr(allocatedTestObj, sootTestMethod.makeRef(), args)));
 

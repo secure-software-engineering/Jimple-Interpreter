@@ -1,10 +1,16 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JArray;
+import de.upb.soot.jimple.interpreter.values.JClassObject;
+import de.upb.soot.jimple.interpreter.values.JObject;
+
 import org.jboss.util.NotImplementedException;
 
 import soot.Local;
-import soot.SootMethod;
+import soot.SootField;
+import soot.Value;
 import soot.jimple.AbstractStmtSwitch;
+import soot.jimple.ArrayRef;
 import soot.jimple.AssignStmt;
 import soot.jimple.BreakpointStmt;
 import soot.jimple.EnterMonitorStmt;
@@ -12,13 +18,14 @@ import soot.jimple.ExitMonitorStmt;
 import soot.jimple.GotoStmt;
 import soot.jimple.IdentityStmt;
 import soot.jimple.IfStmt;
+import soot.jimple.InstanceFieldRef;
 import soot.jimple.InvokeStmt;
 import soot.jimple.LookupSwitchStmt;
 import soot.jimple.NopStmt;
 import soot.jimple.RetStmt;
 import soot.jimple.ReturnStmt;
 import soot.jimple.ReturnVoidStmt;
-import soot.jimple.Stmt;
+import soot.jimple.StaticFieldRef;
 import soot.jimple.TableSwitchStmt;
 import soot.jimple.ThrowStmt;
 
@@ -28,13 +35,15 @@ import soot.jimple.ThrowStmt;
 public class StmtInterpreter extends AbstractStmtSwitch {
 
   private final JimpleInterpreter jimpleInterpreter;
-  private AbstractValueInterpreter valueInterpreter;
-  private SootMethod curMethod;
+  private final ClassRegistry classRegistry;
+  private final AbstractValueInterpreter valueInterpreter;
+
   private Environment curEnvironment;
 
   public StmtInterpreter(JimpleInterpreter jimpleInterpreter, AbstractValueInterpreter valueInterpreter) {
     this.jimpleInterpreter = jimpleInterpreter;
     this.valueInterpreter = valueInterpreter;
+    this.classRegistry = jimpleInterpreter.getClassRegistry();
   }
 
   @Override
@@ -51,31 +60,51 @@ public class StmtInterpreter extends AbstractStmtSwitch {
   @Override
   public void caseAssignStmt(AssignStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
-    final Object right = valueInterpreter.getResult();
-    stmt.getLeftOp().apply(valueInterpreter);
+    Object val = valueInterpreter.getResult();
 
-    final Object left = valueInterpreter.getResult();
+    final Value leftOp = stmt.getLeftOp();
 
-    // TODO cast int constants to byte and char
+    // if we have a prim (boxed) type, we might have to cast because the val side does oftentimes not uniquely identify the
+    // type. e.g. byte and short constants are actually integer values
+    if (val instanceof Number) {
+      val = Utils.castJavaObjectToType(val, leftOp.getType());
+    }
 
-    if (left instanceof Local) {
-      curEnvironment.setLocal((Local) left, right);
+    if (leftOp instanceof Local) {
+      curEnvironment.setLocal((Local) leftOp, val);
+    } else if (leftOp instanceof StaticFieldRef) {
+      final SootField field = ((StaticFieldRef) leftOp).getField();
+      final JClassObject classObject = classRegistry.getClassObject(curEnvironment, field.getDeclaringClass());
+      classObject.setFieldValue(field, val);
+    } else if (leftOp instanceof InstanceFieldRef) {
+      ((InstanceFieldRef) leftOp).getBase().apply(valueInterpreter);
+      final JObject base = (JObject) valueInterpreter.getResult();
+      base.setFieldValue(((InstanceFieldRef) leftOp).getField(), val);
+    } else if (leftOp instanceof ArrayRef) {
+      ((ArrayRef) leftOp).getBase().apply(valueInterpreter);
+      final JArray jArray = (JArray) valueInterpreter.getResult();
+      ((ArrayRef) leftOp).getIndex().apply(valueInterpreter);
+      final Integer index = (Integer) valueInterpreter.getResult();
+      jArray.setValue(index, val);
     } else {
       defaultCase(stmt);
     }
+
+    // TODO do we really want to have the right side as evaluated value of an assignment?
+    setResult(val);
   }
 
   @Override
   public void caseIdentityStmt(IdentityStmt stmt) {
     stmt.getRightOp().apply(valueInterpreter);
     final Object right = valueInterpreter.getResult();
-    stmt.getLeftOp().apply(valueInterpreter);
 
-    final Object left = valueInterpreter.getResult();
-    if (left instanceof Local) {
-      curEnvironment.setLocal((Local) left, right);
+    final Value leftOp = stmt.getLeftOp();
+    if (leftOp instanceof Local) {
+      curEnvironment.setLocal((Local) leftOp, right);
     } else {
-      interpretException(stmt, String.format("Identity statements only allow for locals on left side but got %s.", left));
+      throw new InterpretException(
+          String.format("Identity statements only allow for locals on leftOp side but got %s.", leftOp));
     }
   }
 
@@ -91,12 +120,19 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseGotoStmt(GotoStmt stmt) {
-    super.caseGotoStmt(stmt);
+    curEnvironment.getPc().goTo(stmt.getTarget());
   }
 
   @Override
   public void caseIfStmt(IfStmt stmt) {
-    super.caseIfStmt(stmt);
+    stmt.getCondition().apply(valueInterpreter);
+    final Object result = valueInterpreter.getResult();
+    setResult(result);
+
+    // we branch at true
+    if (result == Integer.valueOf(1)) {
+      curEnvironment.getPc().goTo(stmt.getTarget());
+    }
   }
 
   @Override
@@ -106,7 +142,8 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseNopStmt(NopStmt stmt) {
-    super.caseNopStmt(stmt);
+    // literally do nothing
+    setResult(null);
   }
 
   @Override
@@ -116,7 +153,8 @@ public class StmtInterpreter extends AbstractStmtSwitch {
 
   @Override
   public void caseReturnStmt(ReturnStmt stmt) {
-    super.caseReturnStmt(stmt);
+    stmt.getOp().apply(valueInterpreter);
+    setResult(valueInterpreter.getResult());
   }
 
   @Override
@@ -139,27 +177,14 @@ public class StmtInterpreter extends AbstractStmtSwitch {
     throw new NotImplementedException(String.format("%s statement not supported", obj));
   }
 
-  public void setCurMethod(SootMethod curMethod) {
-    this.curMethod = curMethod;
-    valueInterpreter.setCurMethod(curMethod);
-  }
-
-  protected void interpretException(Stmt s, final String msg) {
-    throw new IllegalStateException(String.format("%s Method: %s, Stmt: %s", msg, curMethod, s));
-  }
-
   public void reset() {
     curEnvironment = null;
-    curMethod = null;
     valueInterpreter.reset();
-  }
-
-  public Environment getCurEnvironment() {
-    return curEnvironment;
   }
 
   public void setCurEnvironment(Environment curEnvironment) {
     this.curEnvironment = curEnvironment;
     valueInterpreter.setCurEnvironment(curEnvironment);
   }
+
 }

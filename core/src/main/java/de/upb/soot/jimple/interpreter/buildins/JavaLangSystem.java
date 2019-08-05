@@ -1,11 +1,10 @@
 package de.upb.soot.jimple.interpreter.buildins;
 
-import de.upb.soot.jimple.interpreter.values.JClassObject;
-import de.upb.soot.jimple.interpreter.values.JObject;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import de.upb.soot.jimple.interpreter.values.JClassObject;
+import de.upb.soot.jimple.interpreter.values.JObject;
 import soot.Scene;
 import soot.SootField;
 import soot.SootMethod;
@@ -24,21 +23,21 @@ public class JavaLangSystem extends JClassObject {
     // mock stream object to use the configured streams instead of interpreting
     sysOut = new JObject(Scene.v().getSootClass("java.io.PrintStream")) {
       @Override
-      public SootMethod getMethod(SootMethod method) {
+      public SootMethod getMethod(SootMethod method, boolean virtualCall) {
         return MethodDelegate.instanceInvokeDelegate(method, outputStream);
       }
     };
 
     sysErr = new JObject(Scene.v().getSootClass("java.io.PrintStream")) {
       @Override
-      public SootMethod getMethod(SootMethod method) {
+      public SootMethod getMethod(SootMethod method, boolean virtualCall) {
         return MethodDelegate.instanceInvokeDelegate(method, errorStream);
       }
     };
 
     sysIn = new JObject(Scene.v().getSootClass("java.io.InputStream")) {
       @Override
-      public SootMethod getMethod(SootMethod method) {
+      public SootMethod getMethod(SootMethod method, boolean virtualCall) {
         return MethodDelegate.instanceInvokeDelegate(method, inputStream);
       }
     };

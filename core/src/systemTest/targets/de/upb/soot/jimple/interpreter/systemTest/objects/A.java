@@ -18,10 +18,13 @@ public class A {
   }
 
   public void argsVar(String... foo) {
-    System.out.println(foo);
+    for (String s : foo) {
+      System.out.println(s);
+    }
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "A";
   }
 }

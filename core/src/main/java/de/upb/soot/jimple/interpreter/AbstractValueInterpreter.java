@@ -1,11 +1,14 @@
 package de.upb.soot.jimple.interpreter;
 
+import de.upb.soot.jimple.interpreter.values.JArray;
+import de.upb.soot.jimple.interpreter.values.JClassConstant;
 import de.upb.soot.jimple.interpreter.values.JClassObject;
 import de.upb.soot.jimple.interpreter.values.JObject;
 
 import org.jboss.util.NotImplementedException;
 
 import soot.Local;
+import soot.RefType;
 import soot.SootField;
 import soot.SootMethod;
 import soot.Value;
@@ -22,6 +25,7 @@ import soot.jimple.InstanceInvokeExpr;
 import soot.jimple.InstanceOfExpr;
 import soot.jimple.IntConstant;
 import soot.jimple.InterfaceInvokeExpr;
+import soot.jimple.InvokeExpr;
 import soot.jimple.LengthExpr;
 import soot.jimple.LongConstant;
 import soot.jimple.MethodHandle;
@@ -43,7 +47,6 @@ import soot.jimple.VirtualInvokeExpr;
 public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch {
   protected final JimpleInterpreter jimpleInterpreter;
   protected final ClassRegistry classRegistry;
-  protected SootMethod curMethod;
   protected Environment curEnvironment;
 
   public AbstractValueInterpreter(JimpleInterpreter jimpleInterpreter) {
@@ -56,10 +59,6 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
     throw new NotImplementedException(String.format("%s expression not supported", obj));
   }
 
-  protected void setCurMethod(SootMethod curMethod) {
-    this.curMethod = curMethod;
-  }
-
   protected void setCurEnvironment(Environment curEnvironment) {
     this.curEnvironment = curEnvironment;
   }
@@ -68,58 +67,66 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseArrayRef(ArrayRef v) {
-    super.caseArrayRef(v);
+    v.getBase().apply(this);
+    final JArray jArray = (JArray) getResult();
+
+    v.getIndex().apply(this);
+    final Integer index = (Integer) getResult();
+
+    setResult(jArray.getValue(index));
   }
 
   @Override
   public void caseInterfaceInvokeExpr(InterfaceInvokeExpr v) {
-    super.caseInterfaceInvokeExpr(v);
+    caseInstanceInvokeExpr(v, true);
   }
 
   @Override
   public void caseStaticInvokeExpr(StaticInvokeExpr v) {
-    super.caseStaticInvokeExpr(v);
+    final SootMethod methodToCall = v.getMethod();
+    final JClassObject classObject = classRegistry.getClassObject(curEnvironment, methodToCall.getDeclaringClass());
+    final Object result = jimpleInterpreter.interpretMethod(
+        curEnvironment.createChild(classObject.getMethod(methodToCall, false), classObject, mapArguments(v)));
+    setResult(result);
+  }
+
+  /**
+   * Returns the actual-argument list extreacted from curEnvironment that corresponds to the invoke-expression v.
+   */
+  private Object[] mapArguments(InvokeExpr v) {
+    Object[] args = new Object[v.getArgCount()];
+
+    for (int i = 0; i < args.length; i++) {
+      v.getArg(i).apply(this);
+      final Object argval = getResult();
+      args[i] = argval;
+    }
+    return args;
   }
 
   @Override
   public void caseSpecialInvokeExpr(SpecialInvokeExpr v) {
-    caseInstanceInvokeExpr(v);
+    caseInstanceInvokeExpr(v, false /* no virtual resolution */);
   }
 
   @Override
   public void caseVirtualInvokeExpr(VirtualInvokeExpr v) {
-    caseInstanceInvokeExpr(v);
+    caseInstanceInvokeExpr(v, true);
   }
 
-  private void caseInstanceInvokeExpr(InstanceInvokeExpr v) {
+  private void caseInstanceInvokeExpr(InstanceInvokeExpr v, boolean virtualCall) {
     v.getBase().apply(this);
     final Object base = getResult();
 
-    if (base instanceof Local) {
-      final Object baseObject = curEnvironment.getLocalValue((Local) base);
-      if (!(baseObject instanceof JObject)) {
-        interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", baseObject));
-      }
-
-      Object[] args = new Object[v.getArgCount()];
-
-      for (int i = 0; i < args.length; i++) {
-        v.getArg(i).apply(this);
-        final Object argval = getResult();
-        if (argval instanceof Local) {
-          args[i] = curEnvironment.getLocalValue((Local) argval);
-        } else {
-          args[i] = argval;
-        }
-      }
-
-      final JObject jbaseObject = (JObject) baseObject;
-      final Environment environment = curEnvironment.createChild(jbaseObject, args);
-      final Object result = jimpleInterpreter.interpret(jbaseObject.getMethod(v.getMethod()), environment);
-      setResult(result);
-    } else {
-      defaultCase(v);
+    if (!(base instanceof JObject)) {
+      interpretException(v, String.format("Base object of virtual invoke not an object type (obj: %s).", base));
     }
+
+    final JObject jbaseObject = (JObject) base;
+    final Environment environment
+        = curEnvironment.createChild(jbaseObject.getMethod(v.getMethod(), virtualCall), jbaseObject, mapArguments(v));
+    final Object result = jimpleInterpreter.interpretMethod(environment);
+    setResult(result);
   }
 
   @Override
@@ -129,22 +136,48 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseCastExpr(CastExpr v) {
-    super.caseCastExpr(v);
+    v.getOp().apply(this);
+    final Object val = getResult();
+    if (val instanceof JObject) {
+      JObject casted = ((JObject) val).castTo(v.getCastType());
+      setResult(casted);
+    } else {
+      setResult(Utils.castJavaObjectToType(val, v.getCastType()));
+    }
+
   }
 
   @Override
   public void caseInstanceOfExpr(InstanceOfExpr v) {
-    super.caseInstanceOfExpr(v);
+    v.getOp().apply(this);
+    final Object object = getResult();
+    if (object instanceof JObject) {
+      setResult(((JObject) object).instanceOf(v.getCheckType()));
+    } else if (object instanceof String) {
+      // its a string constant
+      setResult(v.getCheckType().equals(RefType.v("java.lang.String")));
+    } else {
+      defaultCase(v);
+    }
   }
 
   @Override
   public void caseNewArrayExpr(NewArrayExpr v) {
-    super.caseNewArrayExpr(v);
+    v.getSize().apply(this);
+    setResult(new JArray((Integer) getResult()));
   }
 
   @Override
   public void caseNewMultiArrayExpr(NewMultiArrayExpr v) {
-    super.caseNewMultiArrayExpr(v);
+
+    final int[] sizes = v.getSizes().stream().map(s -> {
+      // evaluate sizes of dimensions first
+      s.apply(AbstractValueInterpreter.this);
+      return getResult();
+    }).mapToInt(s -> ((Integer) s).intValue()).toArray();
+
+    final JArray resultArray = JArray.createMultDimensional(sizes);
+    setResult(resultArray);
   }
 
   @Override
@@ -155,22 +188,27 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseLengthExpr(LengthExpr v) {
-    super.caseLengthExpr(v);
+    v.getOp().apply(this);
+    final JArray jArray = (JArray) getResult();
+    setResult(jArray.getLength());
   }
 
   @Override
   public void caseInstanceFieldRef(InstanceFieldRef v) {
-    super.caseInstanceFieldRef(v);
+    v.getBase().apply(this);
+    final JObject object = (JObject) getResult();
+    final Object val = object.getFieldValue(v.getField());
+    setResult(val);
   }
 
   @Override
   public void caseLocal(Local v) {
-    setResult(v);
+    setResult(curEnvironment.getLocalValue(v));
   }
 
   @Override
   public void caseParameterRef(ParameterRef v) {
-    super.caseParameterRef(v);
+    setResult(curEnvironment.getArgument(v.getIndex()));
   }
 
   @Override
@@ -228,7 +266,8 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
 
   @Override
   public void caseClassConstant(ClassConstant v) {
-    super.caseClassConstant(v);
+    // we cannot use class for name here since we might not have the class in our classpath
+    setResult(new JClassConstant(v));
   }
 
   @Override
@@ -238,11 +277,10 @@ public abstract class AbstractValueInterpreter extends AbstractJimpleValueSwitch
   // end
 
   protected void interpretException(Value v, final String msg) {
-    throw new IllegalStateException(String.format("%s Method: %s, Value: %s", msg, curMethod, v));
+    throw new InterpretException(v, msg);
   }
 
   public void reset() {
     curEnvironment = null;
-    curMethod = null;
   }
 }

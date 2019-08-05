@@ -51,7 +51,12 @@ class InheritanceTest extends AbstractInterpreterSystemTest {
   }
 
   @Test
-  void dynDispatch(TestInfo testInfo) {
+  void dynDispatch1(TestInfo testInfo) {
+    assertInterpretationEqualsExecution(testInfo);
+  }
+
+  @Test
+  void dynDispatch2(TestInfo testInfo) {
     assertInterpretationEqualsExecution(testInfo);
   }
 }

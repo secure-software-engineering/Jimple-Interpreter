@@ -7,12 +7,12 @@ public class Objects {
 
   public void emptyConstructor() {
     A a = new A();
-    System.out.println(a);
+    System.out.println("A");
   }
 
   public void singleConstructor() {
     B a = new B();
-    System.out.println(a);
+    System.out.println("B");
   }
 
   public void methodCall() {
